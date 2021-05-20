@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <page>
+    <resource dir="misc" />
     <group title="在线公告">
-        <text><desc sh="echo 哼哼哼"</desc-sh></text>
+        <text><desc sh="echo 哼哼哼"/></text>
         <page>
             <config>changelog.xml</config>
             <title>更新日志</title>
