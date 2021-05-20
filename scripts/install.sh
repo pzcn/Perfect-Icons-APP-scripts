@@ -52,6 +52,7 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     [ $file_size ] || { echo "× 抱歉，在线资源临时维护中，请切换其他主题或稍后再试。" && rm -rf $TEMP_DIR/* 2>/dev/null&& exit 1; }
     size1=`awk "BEGIN{print $file_size/1048576}"`
     echo "- 本次需下载 ${size1%.*} MB"
+    echo "- 本次需下载 `printf("%.1f", $size1)`"
     # 检查是否下载过相同MD5的文件，并且文件文件还存在
     # 如果存在相同md5的文件，直接输出其路径，并跳过下载
     # downloader/path 目录存储的是此前下载过的文件路径，以md5作为区分
