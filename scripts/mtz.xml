@@ -48,6 +48,6 @@
         <action>
             <title>开始安装</title>
             <desc>确认上述配置无误后，点击会导出mtz</desc>
-            <set>sh $START_DIR/scripts/mtz.sh</set>
+            <set>sh $START_DIR/online-scripts/mtz.sh</set>
         </action>
 </group>
