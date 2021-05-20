@@ -18,7 +18,7 @@
                 <option value="Reconstruction">EMUI-未来之翼(Beta)</option>
             </options>
             <auto-off>true</auto-off>
-            <interruptible>false<interruptible>
+            <interruptible>false</interruptible>
 
             <get> 
             source theme_files/theme_config
