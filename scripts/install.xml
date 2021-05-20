@@ -40,7 +40,6 @@
     </group>
 
     <group title="安装">
-    <resource dir="file:///android_asset/scripts" />
         <action>
             <title>开始安装</title>
             <desc>确认上述配置无误后，点击进行安装</desc>
