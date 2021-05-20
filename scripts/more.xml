@@ -13,18 +13,18 @@
         <page>
           <config>install.xml</config>
           <title>安装/升级</title>
-          <desc sh="misc/get_themes.sh" />
+          <desc sh="sh online-scripts/misc/get_themes.sh" />
           <visible>
-            sh misc/install_check.sh
+            sh online-scripts/misc/install_check.sh
           </visible>
         </page>
         <page config="mtz.xml" title="导出mtz主题包" desc="导出mtz主题包。导出后需要主题破解或MIUI主题设计师账号才能使用。" />
 
     <action>
         <title>清理缓存</title>
-        <desc> sh "misc/cache_size.sh" </desc>
+        <desc sh="sh online-scripts/misc/cache_size.sh" />
         <auto-off>true</auto-off>
-        <set>sh $START_DIR/online-scripts/cleancache.sh</set>
+        <set>sh online-scripts/misc/cleancache.sh</set>
     </action>
     </group>
 
