@@ -1,12 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <page>
-    <group title="安装">
-        <page config="install.xml" title="安装/升级" desc="以 Magisk 模块形式进行安装。" />
+    <group title="在线公告">
+        <text><desc-sh> echo 哼哼哼</desc-sh></text>
+        <page>
+            <config>changelog.xml</config>
+            <title>更新日志</title>
+            <desc-sh>echo 当前没有更新</desc-sh>
+        </page>
     </group>
-    <group title="导出">
-        <page config="mtz.xml" title="导出mtz主题包" desc="导出mtz主题包，导入并使用mtz需要主题破解。" />
+    <group title="安装或导出">
+        <page>
+          <config>install.xml</config>
+          <title>安装/升级</title>
+          <desc-sh> 
+            if [ -d "/data/adb/modules_update/MIUIiconsplus" ]; then
+            moduledir=/data/adb/modules_update/MIUIiconsplus
+            else
+            moduledir=/data/adb/modules/MIUIiconsplus
+            fi
+            source $moduledir/module.prop
+            if [ "$theme" = "" ]; then
+            echo "以 Magisk 模块形式进行安装，当前未安装。"
+            else
+            echo "以 Magisk 模块形式进行安装，当前已安装$theme。"
+            fi
+          </desc-sh>
+          <visible>
+            var_version="`getprop ro.build.version.release`"
+            var_miui_version="`getprop ro.miui.ui.version.code`"
+            var hasRoot = KrScriptCore.rootCheck()
+            if (hasRoot); then
+            if [ $var_version -lt 10 ] ;then
+            echo 0
+            elif [ $var_miui_version -lt 10 ] ;then
+            echo 0
+            else
+            echo 1
+            fi
+            else
+            echo 0
+            fi
+          </visible>
+        </page>
+        <page config="mtz.xml" title="导出mtz主题包" desc="导出mtz主题包。导出后需要主题破解或MIUI主题设计师账号才能使用。" />
     </group>
-    <group title="文档">
-        <page config="wiki.xml" title="一些说明" desc="使用方法、注意事项及常见问题" />
+
+
+    <action>
+        <title>清理缓存</title>
+        <desc-sh>
+            cache_size=$((`du --max-depth=1 ${./theme_files}|awk '{print $1}'`))
+            echo "当前缓存大小：$(printf '%.1f' `echo "scale=1;$cache_size/1048576"|bc`) MB，出现问题时可以尝试清理缓存，下次安装时会重新下载资源。"
+        </desc-sh>
+        <auto-off>true</auto-off>
+        <set>sh $START_DIR/online-scripts/cleancache.sh</set>
+    </action>
+
+
+    <group title="其他">
+        <page config="wiki.xml" title="一些说明" desc="使用方法、注意事项及常见问题。" />
+        <page config="about.xml" title="关于" desc="关于本项目、联系我们、加入群组。" />
     </group>
-</page>

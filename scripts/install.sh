@@ -3,6 +3,7 @@ install() {
     echo "- 正在安装$theme_name..."
     echo "description=使用$theme_name主题并补全MIUI完美图标补全模块并..." >> $TEMP_DIR/module.prop
     echo "version=$(TZ=':Asia/Shanghai' date '+%Y%m%d%H%M')" >> $TEMP_DIR/module.prop
+    echo "theme=$theme_name" >> $TEMP_DIR/module.prop
     tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
     mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
     cd $TEMP_DIR
@@ -99,7 +100,7 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
 addon(){
     addon_path=/sdcard/Documents/MIUI完美图标自定义
     if [ -d "$addon_path" ];then
-    echo "- 检测到自定义图标，正在导入..."
+    echo "- 正在导入自定义图标..."
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi/
     mkdir -p $TEMP_DIR/layer_animating_icons
     cp -rf $addon_path/动态图标/* $TEMP_DIR/layer_animating_icons/ 2>/dev/null
