@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<page>
+    <group title="安装">
+        <page config="install.xml" title="安装/升级" desc="以 Magisk 模块形式进行安装。" />
+    </group>
+    <group title="导出">
+        <page config="mtz.xml" title="导出mtz主题包" desc="导出mtz主题包，导入并使用mtz需要主题破解。" />
+    </group>
+    <group title="文档">
+        <page config="wiki.xml" title="一些说明" desc="使用方法、注意事项及常见问题" />
+    </group>
+</page>

@@ -1,0 +1,19 @@
+name: Update Res
+on:
+  push:
+    paths:
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update Reconstruction
+      run: |
+        cd scripts
+        tar -cvf script.tar *
+        :> icons.ini
+        echo "md5=`md5sum ./icons.tar.xz|cut -d ' ' -f1`" >> ./script.ini
+        echo "script_version=$(TZ=':Asia/Shanghai' date '+%Y%m%d%H%M')" >> ./script.ini
+        curl -T icons.tar.xz -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/script.tar.xz?version=latest"
+        curl -T icons.ini -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/script.ini?version=latest"
