@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <group title="选项">
-                <picker>
+                <picker auto-off="true">
             <title>选择主题图标</title>
             <options>
                 <option value="default">MIUI经典</option>
@@ -17,6 +17,7 @@
                 <option value="StarrySky">EMUI-星夜彩绘(Beta)</option>
                 <option value="Reconstruction">EMUI-未来之翼(Beta)</option>
             </options>
+            <summary sh="sh online-scripts/misc/get_seltheme_name.sh" />
             <auto-off>true</auto-off>
             <get> 
             source theme_files/theme_config
@@ -40,6 +41,7 @@
         <action>
             <title>选择文件保存位置</title>
             <param name="dir" type="folder" value="/sdcard/Download" />
+            <summary sh="source theme_files/mtzdir_config ; echo 当前路径为：$mtzdir " />
             <set>echo "mtzdir=$dir" &gt; theme_files/mtzdir_config</set>
         </action>
 </group>

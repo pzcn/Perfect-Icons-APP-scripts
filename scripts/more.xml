@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <page>
-    <resource dir="misc" />
     <group title="在线公告">
         <text><desc sh="echo 哼哼哼"/></text>
-        <page>
-            <config>changelog.xml</config>
-            <title>更新日志</title>
-            <desc sh="echo 当前没有更新"/>
-        </page>
+
     </group>
     <group title="安装或导出">
-        <page>
+        <page visible="sh online-scripts/misc/installer_check.sh">
           <config>install.xml</config>
           <title>安装/升级</title>
-          <desc sh="sh online-scripts/misc/get_themes.sh" />
-          <visible>
-            sh online-scripts/misc/install_check.sh
-          </visible>
+          <desc>以 Magisk 模块形式进行安装图标。</desc>
+          <summary sh="online-scripts/misc/get_themes.sh" />
         </page>
         <page config="mtz.xml" title="导出mtz主题包" desc="导出mtz主题包。导出后需要主题破解或MIUI主题设计师账号才能使用。" />
 
     <action>
         <title>清理缓存</title>
-        <desc sh="sh online-scripts/misc/cache_size.sh" />
+        <desc>当图标安装后出现奇怪的问题时，可以尝试清理缓存，清理后下次安装时会重新下载资源。 </desc>
+        <summary sh="online-scripts/misc/cache_size.sh"/>
         <auto-off>true</auto-off>
         <set>sh online-scripts/misc/cleancache.sh</set>
     </action>
