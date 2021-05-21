@@ -15,5 +15,5 @@ jobs:
         :> script.ini
         echo "md5=`md5sum ./script.tar|cut -d ' ' -f1`" >> ./script.ini
         echo "script_version=$(TZ=':Asia/Shanghai' date '+%Y%m%d%H%M')" >> ./script.ini
-        curl -T script.tar -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/script.tar?version=latest"
-        curl -T script.ini -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/script.ini?version=latest"
+        curl -T script.tar -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/scriptbeta.tar?version=latest"
+        curl -T script.ini -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/scriptbeta.ini?version=latest"

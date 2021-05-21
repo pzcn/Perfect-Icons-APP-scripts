@@ -17,13 +17,14 @@ install() {
     mkdir $TEMP_DIR/mtztmp
     tar -xf "$TEMP_DIR/mtz.tar.xz" -C "$TEMP_DIR/mtztmp" >&2
     cp -rf $TEMP_DIR/icons.zip $TEMP_DIR/mtztmp/icons
-    sed -i "s/{themename}/${var_theme_name}/g" $TEMP_DIR/mtztmp/description.xml
+    sed -i "s/{themename}/$theme_name/g" $TEMP_DIR/mtztmp/description.xml
     cd $TEMP_DIR/mtztmp
-    time=$(TZ=':Asia/Shanghai' date '+%Y%m%d%H%M')
+    time=$(date '+%Y%m%d%H%M')
     zip -r mtz.zip * >/dev/null
     mv mtz.zip $mtzdir/${theme_name}完美图标补全-$time.mtz
     rm -rf $TEMP_DIR/*
-    echo 已导出
+    echo "- mtz主题包已导出到 $mtzdir/${theme_name}完美图标补全-$time.mtz。"
+    echo "- 需要设计师账号或主题破解才能导入并使用。"
     exit 0
     }
 

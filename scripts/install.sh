@@ -3,6 +3,7 @@ install() {
     echo "- 正在安装$theme_name..."
     echo "description=使用$theme_name主题并补全MIUI完美图标补全模块并..." >> $TEMP_DIR/module.prop
     echo "version=$(TZ=':Asia/Shanghai' date '+%Y%m%d%H%M')" >> $TEMP_DIR/module.prop
+    echo "theme=$theme_name" >> $TEMP_DIR/module.prop
     tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
     mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
     cd $TEMP_DIR
@@ -50,8 +51,7 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     downloader_result="" # 清空变量，后续此变量将用于存放文件下载后的存储路径
     echo "- 需要下载$theme_name资源... "
     [ $file_size ] || { echo "× 抱歉，在线资源临时维护中，请切换其他主题或稍后再试。" && rm -rf $TEMP_DIR/* 2>/dev/null&& exit 1; }
-    size1=`awk "BEGIN{print $file_size/1048576}"`
-    echo "- 本次需下载 ${size1%.*} MB"
+    echo "- 本次需下载 $(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`) MB"
     # 检查是否下载过相同MD5的文件，并且文件文件还存在
     # 如果存在相同md5的文件，直接输出其路径，并跳过下载
     # downloader/path 目录存储的是此前下载过的文件路径，以md5作为区分
@@ -100,7 +100,7 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
 addon(){
     addon_path=/sdcard/Documents/MIUI完美图标自定义
     if [ -d "$addon_path" ];then
-    echo "- 检测到自定义图标，正在导入..."
+    echo "- 正在导入自定义图标..."
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi/
     mkdir -p $TEMP_DIR/layer_animating_icons
     cp -rf $addon_path/动态图标/* $TEMP_DIR/layer_animating_icons/ 2>/dev/null
