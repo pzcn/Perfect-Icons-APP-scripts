@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <group title="选择主题">
-        <picker auto-off="true" interruptible="false">
+    <group>
+        <picker auto-off="true" interruptible="false" shell="hidden" icon="online-scripts/pic/style.png">
             <title>选择主题图标</title>
             <options>
                 <option value="default">MIUI经典</option>
@@ -25,26 +25,32 @@
             </get>
             <set>echo "sel_theme=$state" &gt; theme_files/theme_config </set>
         </picker>
-         <page config="page/preview.xml" title="预览主题图标" />
-</group>
-
-    <group title="自定义">
-        <switch shell="hidden">
+        <switch shell="hidden" icon="online-scripts/pic/addon.png">
             <title>是否启用自定义图标</title>
-            <desc>将会启用您的自定义图标，具体配置方式查看下方说明</desc>
+            <desc>开启后，安装时将会导入您的自定义图标。</desc>
             <get>
             source theme_files/addon_config
             echo $addon
             </get>
             <set>echo "addon=$state" &gt; theme_files/addon_config</set>
         </switch>
-        <page config="page/addon_help.xml" title="自定义图标说明" />
+</group>
+
+    <group>
+         <page title="预览主题图标" html="https://icons-demo.vercel.app/" icon="online-scripts/pic/preview.png">
+         </page>
+         <page config="online-scripts/page/install.xml" title="使用说明及常见问题" icon="online-scripts/pic/qa.png"/>
     </group>
 
-    <group title="安装">
-        <action>
+    <group>
+        <action confirm="true" icon="online-scripts/pic/start.png" reload="@status,@install,@cleancache,@reboot">
             <title>开始安装</title>
-            <desc>确认上述配置无误后，点击进行安装</desc>
-            <set>sh $START_DIR/online-scripts/install.sh</set>
+            <desc>确认上述配置无误后，轻触进行安装</desc>
+            <set>sh $START_DIR/online-scripts/misc/install.sh</set>
+        </action>
+        <action confirm="true" icon="online-scripts/pic/reboot.png" id="@reboot" shell="hidden" visible="sh online-scripts/misc/reboot_check.sh">
+            <title>重启手机</title>
+            <desc>轻触重启</desc>
+            <set>reboot</set>
         </action>
 </group>

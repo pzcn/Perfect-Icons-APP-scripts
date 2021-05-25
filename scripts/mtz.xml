@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <group title="选项">
-                <picker auto-off="true">
+    <group>
+          <picker auto-off="true" shell="hidden" icon="online-scripts/pic/style.png">
             <title>选择主题图标</title>
             <options>
                 <option value="default">MIUI经典</option>
@@ -25,32 +25,39 @@
             </get>
             <set>echo "sel_theme=$state" &gt; theme_files/theme_config </set>
         </picker>
-         <page config="page/preview.xml" title="预览主题图标" />
-
-        <switch shell="hidden">
+        <switch shell="hidden" icon="online-scripts/pic/addon.png">
          <title>是否启用自定义图标</title>
-            <desc>将会启用您的自定义图标，具体配置方式查看下方说明</desc>
+            <desc>开启后，导出的mtz将会包含您的自定义图标</desc>
             <get>
             source theme_files/addon_config
             echo $addon
             </get>
             <set>echo "addon=$state" &gt; theme_files/addon_config</set>
         </switch>
-        <page config="page/addon_help.xml" title="自定义图标说明" />
-        
-        <action>
+        <action shell="hidden" icon="online-scripts/pic/folder.png">
             <title>选择文件保存位置</title>
             <param name="dir" type="folder" value="/sdcard/Download" />
             <summary sh="source theme_files/mtzdir_config ; echo 当前路径为：$mtzdir " />
             <set>echo "mtzdir=$dir" &gt; theme_files/mtzdir_config</set>
         </action>
-</group>
-    <group title="安装">
-    <resource dir="file:///android_asset/scripts" />
-    <resource dir="file:///android_asset/mtz" />
-        <action>
-            <title>开始安装</title>
-            <desc>确认上述配置无误后，点击会导出mtz</desc>
-            <set>sh $START_DIR/online-scripts/mtz.sh</set>
+        </group>
+        <group>
+         <page html="https://icons-demo.vercel.app/" title="预览主题图标" icon="online-scripts/pic/preview.png"/>
+         <page config="online-scripts/page/mtz.xml" title="使用说明及常见问题" icon="online-scripts/pic/qa.png"/>
+        </group>
+    <group>
+        <action icon="online-scripts/pic/start.png">
+            <title>开始导出mtz</title>
+            <desc>确认上述配置无误后，轻触导出mtz</desc>
+            <set>sh $START_DIR/online-scripts/misc/mtz.sh</set>
+        </action>
+        </group>
+        <group>
+         <action visible="0">
+            <title>附加功能-主题破解</title>
+            <desc>以 Magisk 模块形式破解主题，自动修改系统内置版本。
+额外功能，无法保证可用性。
+由 @余空_YUK 提供。</desc>
+            <set>sh online-scripts/misc/theme_crack.sh</set>
         </action>
 </group>

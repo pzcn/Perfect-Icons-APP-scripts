@@ -1,9 +1,6 @@
 
 install() {
     echo "- 正在安装$theme_name..."
-    echo "description=使用$theme_name主题并补全MIUI完美图标补全模块并..." >> $TEMP_DIR/module.prop
-    echo "version=$(TZ=':Asia/Shanghai' date '+%Y%m%d%H%M')" >> $TEMP_DIR/module.prop
-    echo "theme=$theme_name" >> $TEMP_DIR/module.prop
     tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
     mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
     cd $TEMP_DIR
@@ -40,6 +37,7 @@ cp -rf theme_files/${var_theme}.tar.xz $TEMP_DIR/${var_theme}.tar.xz
 fi
 else downloader
 fi
+echo "$var_theme=$theme_version" >> $TEMP_DIR/module.prop
 }
 
 downloader() {
@@ -134,8 +132,7 @@ require_new_magisk() {
   exit 1
 }
 
-exec 3>&2
-exec 2>/dev/null
+
 rm -rf $TEMP_DIR/*
 [ -f /data/adb/magisk/util_functions.sh ] || require_new_magisk
 . /data/adb/magisk/util_functions.sh
@@ -143,7 +140,6 @@ rm -rf $TEMP_DIR/*
 MODULEROOT=/data/adb/modules_update
 MODPATH=/data/adb/modules_update/MIUIiconsplus
 rm -rf $MODPATH 2>/dev/null
-mkdir -p $MODPATH
 var_version="`getprop ro.build.version.release`"
 var_miui_version="`getprop ro.miui.ui.version.code`"
 source theme_files/theme_config
@@ -159,14 +155,19 @@ FAKEMODPATH=$TEMP_DIR/modpath
   [ "`curl -I -s --connect-timeout 1 www.baidu.com -w %{http_code} | tail -n1`" == "200" ] ||{  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; }
   echo ""
   REPLACE="/system/media/theme/miui_mod_icons"
-  echo "id=MIUIiconsplus" >> $TEMP_DIR/module.prop
-  echo "name=MIUI完美图标补全" >> $TEMP_DIR/module.prop
-  echo "author=@PedroZ" >> $TEMP_DIR/module.prop
   var_theme=icons
   getfiles
   var_theme=$sel_theme
   getfiles
+  echo "id=MIUIiconsplus
+name=MIUI完美图标补全
+author=@PedroZ
+description=使用$theme_name主题并补全MIUI完美图标
+version=$(TZ=':Asia/Shanghai' date '+%Y%m%d%H%M')
+theme=$theme_name
+themeid=$var_theme" >> $TEMP_DIR/module.prop
   install
+  mkdir -p $MODPATH
   cp -rf $FAKEMODPATH/. $MODPATH
   set_perm_recursive $MODPATH 0 0 0755 0644
   for TARGET in $REPLACE; do

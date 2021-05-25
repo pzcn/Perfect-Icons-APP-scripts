@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<page>
-    <group title="在线公告">
-        <text><desc sh="echo 哼哼哼"/></text>
-
+    <group>
+    <text visible="online-scripts/misc/announce_check.sh">
+    <title>公告</title>
+    <desc sh="cat 'online-scripts/misc/announce.txt' "/>
+    </text>
+    <group>
+       <action auto-off="true" id="@status" reload="@status" visible="sh online-scripts/misc/installer_check.sh" icon="pic/update.png">
+            <title>检查更新</title>
+            <set>sh $START_DIR/online-scripts/misc/update_check.sh</set>
+            <summary sh="online-scripts/misc/update_status.sh" />
+        </action>
+        <page config-sh="online-scripts/misc/get_changelog.sh" icon="pic/changelog.png">
+          <title>更新日志</title>
+          <desc>查看近期更新日志。</desc>
+          </page>
     </group>
-    <group title="安装或导出">
-        <page visible="sh online-scripts/misc/installer_check.sh">
+    
+    <group>
+        <page visible="sh online-scripts/misc/installer_check.sh" id="@install" icon="pic/install.png">
           <config>install.xml</config>
           <title>安装/升级</title>
           <desc>以 Magisk 模块形式进行安装图标。</desc>
           <summary sh="online-scripts/misc/get_themes.sh" />
         </page>
-        <page config="mtz.xml" title="导出mtz主题包" desc="导出mtz主题包。导出后需要主题破解或MIUI主题设计师账号才能使用。" />
-
-    <action>
+        
+        <page config="mtz.xml" title="导出mtz主题包" icon="pic/download.png" desc="导出mtz主题包。导出后需要主题破解或MIUI主题设计师账号才能使用。" />
+        <page config="addon.xml" title="图标自定义" icon="online-scripts/pic/addon.png" desc="图标存档下载，以及关于自定义图标的一些杂项。" />
+    <action shell="hidden" confirm="true" id="@cleancache" reload="@cleancache" icon="pic/clean.png">
         <title>清理缓存</title>
         <desc>当图标安装后出现奇怪的问题时，可以尝试清理缓存，清理后下次安装时会重新下载资源。 </desc>
         <summary sh="online-scripts/misc/cache_size.sh"/>
-        <auto-off>true</auto-off>
         <set>sh online-scripts/misc/cleancache.sh</set>
     </action>
     </group>
 
-    <group title="其他">
-        <page config="wiki.xml" title="一些说明" desc="使用方法、注意事项及常见问题。" />
-        <page config="about.xml" title="关于" desc="关于本项目、联系我们、加入群组。" />
+    <group>
+        <page config="online-scripts/page/document.xml" title="一些说明" desc="使用前请高强度阅读说明，大部分问题都能在这里找到答案" icon="pic/tips.png" />
+        <page config="online-scripts/page/about.xml" title="关于" desc="关于本项目、联系我们、加入群组。" icon="pic/about.png"/>
     </group>

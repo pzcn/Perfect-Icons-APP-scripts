@@ -1,0 +1,9 @@
+<group>
+        <page config="online-scripts/page/notice.xml" title="使用必读" desc="一些注意事项"/>
+  </group>
+ <group>
+         <page config="online-scripts/page/make_icons.xml" title="图标适配指南"/>
+        <page config="online-scripts/page/install.xml" title="模块安装相关问题"/>
+        <page config="online-scripts/page/mtz.xml" title="mtz导出相关问题"/>
+        <page config="online-scripts/page/addon.xml" title="自定义图标相关问题"/>
+  </group>

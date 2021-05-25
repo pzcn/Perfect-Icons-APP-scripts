@@ -17,7 +17,7 @@ install() {
     mkdir $TEMP_DIR/mtztmp
     tar -xf "$TEMP_DIR/mtz.tar.xz" -C "$TEMP_DIR/mtztmp" >&2
     cp -rf $TEMP_DIR/icons.zip $TEMP_DIR/mtztmp/icons
-    sed -i "s/{themename}/$theme_name/g" $TEMP_DIR/mtztmp/description.xml
+    sed -i "s/themename/$theme_name/g" $TEMP_DIR/mtztmp/description.xml
     cd $TEMP_DIR/mtztmp
     time=$(date '+%Y%m%d%H%M')
     zip -r mtz.zip * >/dev/null
@@ -56,8 +56,7 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     URL=https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.tar.xz?version=latest
     echo "- 需要下载$theme_name资源... "
     [ $file_size ] || { echo "× 抱歉，在线资源临时维护中，请切换其他主题或稍后再试。" && rm -rf $TEMP_DIR/* 2>/dev/null&& exit 1; }
-    size1=`awk "BEGIN{print $file_size/1048576}"`
-    echo "- 本次需下载 ${size1%.*} MB"
+    echo "- 本次需下载 $(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`) MB"
     curl -skLJo "$file" "$URL"
     #进度条待添加
     md5_loacl=`md5sum $file|cut -d ' ' -f1`
