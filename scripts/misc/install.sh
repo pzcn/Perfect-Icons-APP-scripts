@@ -16,6 +16,7 @@ install() {
     [ $addon == 1 ] && addon
     mkdir -p $FAKEMODPATH/system/media/theme/default/
     cp -rf $TEMP_DIR/icons.zip $FAKEMODPATH/system/media/theme/default/icons
+    [ $addon == 1 ] && cp -rf $addon_path/高级附加/* $FAKEMODPATH/system/media/theme/default 2>/dev/null
     cp $TEMP_DIR/module.prop $FAKEMODPATH/module.prop
 }
 
@@ -180,6 +181,7 @@ themeid=$var_theme" >> $TEMP_DIR/module.prop
   $MODPATH/README.md $MODPATH/.git* 2>/dev/null
   cd /
   rm -rf $TEMP_DIR/*
+  settings put global is_default_icon 0
   echo ""
   echo "- 安装成功，请重启设备 (^_^) "
   echo "---------------------------------------------"

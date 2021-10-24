@@ -1,5 +1,35 @@
-        <text><title>图标绘制</title>
-        <slice bold="true" break="true" size="15">@PedroZ</slice>
-        <slice bold="true" break="true" size="15">@PedroZ</slice>
-        <slice bold="true" break="true" size="15">@PedroZ</slice>
-        <slice bold="true" break="true" size="15">@PedroZ</slice></text>
+<group><text><title>关于</title>
+<slice break="true" size="13" bold="true">完美图标项目、APP已开源至Github，本APP使用了开源框架PIO制作。</slice></text></group>
+
+<group><text><title>项目地址</title>
+<slice break="true" size="13" bold="true" link="https://github.com/pzcn/MIUI-Adapted-Icons-Complement-Project" u="true">完美图标Github地址</slice>
+<slice break="true" size="13" bold="true" link="https://github.com/pzcn/MIUI-Icons-APP" u="true">APP Github地址</slice>
+</text></group>
+
+<group><text><title>参与讨论</title>
+<slice break="true" size="13" bold="true" link="https://qm.qq.com/cgi-bin/qm/qr?k=_92-RGlaiz3Xm-9i8O3USqTSg29EYg44" u="true">QQ群：561180493</slice>
+<slice break="true" size="13" bold="true" link="https://t.me/miuiicons" u="true">Telegram频道</slice>
+<slice break="true" size="13" bold="true" link="https://t.me/miui_icons_dev" u="true">Telegram群组</slice>
+</text></group>
+
+<group><text><title>图标绘制</title>
+<slice break="true" size="13" bold="true">@PedroZ</slice>
+<slice break="true" size="13" bold="true">@Yife Playte</slice>
+<slice break="true" size="13" bold="true">@潮留美海かり</slice>
+<slice break="true" size="13" bold="true">@Mastiff Li</slice>
+<slice break="true" size="13" bold="true">@Eirperuier</slice>
+<slice break="true" size="13" bold="true">@叡煜</slice>
+<slice break="true" size="13" bold="true">@世界第一小莲儿</slice></text></group>
+
+<group><text><title>主题授权</title>
+<slice break="true" size="13" bold="true">LRONE主题-@江户川Conan</slice>
+<slice break="true" size="13" bold="true">Luck7主题-@JellyBeans</slice>
+<slice break="true" size="13" bold="true">完美曲线主题-@栗子汤圆Ria</slice></text></group>
+
+<group><text><title>技术支持</title>
+<slice break="true" size="13" bold="true">@相见即是缘</slice>
+<slice break="true" size="13" bold="true">@余空_YuK</slice>
+<slice break="true" size="13" bold="true">@薛定谔の鼠</slice></text></group>
+
+<group><text><title>参与项目建设的其他朋友</title>
+<slice break="true" size="13" bold="true">@Shahzaib Ahmed @一米阳光 @兰博教育 以及参与建设的其他朋友</slice></text></group>

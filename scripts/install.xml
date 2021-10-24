@@ -48,9 +48,9 @@
             <desc>确认上述配置无误后，轻触进行安装</desc>
             <set>sh $START_DIR/online-scripts/misc/install.sh</set>
         </action>
-        <action confirm="true" icon="online-scripts/pic/reboot.png" id="@reboot" shell="hidden" visible="sh online-scripts/misc/reboot_check.sh">
-            <title>重启手机</title>
+        <action confirm="true" icon="online-scripts/pic/reboot.png" id="@reboot" shell="hidden">
+            <title>重启设备</title>
             <desc>轻触重启</desc>
-            <set>reboot</set>
+            <set>/system/bin/reboot</set>
         </action>
 </group>

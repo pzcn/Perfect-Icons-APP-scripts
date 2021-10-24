@@ -9,11 +9,12 @@
 <group><text><title>其他说明</title><slice break="true" size="13" bold="true">禁用动态图标</slice>
 <slice break="true" size="13">如果想禁用某个动态图标，在 动态图标/包名文件夹 下新建一个名为config.xml的空文件即可。
 </slice>
+<slice break="true" size="13" bold="true">[进阶]高级附加</slice>
+<slice break="true" size="13">自行创建『高级附加』文件夹，可在里面放置MIUI主题的其他组件，如双开角标等。属于进阶用法，不提供任何技术支持。</slice>
 <slice break="true" size="13" bold="true">删除静态/动态图标</slice>
-<slice break="true" size="13">暂不支持，将尽力在后续版本中实现。</slice></text>
-<group><text><title>从旧版本附加模块迁移</title>
-<slice break="true" size="13">为了简化自定义流程，旧版本附加模块将不受支持。但是应用提供了自动迁移选项，当检测到旧版本附加模块存在时，在 自定义图标 页面内可找到 自动迁移旧版本附加模块 选项，轻触即可完成迁移以及旧模块卸载。您也可以自行按照说明移动。</slice>
-</group>
+<slice break="true" size="13">暂不支持，将尽力在后续版本中实现。</slice></text></group>
+<group><text><title>从旧版本附加模块迁移</title><slice break="true" size="13">为了简化自定义流程，旧版本附加模块将不受支持。但是应用提供了自动迁移选项，当检测到旧版本附加模块存在时，在 自定义图标 页面内可找到 自动迁移旧版本附加模块 选项，轻触即可完成迁移以及旧模块卸载。您也可以自行按照说明移动。</slice></text></group>
+
 <group><text><title>实例-为随机包名的Magisk添加图标</title>
 <slice break="true" size="13">Magisk随机包名后，为了防止应用检测，将不再显示图标。下面是一个使用自定义图标为Magisk添加图标的实例。
 
