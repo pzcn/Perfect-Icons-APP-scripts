@@ -1,6 +1,6 @@
 source theme_files/theme_config
 [ $sel_theme = default ] && echo "当前选择：MIUI经典"
-[ $sel_theme = coloros12 ] && echo "当前选择：ColorOS 12"
+[ $sel_theme = coloros12 ] && echo "当前选择：ColorOS12"
 [ $sel_theme = explore ] && echo "当前选择：MIUI探·界 "
 [ $sel_theme = flyme9 ] && echo "当前选择：Flyme9 "
 [ $sel_theme = lrone ] && echo "当前选择：Lrone "
