@@ -153,7 +153,7 @@ FAKEMODPATH=$TEMP_DIR/modpath
   elif [ $var_miui_version -ge 10 ]; then
   echo "- 开始安装过程..."
   fi
-  [ "`curl -I -s --connect-timeout 1 www.baidu.com -w %{http_code} | tail -n1`" == "200" ] ||{  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; }
+  [ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] ||{  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; }
   echo ""
   REPLACE="/system/media/theme/miui_mod_icons"
   var_theme=icons
