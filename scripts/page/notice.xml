@@ -1,4 +1,2 @@
-<text>
-    <title>使用必读</title>
-    <slice bold="true" break="true" size="15">文字</slice>
-</text>
+        <text><title>使用必读</title>
+        <slice bold="true" break="true" size="15">文字</slice></text>
