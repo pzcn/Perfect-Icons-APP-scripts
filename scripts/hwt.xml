@@ -3,36 +3,63 @@
           <picker auto-off="true" shell="hidden" icon="pic/style.png">
             <title>选择主题图标</title>
             <options>
-                <option value="default">MIUI经典</option>
-                <option value="coloros12">ColorOS12</option>
-                <option value="explore">MIUI探·界</option>
-                <option value="flyme9">Flyme9</option>
-                <option value="lrone">Lrone</option>
-                <option value="luck7">Luck7</option>
-                <option value="perfectcurve">完美曲线</option>
-                <option value="Aquamarine">鸿蒙-润泽(Beta)</option>
-                <option value="AmethystLake">EMUI-紫晶湖(Beta)</option>
-                <option value="GoldenBeach">EMUI-碧海金沙(Beta)</option>
-                <option value="LightWings">EMUI-光之翼(Beta)</option>
-                <option value="Nebulae">EMUI-宇宙之眼(Beta)</option>
-                <option value="StarrySky">EMUI-星夜彩绘(Beta)</option>
-                <option value="Reconstruction">EMUI-未来之翼(Beta)</option>
+                <option value="Aquamarine">润泽</option>
+                <option value="PoeticRomance">镜中诗</option>
+                <option value="BlushGold">8号色</option>
+                <option value="ClearBlue">晴光蓝</option>
+                <option value="CrushGreen">艾草青</option>
+                <option value="PurpleAmber">紫烟琥珀</option>
+                <option value="AmethystLake">紫晶湖</option>
+                <option value="GoldenBeach">碧海金沙</option>
+                <option value="LightWings">光之翼</option>
+                <option value="Nebulae">宇宙之眼</option>
+                <option value="StarrySky">星夜彩绘</option>
+                <option value="Reconstruction">未来之翼</option>
             </options>
-            <summary sh="sh online-scripts/misc/get_seltheme_name.sh" />
+            <summary sh="sh online-scripts/misc/get_hwt_name.sh" />
             <auto-off>true</auto-off>
             <get> 
-            source theme_files/theme_config
-            echo $sel_theme 
+            source theme_files/hwt_config
+            echo $hwt_theme 
             </get>
-            <set>echo "sel_theme=$state" &gt; theme_files/theme_config </set>
+            <set>echo "hwt_theme=$state" &gt; theme_files/hwt_config </set>
         </picker>
-        <action shell="hidden" icon="pic/folder.png">
-            <title>选择文件保存位置</title>
-            <param name="dir" type="folder" value="/sdcard/Download" />
-            <summary sh="source theme_files/mtzdir_config ; echo 当前路径为：$mtzdir " />
-            <set>echo "mtzdir=$dir" &gt; theme_files/mtzdir_config</set>
-        </action>
+
+          <picker auto-off="true" shell="hidden" icon="pic/style.png">
+            <title>选择图标大小</title>
+            <options>
+                <option value="small">小</option>
+                <option value="medium">中</option>
+                <option value="large">较大</option>
+                <option value="exlarge">最大（鸿蒙不推荐）</option>
+            </options>
+            <summary sh="sh online-scripts/misc/get_hwt_size.sh" />
+            <auto-off>true</auto-off>
+            <get> 
+            source theme_files/hwt_config
+            echo $hwt_size 
+            </get>
+            <set>echo "hwt_size=$state" &gt; theme_files/hwt_config </set>
+        </picker>
+
+          <picker auto-off="true" shell="hidden" icon="pic/style.png">
+            <title>选择图标形状</title>
+            <options>
+                <option value="round">圆形</option>
+                <option value="squarecircle">方圆形</option>
+                <option value="rectangle">圆角矩形</option>
+            </options>
+            <summary sh="sh online-scripts/misc/get_hwt_shape.sh" />
+            <auto-off>true</auto-off>
+            <get> 
+            source theme_files/hwt_config
+            echo $hwt_shape 
+            </get>
+            <set>echo "hwt_shape=$state" &gt; theme_files/hwt_config </set>
+        </picker>
+
         </group>
+
         <group>
          <page html="https://icons-demo.vercel.app/" title="预览主题图标" icon="pic/preview.png"/>
          <page config="page/hwt.xml" title="使用说明及常见问题" icon="pic/qa.png"/>
@@ -41,7 +68,7 @@
         <action icon="pic/start.png">
             <title>开始导出hwt</title>
             <desc>确认上述配置无误后，轻触导出hwt主题包</desc>
-            <set>sh $START_DIR/online-scripts/misc/mtz.sh</set>
+            <set>sh $START_DIR/online-scripts/misc/hwt.sh</set>
         </action>
         </group>
         <group>
