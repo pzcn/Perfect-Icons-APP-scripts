@@ -75,8 +75,8 @@
             <set>echo "hwtdir=$dir" &gt; theme_files/hwt_dir_config</set>
         </action>
         <action icon="pic/start.png">
-            <title>开始导出hwt到自定义文件夹</title>
-            <desc>确认上述配置无误后，轻触导出hwt主题包到指定位置</desc>
+            <title>开始导出hwt</title>
+            <desc>确认上述配置无误后，轻触导出hwt主题包</desc>
             <set>sh $START_DIR/online-scripts/misc/hwt.sh</set>
         </action>
         </group>

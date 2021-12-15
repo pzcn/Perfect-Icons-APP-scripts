@@ -79,6 +79,7 @@ curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.n
   source theme_files/hwt_dir_config
   source theme_files/hwt_size_config
   source theme_files/hwt_shape_config
+  [ "-d $hwtdir" ] ||{  echo "× 选择导出的文件夹不存在，请重新选择 "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
   hwt_theme=icons
   getfiles
   hwt_theme=style
