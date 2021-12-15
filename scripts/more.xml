@@ -42,9 +42,9 @@
 
 <group>
     <text visible="online-scripts/misc/announce_check.sh">
-        <title>鸿蒙OS/EMUI</title>
+        <title>HarmonyOS/EMUI</title>
     </text>
-    <page config="hwt.xml" title="导出mhwt主题包" icon="pic/download.png" desc="导出mhwt主题包。" />
+    <page config="hwt.xml" title="导出hwt主题包" icon="pic/download.png" desc="导出mhwt主题包。" />
 </group>
 
 <group>
