@@ -66,22 +66,11 @@
 
         <group>
         <text visible="online-scripts/misc/announce_check.sh">
-        <title>导出到华为主题目录下</title>
-        </text>
-        <action icon="pic/start.png">
-            <title>开始导出hwt</title>
-            <desc>确认上述配置无误后，轻触导出hwt主题包到华为主题目录</desc>
-            <set>sh $START_DIR/online-scripts/misc/hwt.sh</set>
-        </action>
-        </group>
-
-        <group>
-        <text visible="online-scripts/misc/announce_check.sh">
-        <title>导出到自定义文件夹</title>
+        <title>导出</title>
         </text>
         <action shell="hidden" icon="pic/folder.png">
-            <title>自定义文件保存位置</title>
-            <param name="dir" type="folder" value="/sdcard/Download" />
+            <title>选择导出位置</title>
+            <param name="dir" type="folder" value="/sdcard/Huawei/Themes" />
             <summary sh="source theme_files/hwt_dir_config ; echo 当前路径为：$hwtdir " />
             <set>echo "hwtdir=$dir" &gt; theme_files/hwt_dir_config</set>
         </action>
