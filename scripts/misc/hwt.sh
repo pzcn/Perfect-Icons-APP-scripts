@@ -4,6 +4,7 @@ install() {
     mkdir -p $TEMP_DIR/
     mkdir -p $TEMP_DIR/hwt
     mkdir -p $TEMP_DIR/icons
+    mkdir -p $TEMP_DIR/style
     tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
     tar -xf  $TEMP_DIR/$hwt_theme.tar.xz -C "$TEMP_DIR/hwt/"
     mv $TEMP_DIR/hwt/$sel_theme/icons $TEMP_DIR/hwt/$sel_theme/icons.zip
@@ -13,7 +14,7 @@ install() {
     tar -xf "$TEMP_DIR/style.tar.xz" -C "$TEMP_DIR/style" >&2
     cp $TEMP_DIR/style/$hwt_shape_$hwt_size/* $TEMP_DIR/icons
     source $TEMP_DIR/style/$hwt_shape_$hwt_size/config.ini
-    zip -rmq $TEMP_DIR/icons.zip $TEMP_DIR/icons/*
+    zip -rm $TEMP_DIR/icons.zip $TEMP_DIR/icons/* >&2
     mv $TEMP_DIR/icons.zip $TEMP_DIR/hwt/$sel_theme/icons
     date1=$(TZ=':Asia/Shanghai' date '+%m.%d %H:%M')
     sed -i "s/{name}/$name/g" $TEMP_DIR/hwt/$sel_theme/description.xml
