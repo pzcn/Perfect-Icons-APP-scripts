@@ -8,15 +8,15 @@ install() {
     tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
     tar -xf  $TEMP_DIR/$hwt_theme.tar.xz -C "$TEMP_DIR/hwt/"
     mv $TEMP_DIR/hwt/$sel_theme/icons $TEMP_DIR/hwt/$sel_theme/icons.zip
-    unzip $TEMP_DIR/hwt/$sel_theme/icons.zip -d $TEMP_DIR/icons
+    unzip -qo $TEMP_DIR/hwt/$sel_theme/icons.zip -d $TEMP_DIR/icons
     rm -rf $TEMP_DIR/hwt/$sel_theme/icons.zip
     echo "- 正在设置形状和大小..."
     tar -xf "$TEMP_DIR/style.tar.xz" -C "$TEMP_DIR/style" >&2
-    cp -r ${TEMP_DIR}/style/${hwt_shape}_${hwt_size}/* $TEMP_DIR/icons
+    cp -rf ${TEMP_DIR}/style/${hwt_shape}_${hwt_size}/* $TEMP_DIR/icons
     source ${TEMP_DIR}/style/${hwt_shape}_${hwt_size}/config.ini
     cp -rf $TEMP_DIR/icons
     cd $TEMP_DIR/icons
-    zip -rq $TEMP_DIR/icons.zip * >/dev/null
+    zip -qr $TEMP_DIR/icons.zip * 
     cd $TEMP_DIR
     mv $TEMP_DIR/icons.zip $TEMP_DIR/hwt/$sel_theme/icons
     date1=$(TZ=':Asia/Shanghai' date '+%m.%d %H:%M')
@@ -25,7 +25,7 @@ install() {
     sed -i "s/{date}/$date1/g" $TEMP_DIR/hwt/$sel_theme/description.xml
     date2=$(TZ=':Asia/Shanghai' date '+%m%d%H%M')
     cd $TEMP_DIR/hwt/$sel_theme
-    zip -q -r $TEMP_DIR/hwt.zip * >/dev/null
+    zip -qr $TEMP_DIR/hwt.zip * 
     mv $TEMP_DIR/hwt.zip $hwtdir/完美图标补全-$date2.hwt
     rm -rf $TEMP_DIR/*
     echo "- hwt主题包已导出到 $hwtdir/${theme_name}完美图标补全-$date2.hwt"
