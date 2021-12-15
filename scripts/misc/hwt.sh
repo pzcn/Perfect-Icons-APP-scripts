@@ -73,7 +73,7 @@ curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.n
   getfiles
   hwt_theme=style
   getfiles
-  hwt_theme=$sel_theme
+  hwt_theme=${sel_theme}
   getfiles
   install
   rm -rf $TEMP_DIR/*
