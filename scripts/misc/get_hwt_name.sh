@@ -1,4 +1,4 @@
-source theme_files/hwt_config
+source theme_files/hwt_theme_config
 [ $hwt_theme = default ] && echo "当前选择：MIUI经典"
 [ $hwt_theme = coloros12 ] && echo "当前选择：ColorOS12"
 [ $hwt_theme = explore ] && echo "当前选择：MIUI探·界 "

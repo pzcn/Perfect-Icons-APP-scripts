@@ -22,43 +22,43 @@
             <summary sh="sh online-scripts/misc/get_hwt_name.sh" />
             <auto-off>true</auto-off>
             <get> 
-            source theme_files/hwt_config
+            source theme_files/hwt_theme_config
             echo $hwt_theme 
             </get>
-            <set>echo "hwt_theme=$state" &gt; theme_files/hwt_config </set>
+            <set>echo "hwt_theme=$state" &gt; theme_files/hwt_theme_config </set>
         </picker>
 
           <picker auto-off="true" shell="hidden" icon="pic/style.png">
             <title>选择图标大小</title>
             <options>
-                <option value="small">小</option>
-                <option value="medium">中</option>
-                <option value="large">较大</option>
-                <option value="exlarge">最大（鸿蒙不推荐）</option>
+                <option value="S">小</option>
+                <option value="M">中</option>
+                <option value="L">大</option>
+                <option value="XL">特大（鸿蒙不推荐）</option>
             </options>
             <summary sh="sh online-scripts/misc/get_hwt_size.sh" />
             <auto-off>true</auto-off>
             <get> 
-            source theme_files/hwt_config
+            source theme_files/hwt_size_config
             echo $hwt_size 
             </get>
-            <set>echo "hwt_size=$state" &gt; theme_files/hwt_config </set>
+            <set>echo "hwt_size=$state" &gt; theme_files/hwt_size_config </set>
         </picker>
 
           <picker auto-off="true" shell="hidden" icon="pic/style.png">
             <title>选择图标形状</title>
             <options>
-                <option value="round">圆形</option>
-                <option value="squarecircle">方圆形</option>
-                <option value="rectangle">圆角矩形</option>
+                <option value="Round">圆形</option>
+                <option value="SquareCircle">方圆形</option>
+                <option value="Rectangle">圆角矩形</option>
             </options>
             <summary sh="sh online-scripts/misc/get_hwt_shape.sh" />
             <auto-off>true</auto-off>
             <get> 
-            source theme_files/hwt_config
+            source theme_files/hwt_shape _config
             echo $hwt_shape 
             </get>
-            <set>echo "hwt_shape=$state" &gt; theme_files/hwt_config </set>
+            <set>echo "hwt_shape=$state" &gt; theme_files/hwt_shape_config </set>
         </picker>
          <page html="https://icons-demo.vercel.app/" title="预览主题图标" icon="pic/preview.png"/>
          <page config="page/hwt.xml" title="使用说明及常见问题" icon="pic/qa.png"/>
