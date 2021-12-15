@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <group>
     <text visible="online-scripts/misc/announce_check.sh">
         <title>公告</title>
         <desc sh="cat 'online-scripts/misc/announce.txt' "/>
     </text>
 </group>
+
 <group>
+    <text visible="online-scripts/misc/announce_check.sh">
+        <title>更新</title>
+    </text>
     <action auto-off="true" id="@status" reload="@status" visible="sh online-scripts/misc/installer_check.sh" icon="pic/update.png">
         <title>检查更新</title>
         <set>sh $START_DIR/online-scripts/misc/update_check.sh</set>
@@ -20,7 +25,11 @@
         <desc>通过微信订阅后，有新版本会推送通知。</desc>
     </page>
 </group>
+
 <group>
+    <text visible="online-scripts/misc/announce_check.sh">
+        <title>MIUI</title>
+    </text>
     <page visible="sh online-scripts/misc/installer_check.sh" id="@install" icon="pic/install.png">
         <config>install.xml</config>
         <title>安装/升级</title>
@@ -29,14 +38,25 @@
     </page>
     <page config="mtz.xml" title="导出mtz主题包" icon="pic/download.png" desc="导出mtz主题包。导出后需要主题破解或MIUI主题设计师账号才能使用。" />
     <page config="addon.xml" title="图标自定义" icon="pic/addon.png" desc="图标存档下载，以及关于自定义图标的一些杂项。" />
+</group>
+
+<group>
+    <text visible="online-scripts/misc/announce_check.sh">
+        <title>鸿蒙OS/EMUI</title>
+    </text>
+    <page config="hwt.xml" title="导出mhwt主题包" icon="pic/download.png" desc="导出mhwt主题包。" />
+</group>
+
+<group>
+    <text visible="online-scripts/misc/announce_check.sh">
+        <title>其他</title>
+    </text>
     <action shell="hidden" confirm="true" id="@cleancache" reload="@cleancache" icon="pic/clean.png">
         <title>清理缓存</title>
         <desc>当图标安装后出现奇怪的问题时，可以尝试清理缓存，清理后下次安装时会重新下载资源。 </desc>
         <summary sh="online-scripts/misc/cache_size.sh"/>
         <set>sh online-scripts/misc/cleancache.sh</set>
     </action>
-</group>
-<group>
     <page config="page/document.xml" title="一些说明" desc="使用前请高强度阅读说明，大部分问题都能在这里找到答案" icon="pic/tips.png" />
     <page config="page/about.xml" title="关于" desc="关于本项目、联系我们、加入群组。" icon="pic/about.png"/>
 </group>
