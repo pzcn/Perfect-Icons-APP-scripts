@@ -47,7 +47,7 @@ fi
 }
 
 downloader() {
-curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${hwt_theme}.ini?version=latest"
+curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.net/icons/files/${hwt_theme}.ini?version=latest"
     mkdir theme_files 2>/dev/null
     source $TEMP_DIR/${hwt_theme}.ini
     cp -rf $TEMP_DIR/${hwt_theme}.ini theme_files/${hwt_theme}.ini
@@ -57,6 +57,7 @@ curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     echo "- 本次需下载 $(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`) MB"
     curl -skLJo "$file" "$URL"
     #进度条待添加
+    echo "- $theme_name资源下载完成 "
     md5_loacl=`md5sum $file|cut -d ' ' -f1`
     if [[ "$md5" != "$md5_loacl" ]]; then
         echo '下载完成，但文件MD5与预期的不一致' 1>&2
