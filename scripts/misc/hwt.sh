@@ -51,7 +51,7 @@ curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.n
     mkdir theme_files 2>/dev/null
     source $TEMP_DIR/${hwt_theme}.ini
     cp -rf $TEMP_DIR/${hwt_theme}.ini theme_files/${hwt_theme}.ini
-    URL=https://miuiicons-generic.pkg.coding.net/icons/files/${hwt_theme}.tar.xz?version=latest
+    URL=https://emuiicons-generic.pkg.coding.net/icons/files/${hwt_theme}.tar.xz?version=latest
     echo "- 需要下载$theme_name资源... "
     [ $file_size ] || { echo "× 抱歉，在线资源临时维护中，请切换其他主题或稍后再试。" && rm -rf $TEMP_DIR/* 2>/dev/null&& exit 1; }
     echo "- 本次需下载 $(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`) MB"
