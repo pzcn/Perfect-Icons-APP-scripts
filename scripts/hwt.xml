@@ -55,7 +55,7 @@
             <summary sh="sh online-scripts/misc/get_hwt_shape.sh" />
             <auto-off>true</auto-off>
             <get> 
-            source theme_files/hwt_shape _config
+            source theme_files/hwt_shape_config
             echo $hwt_shape 
             </get>
             <set>echo "hwt_shape=$state" &gt; theme_files/hwt_shape_config </set>
