@@ -1,29 +1,28 @@
 
 install() {
-    echo "- 正在导出$theme_name..."
+    echo "- 正在导出主题包..."
+    mkdir -p $TEMP_DIR/
+    mkdir -p $TEMP_DIR/hwt
     tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
-    mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
-    cd $TEMP_DIR
-    tar -xf  $TEMP_DIR/$hwt_theme.tar.xz -C "$TEMP_DIR/"
-    mkdir -p ./res/drawable-xxhdpi
-    mv  icons/* ./res/drawable-xxhdpi 2>/dev/null
-    rm -rf icons
-    zip -r icons.zip ./layer_animating_icons >/dev/null
-    zip -r icons.zip ./res >/dev/null
-    rm -rf res
-    rm -rf layer_animating_icons
-    cd ..
-    [ $addon == 1 ] && addon
-    mkdir $TEMP_DIR/mtztmp
-    tar -xf "$TEMP_DIR/mtz.tar.xz" -C "$TEMP_DIR/mtztmp" >&2
-    cp -rf $TEMP_DIR/icons.zip $TEMP_DIR/mtztmp/icons
-    sed -i "s/themename/$theme_name/g" $TEMP_DIR/mtztmp/description.xml
-    cd $TEMP_DIR/mtztmp
-    time=$(date '+%Y%m%d%H%M')
-    zip -r mtz.zip * >/dev/null
-    mv mtz.zip $mtzdir/${theme_name}完美图标补全-$time.mtz
+    tar -xf  $TEMP_DIR/$hwt_theme.tar.xz -C "$TEMP_DIR/hwt"
+    mv $TEMP_DIR/hwt/icons $TEMP_DIR/hwt/icons.zip
+    unzip $TEMP_DIR/hwt/icons.zip -d $TEMP_DIR/icons
+    rm -rf $TEMP_DIR/hwt/icons.zip
+    echo "- 正在设置形状和大小..."
+    tar -xf "$TEMP_DIR/style.tar.xz" -C "$TEMP_DIR/style" >&2
+    cp $TEMP_DIR/style/$hwt_shape_$hwt_size/* $TEMP_DIR/icons
+    source $TEMP_DIR/style/$hwt_shape_$hwt_size/config.ini
+    zip -rmq $TEMP_DIR/icons.zip $TEMP_DIR/icons/*
+    mv $TEMP_DIR/icons.zip $TEMP_DIR/hwt/icons
+    date1=$(TZ=':Asia/Shanghai' date '+%m.%d %H:%M')
+    sed -i "s/{name}/$name/g" $TEMP_DIR/hwt/description.xml
+    sed -i "s/{id}/$id/g" $TEMP_DIR/hwt/description.xml
+    sed -i "s/{date}/$date1/g" $TEMP_DIR/hwt/description.xml
+    date2=$(TZ=':Asia/Shanghai' date '+%m.%d %H:%M')
+    zip -qr $TEMP_DIR/hwt.zip $TEMP_DIR/hwt/* 
+    mv $TEMP_DIR/hwt.zip $hwtdir/${theme_name}完美图标补全-$date2.wht
     rm -rf $TEMP_DIR/*
-    echo "- hwt主题包已导出到 $mtzdir/${theme_name}完美图标补全-$time.mtz。"
+    echo "- hwt主题包已导出到 $hwtdir/${theme_name}完美图标补全-$date2.wht"
     exit 0
     }
 
@@ -68,10 +67,10 @@ curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://miuiicons-generic.pkg.coding.n
   exec 3>&2
   exec 2>/dev/null
   [ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] ||{  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
-  source theme_files/hwt_config
+  source theme_files/hwt*config
   hwt_theme=icons
   getfiles
-  hwt_theme=overlay
+  hwt_theme=style
   getfiles
   hwt_theme=$sel_theme
   getfiles
