@@ -55,6 +55,7 @@ curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.n
     echo "- 需要下载$theme_name资源... "
     [ $file_size ] || { echo "× 抱歉，在线资源临时维护中，请切换其他主题或稍后再试。" && rm -rf $TEMP_DIR/* 2>/dev/null&& exit 1; }
     echo "- 本次需下载 $(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`) MB"
+    echo "- 正在下载... "
     curl -skLJo "$file" "$URL"
     #进度条待添加
     echo "- $theme_name资源下载完成 "
@@ -68,12 +69,15 @@ curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.n
   exec 3>&2
   exec 2>/dev/null
   [ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] ||{  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
-  source theme_files/hwt*config
+  source theme_files/hwt_theme_config
+  source theme_files/hwt_dir_config
+  source theme_files/hwt_size_config
+  source theme_files/hwt_shape_config
   hwt_theme=icons
   getfiles
   hwt_theme=style
   getfiles
-  hwt_theme=${sel_theme}
+  hwt_theme=$sel_theme
   getfiles
   install
   rm -rf $TEMP_DIR/*
