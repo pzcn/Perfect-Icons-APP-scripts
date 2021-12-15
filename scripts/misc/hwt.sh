@@ -20,9 +20,9 @@ install() {
     sed -i "s/{date}/$date1/g" $TEMP_DIR/hwt/description.xml
     date2=$(TZ=':Asia/Shanghai' date '+%m.%d %H:%M')
     zip -qr $TEMP_DIR/hwt.zip $TEMP_DIR/hwt/* 
-    mv $TEMP_DIR/hwt.zip $hwtdir/${theme_name}完美图标补全-$date2.wht
+    mv $TEMP_DIR/hwt.zip $hwtdir/${theme_name}完美图标补全-$date2.hwt
     rm -rf $TEMP_DIR/*
-    echo "- hwt主题包已导出到 $hwtdir/${theme_name}完美图标补全-$date2.wht"
+    echo "- hwt主题包已导出到 $hwtdir/${theme_name}完美图标补全-$date2.hwt"
     exit 0
     }
 
@@ -39,8 +39,8 @@ echo "- ${theme_name}有新版本，即将开始下载..."
 downloader
 else
 echo "- ${theme_name}没有更新，无需下载..."
-cp -rf $TEMP_DIR/${hwt_theme}.ini theme_files/${hwt_theme}.ini
-cp -rf $TEMP_DIR/${hwt_theme}.tar.xz theme_files/${hwt_theme}.tar.xz
+cp -rf theme_files/${hwt_theme}.ini $TEMP_DIR/${hwt_theme}.ini
+cp -rf theme_files/${hwt_theme}.tar.xz $TEMP_DIR/${hwt_theme}.tar.xz
 fi
 else downloader
 fi
