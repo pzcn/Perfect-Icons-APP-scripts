@@ -11,3 +11,4 @@ echo "hwtdir=/sdcard/Download" > theme_files/mtzdir_config
 else
 echo "hwtdir=/sdcard" > theme_files/mtzdir_config
 fi
+fi
