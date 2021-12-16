@@ -44,7 +44,7 @@
     <text visible="online-scripts/misc/announce_check.sh">
         <title>HarmonyOS/EMUI</title>
     </text>
-    <page config="hwt.xml" title="导出hwt主题包" icon="pic/download.png" desc="导出mhwt主题包。" before-read="./online-scripts/misc/hwt_init.sh" />
+    <page config="hwt.xml" title="导出hwt主题包" icon="pic/download.png" desc="导出HarmonyOS/EMUI使用的hwt主题包。" before-read="./online-scripts/misc/hwt_init.sh" />
 </group>
 
 <group>
