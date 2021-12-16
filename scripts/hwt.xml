@@ -60,23 +60,23 @@
             </get>
             <set>echo "hwt_shape=$state" &gt; theme_files/hwt_shape_config </set>
         </picker>
-         <page html="https://icons-demo.vercel.app/" title="预览主题图标" icon="pic/preview.png"/>
-         <page config="page/hwt.xml" title="使用说明及常见问题" icon="pic/qa.png"/>
+         <page html="https://icons-demo.vercel.app/" title="预览主题图标" icon="pic/preview.png"/ visible="false" >
+         <page config="page/hwt.xml" title="使用说明及常见问题" icon="pic/qa.png" visible="false" />
         </group>
 
         <group>
         <text visible="online-scripts/misc/announce_check.sh">
-        <title>导出</title>
+        <title>下载</title>
         </text>
         <action shell="hidden" icon="pic/folder.png">
-            <title>选择导出位置</title>
+            <title>选择下载位置</title>
             <param name="dir" type="folder" value="/sdcard/Huawei/Themes" />
             <summary sh="source theme_files/hwt_dir_config ; echo 当前路径为：$hwtdir " />
             <set>echo "hwtdir=$dir" &gt; theme_files/hwt_dir_config</set>
         </action>
         <action icon="pic/start.png">
-            <title>开始导出hwt</title>
-            <desc>确认上述配置无误后，轻触导出hwt主题包</desc>
+            <title>开始下载hwt</title>
+            <desc>确认上述配置无误后，轻触下载hwt主题包</desc>
             <set>sh $START_DIR/online-scripts/misc/hwt.sh</set>
         </action>
         </group>
