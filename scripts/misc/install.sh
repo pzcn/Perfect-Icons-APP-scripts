@@ -119,9 +119,9 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     downloader2 "$downloadUrl" $md5
 
     if [[ ! "$downloader_result" = "" ]]; then
-    echo '下载完成'
+    echo '- 下载完成'
     else
-    echo '下载失败'
+    echo '× 下载失败'
     fi
 
     cp $downloader_result $file
