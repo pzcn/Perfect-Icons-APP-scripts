@@ -29,7 +29,7 @@ install() {
     rm -rf $TEMP_DIR/*
     echo "- hwt主题包已导出到 $hwtdir/${theme_name}完美图标补全-$date2.hwt"
     exit 0
-    }
+}
 
 download() {
     curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "${repo_url}/${hwt_theme}.ini?version=latest"
@@ -39,6 +39,7 @@ download() {
     downloadUrl=${repo_url}/${hwt_theme}.tar.xz?version=latest
     downloader "$downloadUrl" $md5
     cp $file theme_files/${hwt_theme}.tar.xz
+}
 
 getfiles() {
 file=$TEMP_DIR/$hwt_theme.tar.xz
