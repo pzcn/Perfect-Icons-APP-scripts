@@ -1,3 +1,4 @@
+
 install() {
     echo "- 正在导出主题包..."
     mkdir -p $TEMP_DIR/
@@ -29,39 +30,47 @@ install() {
     rm -rf $TEMP_DIR/*
     echo "- hwt主题包已导出到 $hwtdir/${theme_name}完美图标补全-$date2.hwt"
     exit 0
-}
-
-download() {
-    curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "${repo_url}/${hwt_theme}.ini?version=latest"
-    mkdir theme_files 2>/dev/null
-    source $TEMP_DIR/${hwt_theme}.ini
-    cp -rf $TEMP_DIR/${hwt_theme}.ini theme_files/${hwt_theme}.ini
-    downloadUrl=${repo_url}/${hwt_theme}.tar.xz?version=latest
-    downloader "$downloadUrl" $md5
-    cp $file theme_files/${hwt_theme}.tar.xz
-}
+    }
 
 getfiles() {
 file=$TEMP_DIR/$hwt_theme.tar.xz
 if [ -f "theme_files/${hwt_theme}.tar.xz" ]; then
-    source theme_files/${hwt_theme}.ini
-    old_ver=$theme_version
-    curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.net/files/zip/${hwt_theme}.ini?version=latest"
-    source $TEMP_DIR/${hwt_theme}.ini
-    new_ver=$theme_version
+source theme_files/${hwt_theme}.ini
+old_ver=$theme_version
+curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.net/files/zip/${hwt_theme}.ini?version=latest"
+source $TEMP_DIR/${hwt_theme}.ini
+new_ver=$theme_version
 if [ $new_ver -ne $old_ver ] ;then 
-    echo "- ${theme_name}有新版本，即将开始下载..."
-    download
+echo "- ${theme_name}有新版本，即将开始下载..."
+downloader
 else
-    echo "- ${theme_name}没有更新，无需下载..."
-    cp -rf theme_files/${hwt_theme}.ini $TEMP_DIR/${hwt_theme}.ini
-    cp -rf theme_files/${hwt_theme}.tar.xz $TEMP_DIR/${hwt_theme}.tar.xz
+echo "- ${theme_name}没有更新，无需下载..."
+cp -rf theme_files/${hwt_theme}.ini $TEMP_DIR/${hwt_theme}.ini
+cp -rf theme_files/${hwt_theme}.tar.xz $TEMP_DIR/${hwt_theme}.tar.xz
 fi
-else 
-    download
+else downloader
 fi
 }
 
+downloader() {
+curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.net/files/zip/${hwt_theme}.ini?version=latest"
+    mkdir theme_files 2>/dev/null
+    source $TEMP_DIR/${hwt_theme}.ini
+    cp -rf $TEMP_DIR/${hwt_theme}.ini theme_files/${hwt_theme}.ini
+    URL=https://emuiicons-generic.pkg.coding.net/files/zip/${hwt_theme}.tar.xz?version=latest
+    echo "- 需要下载$theme_name资源... "
+    [ $file_size ] || { echo "× 抱歉，在线资源临时维护中，请切换其他主题或稍后再试。" && rm -rf $TEMP_DIR/* 2>/dev/null&& exit 1; }
+    echo "- 本次需下载 $(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`) MB"
+    echo "- 正在下载... "
+    curl -skLJo "$file" "$URL"
+    #进度条待添加
+    echo "- $theme_name资源下载完成 "
+    md5_loacl=`md5sum $file|cut -d ' ' -f1`
+    if [[ "$md5" != "$md5_loacl" ]]; then
+        echo '下载完成，但文件MD5与预期的不一致' 1>&2
+    fi
+    cp $file theme_files/${hwt_theme}.tar.xz
+}
 
   exec 3>&2
   exec 2>/dev/null
@@ -70,9 +79,7 @@ fi
   source theme_files/hwt_dir_config
   source theme_files/hwt_size_config
   source theme_files/hwt_shape_config
-  repo_url=https://emuiicons-generic.pkg.coding.net/files/zip
   [ -d "$hwtdir" ] || {  echo "× 选择导出的文件夹不存在，请重新选择 "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
-  source $START_DIR/online-scripts/misc/downloader.sh
   hwt_theme=icons
   getfiles
   hwt_theme=style
