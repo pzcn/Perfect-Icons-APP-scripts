@@ -34,8 +34,8 @@ install() {
 
 getfiles() {
 file=$TEMP_DIR/$hwt_theme.tar.xz
-if [ -f "theme_files/${hwt_theme}.tar.xz" ]; then
-source theme_files/${hwt_theme}.ini
+if [ -f "theme_files/hwt/${hwt_theme}.tar.xz" ]; then
+source theme_files/hwt/${hwt_theme}.ini
 old_ver=$theme_version
 curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.net/files/zip/${hwt_theme}.ini?version=latest"
 source $TEMP_DIR/${hwt_theme}.ini
@@ -45,8 +45,8 @@ echo "- ${theme_name}有新版本，即将开始下载..."
 download
 else
 echo "- ${theme_name}没有更新，无需下载..."
-cp -rf theme_files/${hwt_theme}.ini $TEMP_DIR/${hwt_theme}.ini
-cp -rf theme_files/${hwt_theme}.tar.xz $TEMP_DIR/${hwt_theme}.tar.xz
+cp -rf theme_files/hwt/${hwt_theme}.ini $TEMP_DIR/${hwt_theme}.ini
+cp -rf theme_files/hwt/${hwt_theme}.tar.xz $TEMP_DIR/${hwt_theme}.tar.xz
 fi
 else download
 fi
@@ -56,12 +56,12 @@ download() {
     curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.net/files/zip/${hwt_theme}.ini?version=latest"
     mkdir theme_files 2>/dev/null
     source $TEMP_DIR/${hwt_theme}.ini
-    cp -rf $TEMP_DIR/${hwt_theme}.ini theme_files/${hwt_theme}.ini
+    cp -rf $TEMP_DIR/${hwt_theme}.ini theme_files/hwt/${hwt_theme}.ini
     downloadUrl=https://emuiicons-generic.pkg.coding.net/files/zip/${hwt_theme}.tar.xz?version=latest
     downloader "$downloadUrl" $md5
-    cp $file theme_files/${hwt_theme}.tar.xz
+    cp $file theme_files/hwt/${hwt_theme}.tar.xz
     cp $downloader_result $file
-    mv $downloader_result theme_files/${hwt_theme}.tar.xz
+    mv $downloader_result theme_files/hwt/${hwt_theme}.tar.xz
 }
 
   exec 3>&2
