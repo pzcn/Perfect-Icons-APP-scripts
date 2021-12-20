@@ -26,9 +26,9 @@ install() {
     date2=$(TZ=':Asia/Shanghai' date '+%m%d%H%M')
     cd $TEMP_DIR/hwt/$sel_theme
     zip -qr $TEMP_DIR/hwt.zip * 
-    mv $TEMP_DIR/hwt.zip $hwtdir/${hwt_theme}完美图标补全-$date2.hwt
+    mv $TEMP_DIR/hwt.zip $hwtdir/${theme_name}完美图标补全-$date2.hwt
     rm -rf $TEMP_DIR/*
-    echo "- hwt主题包已导出到 $hwtdir/${hwt_theme}完美图标补全-$date2.hwt"
+    echo "- hwt主题包已导出到 $hwtdir/${theme_name}完美图标补全-$date2.hwt"
     exit 0
     }
 
