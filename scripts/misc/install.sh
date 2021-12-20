@@ -46,17 +46,8 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     source $TEMP_DIR/${var_theme}.ini
     cp -rf $TEMP_DIR/${var_theme}.ini theme_files/${var_theme}.ini
     downloadUrl=https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.tar.xz?version=latest
-    echo "- 需要下载$theme_name资源... "
-    [ $file_size ] || { echo "× 抱歉，在线资源临时维护中，请切换其他主题或稍后再试。" && rm -rf $TEMP_DIR/* 2>/dev/null&& exit 1; }
-    echo "- 本次需下载 $(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`) MB"
 
     downloader "$downloadUrl" $md5
-
-    if [[ ! "$downloader_result" = "" ]]; then
-    echo '- 下载完成'
-    else
-    echo '× 下载失败'
-    fi
 
     cp $downloader_result $file
     mv $downloader_result theme_files/${var_theme}.tar.xz
