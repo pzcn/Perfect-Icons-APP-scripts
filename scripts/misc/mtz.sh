@@ -38,31 +38,23 @@ source $TEMP_DIR/${var_theme}.ini
 new_ver=$theme_version
 if [ $new_ver -ne $old_ver ] ;then 
 echo "- ${theme_name}有新版本，即将开始下载..."
-downloader
+download
 else
 echo "- ${theme_name}没有更新，无需下载..."
 cp -rf theme_files/${var_theme}.ini $TEMP_DIR/${var_theme}.ini
 cp -rf theme_files/${var_theme}.tar.xz $TEMP_DIR/${var_theme}.tar.xz
 fi
-else downloader
+else download
 fi
 }
 
-downloader() {
-curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.ini?version=latest"
+download() {
+    curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.ini?version=latest"
     mkdir theme_files 2>/dev/null
     source $TEMP_DIR/${var_theme}.ini
     cp -rf $TEMP_DIR/${var_theme}.ini theme_files/${var_theme}.ini
-    URL=https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.tar.xz?version=latest
-    echo "- 需要下载$theme_name资源... "
-    [ $file_size ] || { echo "× 抱歉，在线资源临时维护中，请切换其他主题或稍后再试。" && rm -rf $TEMP_DIR/* 2>/dev/null&& exit 1; }
-    echo "- 本次需下载 $(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`) MB"
-    curl -skLJo "$file" "$URL"
-    #进度条待添加
-    md5_loacl=`md5sum $file|cut -d ' ' -f1`
-    if [[ "$md5" != "$md5_loacl" ]]; then
-        echo '下载完成，但文件MD5与预期的不一致' 1>&2
-    fi
+    downloadUrl=https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.tar.xz?version=latest
+    downloader "$downloadUrl" $md5
     cp $file theme_files/${var_theme}.tar.xz
 }
 
@@ -88,6 +80,7 @@ addon(){
   source theme_files/theme_config
   source theme_files/mtzdir_config
   source theme_files/addon_config
+  source $START_DIR/online-scripts/misc/downloader.sh
   var_theme=icons
   getfiles
   var_theme=mtz
