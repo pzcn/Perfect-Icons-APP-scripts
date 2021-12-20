@@ -11,3 +11,5 @@ source theme_files/hwt_theme_config
 [ $sel_theme = Nebulae ] && echo "当前选择：宇宙之眼"
 [ $sel_theme = StarrySky ] && echo "当前选择：星夜彩绘"
 [ $sel_theme = Reconstruction ] && echo "当前选择：未来之翼"
+[ $sel_theme = Flyme9 ] && echo "当前选择：Flyme9"
+[ $sel_theme = ColorOS12 ] && echo "当前选择：ColorOS12"
