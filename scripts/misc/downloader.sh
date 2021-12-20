@@ -64,7 +64,7 @@ downloader() {
         if [[ -f "$hisotry" ]]; then
             downloader_result=`cat "$hisotry"`
         else
-            echo '下载完成，但文件MD5与预期的不一致' 1>&2
+            echo '文件下载损坏，请重新尝试下载' && rm -rf $TEMP_DIR/* >/dev/null && exit 1;
         fi
     else
         downloader_result=`cat $START_DIR/downloader/result/$task_id`
@@ -73,6 +73,6 @@ downloader() {
     if [[ ! "$downloader_result" = "" ]]; then
     echo '- 下载完成'
     else
-    echo '× 下载失败'
+    echo '× 下载失败' && rm -rf $TEMP_DIR/* >/dev/null && exit 1;
     fi
 }
