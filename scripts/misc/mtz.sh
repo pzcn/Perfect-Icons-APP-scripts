@@ -55,7 +55,8 @@ download() {
     cp -rf $TEMP_DIR/${var_theme}.ini theme_files/${var_theme}.ini
     downloadUrl=https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.tar.xz?version=latest
     downloader "$downloadUrl" $md5
-    cp $file theme_files/${var_theme}.tar.xz
+    cp $downloader_result $file
+    mv $downloader_result theme_files/${var_theme}.tar.xz
 }
 
 
