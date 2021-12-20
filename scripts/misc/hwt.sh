@@ -133,13 +133,7 @@ downloader() {
     echo "- 本次需下载 $(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`) MB"
     echo "- 正在下载... "
 
-    downloader2 "$downloadUrl" $md5
-
-    if [[ ! "$downloader_result" = "" ]]; then
-    echo '- 下载完成'
-    else
-    echo '× 下载失败'
-    fi
+    curl "$downloadUrl" $md5
 
     cp $file theme_files/${hwt_theme}.tar.xz
 }
