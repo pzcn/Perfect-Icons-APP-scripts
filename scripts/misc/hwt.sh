@@ -1,7 +1,6 @@
 function downloader2() {
     export CLASSPATH=$START_DIR/online-scripts/misc/am.apk
     unset LD_LIBRARY_PATH LD_PRELOAD
-    exec /system/bin/app_process / com.termux.termuxam.Am "$@"
 
     local downloadUrl="$1"
     local md5="$2"
@@ -30,7 +29,7 @@ function downloader2() {
     # --es taskId 【taskId】下载任务的唯一标识 用于跟踪进度
 
     activity="$PACKAGE_NAME/com.projectkr.shell.ActionPageOnline"
-    sh start -a android.intent.action.MAIN -n "$activity" --es downloadUrl "$downloadUrl" --ez autoClose true --es taskId "$task_id" 1 > /dev/null
+    com.termux.termuxam.Am start -a android.intent.action.MAIN -n "$activity" --es downloadUrl "$downloadUrl" --ez autoClose true --es taskId "$task_id" 1 > /dev/null
 
     # 等待下载完成
     # downloader/status 存储的是所有下载任务的进度
