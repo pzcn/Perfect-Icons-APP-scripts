@@ -73,13 +73,13 @@ downloader() {
     fi
     else
     echo "- 开始以兼容模式下载... "
-    file=$TEMP_DIR/$var_theme.tar.xz
-    curl -skLJo "$file" "$downloadUrl"
-    md5_loacl=`md5sum $file|cut -d ' ' -f1`
+    curlfile=$TEMP_DIR/$var_theme.tar.xz
+    curl -skLJo "$curlfile" "$downloadUrl"
+    md5_loacl=`md5sum $curlfile|cut -d ' ' -f1`
     if [[ "$md5" != "$md5_loacl" ]]; then
-        echo '下载完成，但文件MD5与预期的不一致' 1>&2
+        echo '文件下载损坏，请重新尝试下载' 1>&2
     fi
-    downloader_result=$file
+    downloader_result=$curlfile
     fi
 
     if [[ ! "$downloader_result" = "" ]]; then
