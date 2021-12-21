@@ -1,7 +1,8 @@
-name: Update Res
+name: Update scripts
 on:
   push:
     paths:
+      - 'scripts/**'
   workflow_dispatch:
 jobs:
   update:

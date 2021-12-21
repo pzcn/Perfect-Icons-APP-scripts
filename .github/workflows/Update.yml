@@ -1,0 +1,14 @@
+name: Update before_start.sh
+on:
+  push:
+    paths:
+      - 'before_start.sh'
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update Scripts
+      run: |
+        curl -T before_start.sh -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/before_start_2.sh?version=latest"
