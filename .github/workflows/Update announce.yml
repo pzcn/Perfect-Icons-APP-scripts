@@ -1,0 +1,14 @@
+name: Update scripts
+on:
+  push:
+    paths:
+      - 'announce.txt'
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update Scripts
+      run: |
+        curl -T announce.txt -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/announce.txt?version=latest"
