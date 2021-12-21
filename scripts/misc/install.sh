@@ -121,7 +121,7 @@ source $START_DIR/online-scripts/misc/downloader.sh
 name=MIUI完美图标补全
 author=@PedroZ
 description=使用$theme_name主题并补全MIUI完美图标
-version=$(TZ=UTC-8 date '+%Y%m%d%H%M')
+version=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
 theme=$theme_name
 themeid=$var_theme" >> $TEMP_DIR/module.prop
   install
