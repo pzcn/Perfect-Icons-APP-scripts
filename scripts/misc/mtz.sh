@@ -19,7 +19,7 @@ install() {
     cp -rf $TEMP_DIR/icons.zip $TEMP_DIR/mtztmp/icons
     sed -i "s/themename/$theme_name/g" $TEMP_DIR/mtztmp/description.xml
     cd $TEMP_DIR/mtztmp
-    time=$(date '+%Y%m%d%H%M')
+    time=$(TZ=UTC-8 date '+%Y%m%d%H%M')
     zip -r mtz.zip * >/dev/null
     mv mtz.zip $mtzdir/${theme_name}完美图标补全-$time.mtz
     rm -rf $TEMP_DIR/*
