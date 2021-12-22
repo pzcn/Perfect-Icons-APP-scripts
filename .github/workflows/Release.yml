@@ -18,7 +18,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'scripts/*'
+        source_folder: 'scripts'
         destination_repo: 'pzcn/MIUI-Icons-APP'
         destination_folder: 'pio/src/main/assets/local-scripts'
         destination_branch: 'local'
