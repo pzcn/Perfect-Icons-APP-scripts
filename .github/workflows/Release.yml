@@ -21,6 +21,7 @@ jobs:
         source_file: '${GITHUB_WORKSPACE}/scripts/*'
         destination_repo: 'pzcn/MIUI-Icons-APP'
         destination_folder: 'pio/src/main/assets/local-scripts'
+        destination_branch: 'local'
         user_email: 'sdustpedro@gmail.com'
         user_name: 'pzcn'
-        destination_branch: 'local'
+        
