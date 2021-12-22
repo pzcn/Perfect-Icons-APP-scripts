@@ -34,4 +34,4 @@ else
 download_latest_version
 fi
 
-curl -skLJo "theme_files/announce.txt" "https://miuiicons-generic.pkg.coding.net/icons/files/announce.txt?version=latest"
+curl -skLJo "theme_files/announce.txt" "https://miuiicons-generic.pkg.coding.net/icons/files/announcebeta.txt?version=latest"

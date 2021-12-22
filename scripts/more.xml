@@ -2,7 +2,7 @@
 
 <group>
     <text visible="online-scripts/misc/announce_check.sh">
-        <title>公告</title>
+        <title>公告-Beta</title>
         <desc sh="cat 'theme_files/announce.txt' "/>
     </text>
 </group>

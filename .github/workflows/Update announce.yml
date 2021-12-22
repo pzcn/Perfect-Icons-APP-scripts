@@ -2,7 +2,7 @@ name: Update scripts
 on:
   push:
     paths:
-      - 'announce.txt'
+      - 'announce*.txt'
   workflow_dispatch:
 jobs:
   update:
@@ -12,3 +12,4 @@ jobs:
     - name: Update Scripts
       run: |
         curl -T announce.txt -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/announce.txt?version=latest"
+        curl -T announcebeta.txt -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/announcebeta.txt?version=latest"
