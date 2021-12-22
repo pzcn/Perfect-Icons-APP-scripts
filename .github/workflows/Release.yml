@@ -10,11 +10,12 @@ jobs:
     if: ${{ startsWith(github.event.head_commit.message, '[Release]') }}
     steps:
     - uses: actions/checkout@v2
+    
     - name: Sed Scripts
       run: |
         sed -i "s/online-scripts/local-scripts/g" `grep online-scripts -rl scripts`
 
-    - name: Pushes test file
+    - name: Push file
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
@@ -24,4 +25,4 @@ jobs:
         destination_folder: 'pio/src/main/assets/script'
         user_email: 'sdustpedro@gmail.com'
         user_name: 'pzcn'
-        user_name: 'local'
+        destination_branch: 'local'
