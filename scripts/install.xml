@@ -49,9 +49,9 @@
             <desc>确认上述配置无误后，轻触进行安装</desc>
             <set>sh $START_DIR/online-scripts/misc/install.sh</set>
         </action>
-        <action confirm="true" icon="pic/reboot.png" id="@reboot" shell="hidden">
+        <action confirm="true" icon="pic/reboot.png" id="@reboot" shell="hidden" warning="确认重启？">
             <title>重启设备</title>
             <desc>轻触重启</desc>
-            <set>/system/bin/reboot</set>
+            <set>sync;svc power reboot || reboot</set>
         </action>
 </group>
