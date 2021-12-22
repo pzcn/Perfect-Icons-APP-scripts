@@ -14,11 +14,11 @@ jobs:
         sed -i "s/online-scripts/local-scripts/g" `grep online-scripts -rl scripts`
 
     - name: Push file
-      uses: dmnemec/copy_file_to_another_repo_action@main
+      uses: crykn/copy_folder_to_another_repo_action@v1.0.6
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: '${GITHUB_WORKSPACE}/scripts/*'
+        source_file: 'scripts/*'
         destination_repo: 'pzcn/MIUI-Icons-APP'
         destination_folder: 'pio/src/main/assets/local-scripts'
         destination_branch: 'local'
