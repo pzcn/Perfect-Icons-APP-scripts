@@ -1,9 +1,7 @@
-
 remote_url="https://miuiicons-generic.pkg.coding.net/icons/files/script23.tar?version=latest"
 remote_config="https://miuiicons-generic.pkg.coding.net/icons/files/script23.ini?version=latest"
-   if [ "`curl -I -s --connect-timeout 1 http://connect.rom.miui.com/generate_204 -w %{http_code} | tail -n1`" == "204" ]; then
-      curl -skLJo "$extract_dir/misc/announce.txt" "https://miuiicons-generic.pkg.coding.net/icons/files/announce.txt?version=latest"
-   fi
+ [ "`curl -I -s --connect-timeout 1 http://connect.rom.miui.com/generate_204 -w %{http_code} | tail -n1`" == "204" ] || {  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
+extract_dir="$START_DIR/online-scripts"
 download_latest_version() {
     echo "开始在线更新..."
     mkdir -p $extract_dir
@@ -35,3 +33,5 @@ fi
 else   
 download_latest_version
 fi
+
+curl -skLJo "$extract_dir/misc/announce.txt" "https://miuiicons-generic.pkg.coding.net/icons/files/announce.txt?version=latest"
