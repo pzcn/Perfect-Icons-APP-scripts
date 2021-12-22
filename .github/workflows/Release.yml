@@ -7,10 +7,10 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.event.head_commit.message, '[Release]') }}
+    if: ${{ startsWith(github.event.head_commit.message, 'push') }}
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Sed Scripts
       run: |
         sed -i "s/online-scripts/local-scripts/g" `grep online-scripts -rl scripts`
