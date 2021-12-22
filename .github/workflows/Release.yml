@@ -1,13 +1,11 @@
 name: Release
 on:
   push:
-    paths:
-      - 'scripts/**'
   workflow_dispatch:
 jobs:
   update:
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.event.head_commit.message, '[Release]') }}
+    if: ${{ startsWith(github.event.head_commit.message, 'push') }}
     steps:
     - uses: actions/checkout@v2
     
