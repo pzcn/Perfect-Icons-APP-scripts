@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <group>
-            <text visible="online-scripts/misc/announce_check.sh">
-        <title>配置</title>
-    </text>
           <picker auto-off="true" shell="hidden" icon="pic/style.png">
             <title>选择主题图标</title>
             <options>
@@ -62,19 +59,13 @@
             </get>
             <set>echo "hwt_shape=$state" &gt; theme_files/hwt_shape_config </set>
         </picker>
-         <page html="https://icons-demo.vercel.app/" title="预览主题图标" icon="pic/preview.png" visible="false" />
-         <page config="page/hwt.xml" title="使用说明及常见问题" icon="pic/qa.png" visible="false" />
     </group>
 
     <group>
-        <title>预览</title>
         <page title="预览主题图标" html="https://icons-demo.vercel.app/" icon="pic/preview.png"/>
     </group>
 
-        <group>
-        <text visible="online-scripts/misc/announce_check.sh">
-        <title>下载</title>
-        </text>
+    <group>
         <action shell="hidden" icon="pic/folder.png">
             <title>选择下载位置</title>
             <param name="dir" type="folder" value="/sdcard/Huawei/Themes" />
@@ -86,4 +77,4 @@
             <desc>确认上述配置无误后，轻触下载hwt主题包</desc>
             <set>sh $START_DIR/online-scripts/misc/hwt.sh</set>
         </action>
-        </group>
+    </group>
