@@ -51,6 +51,6 @@
         <action confirm="true" icon="pic/reboot.png" id="@reboot" shell="hidden" warning="确认重启？">
             <title>重启设备</title>
             <desc>轻触重启</desc>
-            <set>sync;svc power reboot || reboot</set>
+            <set>/system/bin/sync;/system/bin/svc power reboot || reboot</set>
         </action>
 </group>
