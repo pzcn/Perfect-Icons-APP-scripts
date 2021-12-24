@@ -110,7 +110,7 @@ source $START_DIR/online-scripts/misc/downloader.sh
   [ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] || {  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; }
   echo ""
   REPLACE="/system/media/theme/miui_mod_icons"
-  var_theme=icons
+  var_theme=iconsrepo
   if [[ -d theme_files/git/res/drawable-xxhdpi/.git ]]; then
     cd theme_files/git/res/drawable-xxhdpi
     git pull
