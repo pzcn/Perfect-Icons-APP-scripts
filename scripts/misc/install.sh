@@ -125,8 +125,7 @@ source $START_DIR/online-scripts/misc/downloader.sh
     else
     echo "- ${theme_name}没有更新，无需下载..."
     fi
-    
-
+    echo "$var_theme=$theme_version" >> $TEMP_DIR/module.prop
   else
     getfiles
     tar -xf "$TEMP_DIR/iconsrepo.tar.xz" -C "$TEMP_DIR/" >&2
