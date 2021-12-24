@@ -117,11 +117,11 @@ source $START_DIR/online-scripts/misc/downloader.sh
     cd ../../../..
   else
     download
-    tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
+    tar -xf "$TEMP_DIR/iconsrepo.tar.xz" -C "$TEMP_DIR/" >&2
     mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
     unzip $TEMP_DIR/icons.zip -d theme_files/git >/dev/null
     rm -rf $TEMP_DIR/icons.zip
-    rm -rf $TEMP_DIR/icons.tar.xz
+    rm -rf $TEMP_DIR/iconsrepo.tar.xz
   fi
   var_theme=$sel_theme
   getfiles
