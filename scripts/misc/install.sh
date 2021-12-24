@@ -116,7 +116,7 @@ source $START_DIR/online-scripts/misc/downloader.sh
     git pull
     cd ../../../..
   else
-    download
+    getfiles
     tar -xf "$TEMP_DIR/iconsrepo.tar.xz" -C "$TEMP_DIR/" >&2
     mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
     unzip $TEMP_DIR/icons.zip -d theme_files/git >/dev/null
