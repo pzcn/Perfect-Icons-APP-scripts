@@ -13,11 +13,11 @@ if [ ! -f "theme_files/update_status.ini" ] ;then
 echo "轻触『检查更新』以获取当前状态"
 else
 source theme_files/update_status.ini
-if [ $icons = 1 ]; then
+if [ $iconsrepo = 1 ]; then
 echo "主图标包：有新版本！"
-elif [ $icons = 0 ]; then
+elif [ $iconsrepo = 0 ]; then
 echo 主图标包：已是最新
-elif [ $icons = -1 ]; then
+elif [ $iconsrepo = -1 ]; then
 echo "检测到您安装了旧版本，无法获取已安装版本号。完成首次更新后即可正常检查更新"
 exit 0
 else
