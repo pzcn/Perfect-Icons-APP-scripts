@@ -2,7 +2,7 @@ install() {
     echo "- 正在安装$theme_name..."
     tar -xf "$file" -C "$TEMP_DIR/" >&2
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi
-    cp  theme_files/git/res/drawable-xxhdpi/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
+    cp -rf theme_files/git/res/drawable-xxhdpi/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
     rm -rf $TEMP_DIR/res/drawable-xxhdpi/.git
     mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
     rm -rf $TEMP_DIR/icons
@@ -114,11 +114,11 @@ source $START_DIR/online-scripts/misc/downloader.sh
   if [[ -d theme_files/git/res/drawable-xxhdpi/.git ]]; then
     cd theme_files/git/res/drawable-xxhdpi
     git pull
+    cd ../../../..
   else
     download
     tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
     mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
-    mkdir theme_files/git
     unzip $TEMP_DIR/icons.zip -d theme_files/git >/dev/null
     rm -rf $TEMP_DIR/icons.zip
     rm -rf $TEMP_DIR/icons.tar.xz
