@@ -2,7 +2,7 @@ install() {
     echo "- 正在安装$theme_name..."
     tar -xf "$file" -C "$TEMP_DIR/" >&2
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi
-    cp -rf theme_files/git/res/drawable-xxhdpi/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
+    cp -rf theme_files/miui/res/drawable-xxhdpi/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
     rm -rf $TEMP_DIR/res/drawable-xxhdpi/.git
     mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
     rm -rf $TEMP_DIR/icons
@@ -46,7 +46,7 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     cp -rf $TEMP_DIR/${var_theme}.ini theme_files/${var_theme}.ini
     downloadUrl=https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.tar.xz?version=latest
     downloader "$downloadUrl" $md5
-    [ $var_theme -ne icons ] && cp $downloader_result theme_files/${var_theme}.tar.xz
+    [ $var_theme == iconsrepo ] && cp $downloader_result theme_files/${var_theme}.tar.xz
     mv $downloader_result $TEMP_DIR/$var_theme.tar.xz
 }
 addon(){
@@ -111,15 +111,27 @@ source $START_DIR/online-scripts/misc/downloader.sh
   echo ""
   REPLACE="/system/media/theme/miui_mod_icons"
   var_theme=iconsrepo
-  if [[ -d theme_files/git/res/drawable-xxhdpi/.git ]]; then
-    cd theme_files/git/res/drawable-xxhdpi
-    git pull
+  if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
+    source theme_files/${var_theme}.ini
+    old_ver=$theme_version
+    curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.ini?version=latest"
+    source $TEMP_DIR/${var_theme}.ini
+    new_ver=$theme_version
+    if [ $new_ver -ne $old_ver ] ;then 
+    echo "- ${theme_name}有新版本，即将开始下载..."
+        cd theme_files/miui/res/drawable-xxhdpi
+        git pull
     cd ../../../..
+    else
+    echo "- ${theme_name}没有更新，无需下载..."
+    fi
+    
+
   else
     getfiles
     tar -xf "$TEMP_DIR/iconsrepo.tar.xz" -C "$TEMP_DIR/" >&2
     mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
-    unzip $TEMP_DIR/icons.zip -d theme_files/git >/dev/null
+    unzip $TEMP_DIR/icons.zip -d theme_files/miui >/dev/null
     rm -rf $TEMP_DIR/icons.zip
     rm -rf $TEMP_DIR/iconsrepo.tar.xz
   fi

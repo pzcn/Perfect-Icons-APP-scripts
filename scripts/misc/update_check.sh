@@ -6,7 +6,7 @@ else
 echo "- 当前未安装。"
 exit 0
 fi
-if [ "$themeid" == "" ]; then
+if [ -z $themeid ]; then
 echo "- 检测到您安装了旧版本，无法获取已安装版本号。完成首次更新后即可正常检查更新。"
 echo "icons=-1" >>theme_files/update_status.ini
 exit 0
@@ -28,7 +28,7 @@ fi
 
 :> theme_files/update_status.ini
 name1=$theme
-var_theme=icons
+var_theme=iconsrepo
 name=主图标包
 check
 var_theme=$themeid
