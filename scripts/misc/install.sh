@@ -1,12 +1,10 @@
 install() {
     echo "- 正在安装$theme_name..."
-    tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
-    mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
-    cd $TEMP_DIR
     tar -xf "$file" -C "$TEMP_DIR/" >&2
-    mkdir -p ./res/drawable-xxhdpi
-    mv  icons/* ./res/drawable-xxhdpi 2>/dev/null
-    rm -rf icons
+    mkdir -p $TEMP_DIR/res/drawable-xxhdpi
+    mv  theme_files/git/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
+    mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
+    rm -rf $TEMP_DIR/icons
     zip -r icons.zip ./layer_animating_icons >/dev/null
     zip -r icons.zip ./res >/dev/null
     rm -rf res
@@ -46,11 +44,9 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     source $TEMP_DIR/${var_theme}.ini
     cp -rf $TEMP_DIR/${var_theme}.ini theme_files/${var_theme}.ini
     downloadUrl=https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.tar.xz?version=latest
-
     downloader "$downloadUrl" $md5
-
-    cp $downloader_result $file
-    mv $downloader_result theme_files/${var_theme}.tar.xz
+    [ $var_theme -ne icons ] && cp $downloader_result theme_files/${var_theme}.tar.xz
+    mv $downloader_result $file
 }
 addon(){
     addon_path=/sdcard/Documents/MIUI完美图标自定义
@@ -110,11 +106,22 @@ source $START_DIR/online-scripts/misc/downloader.sh
   elif [ $var_miui_version -ge 10 ]; then
   echo "- 开始安装过程..."
   fi
-  [ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] ||{  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; }
+  [ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] || {  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; }
   echo ""
   REPLACE="/system/media/theme/miui_mod_icons"
   var_theme=icons
-  getfiles
+  if [[ -d theme_files/git/res/drawable-xxhdpi/.git ]]; then
+    cd theme_files/git/res/drawable-xxhdpi
+    git pull
+  else
+    download
+    tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
+    mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
+    mkdir theme_files/git
+    unzip $TEMP_DIR/icons.zip -d theme_files/git
+    rm -rf $TEMP_DIR/icons.zip
+    rm -rf $TEMP_DIR/icons.tar.xz
+  fi
   var_theme=$sel_theme
   getfiles
   echo "id=MIUIiconsplus
