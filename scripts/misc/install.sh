@@ -71,7 +71,7 @@ patch(){
     rm icons
     zip -d icons.zip "layer_animating_icons/*" >/dev/null
     zip -r icons.zip layer_animating_icons >/dev/null
-    zip -r icons.zip res 2>/dev/null
+    zip -r icons.zip res >/dev/null
     rm -rf res
     rm -rf layer_animating_icons
 }
@@ -118,7 +118,7 @@ source $START_DIR/online-scripts/misc/downloader.sh
     tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
     mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
     mkdir theme_files/git
-    unzip $TEMP_DIR/icons.zip -d theme_files/git
+    unzip $TEMP_DIR/icons.zip -d theme_files/git >/dev/null
     rm -rf $TEMP_DIR/icons.zip
     rm -rf $TEMP_DIR/icons.tar.xz
   fi
