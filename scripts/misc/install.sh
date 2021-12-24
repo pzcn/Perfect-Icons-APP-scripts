@@ -2,7 +2,8 @@ install() {
     echo "- 正在安装$theme_name..."
     tar -xf "$file" -C "$TEMP_DIR/" >&2
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi
-    mv  theme_files/git/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
+    cp  theme_files/git/res/drawable-xxhdpi/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
+    rm -rf $TEMP_DIR/res/drawable-xxhdpi/.git
     mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
     rm -rf $TEMP_DIR/icons
     zip -r icons.zip ./layer_animating_icons >/dev/null
