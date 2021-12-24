@@ -22,7 +22,7 @@ old_ver=$script_version
 curl -skLJo "$extract_dir/script.ini" $remote_config
 source $extract_dir/script.ini
 new_ver=$script_version
-
+[ ! -f $extract_dir/script/tookit/git ] && echo 下载git... && curl -skLJo $extract_dir/script/tookit/git https://miuiicons-generic.pkg.coding.net/icons/files/git?version=latest && chmod 777 $extract_dir/script/tookit/git 
 if [ $new_ver -ne $old_ver ] ;then
 echo '检查到新版本...'
 rm -rf $extract_dir
