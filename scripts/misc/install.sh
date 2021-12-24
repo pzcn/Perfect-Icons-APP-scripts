@@ -46,7 +46,7 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     downloadUrl=https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.tar.xz?version=latest
     downloader "$downloadUrl" $md5
     [ $var_theme -ne icons ] && cp $downloader_result theme_files/${var_theme}.tar.xz
-    mv $downloader_result $file
+    mv $downloader_result $TEMP_DIR/$var_theme.tar.xz
 }
 addon(){
     addon_path=/sdcard/Documents/MIUI完美图标自定义
