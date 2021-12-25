@@ -1,14 +1,18 @@
-  [ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] || ( echo "× 未检测到网络连接... "&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; )
+[ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] || ( echo "× 未检测到网络连接... "&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; )
 
 check() {
 curl -skLJo "$TEMP_DIR/$f" "$url/$f?version=latest"
 source $TEMP_DIR/$f
 new_ver=$theme_version
+echo "- 检查${theme_name}"
+echo "  旧版本：$old_ver"
+echo "  新版本：$new_ver"
 if [ $new_ver -ne $old_ver ] ;then 
-echo "- ${theme_name}有新版本"
+echo "  ${theme_name}有新版本"
 else
-echo "- ${theme_name}已是最新"
+echo "  ${theme_name}已是最新"
 fi
+echo
 }
 
 
@@ -26,55 +30,63 @@ fi
 if [[ modules_installed=1 ]]; then
 url=https://miuiicons-generic.pkg.coding.net/icons/files/
 echo "- 检查MIUI完美图标补全模块更新情况："
+echo
 if [ -z $themeid ]; then
 echo "- 检测到您安装了旧版本，无法获取已安装版本号。完成首次更新后即可正常检查更新。"
 fi
-var_theme=iconsrepo
 url=https://miuiicons-generic.pkg.coding.net/icons/files/
-old_ver=$version
+old_ver=$iconsrepo
 f=iconsrepo.ini
 check
 f=${themeid}.ini
-eval old_ver='$'$var_theme
+eval old_ver='$'$themeid
 check
-echo 
 echo "------------------------"
 echo 
+else
+install2=0
 fi
+
 
 #MIUI主图标包资源
 cd theme_files
-flist=$(ls | grep \.ini$)
-if [ ! -z $flist ]; then
+flist=$(ls *.ini) 2>/dev/null
+if [ ! -z "$flist" ]; then
 echo "- 检查MIUI图标缓存资源更新情况："
-url=https://emuiicons-generic.pkg.coding.net/files/zip/
+echo
+url=https://miuiicons-generic.pkg.coding.net/icons/files/
 for f in $flist
 do
-source $f
+source ./$f
 old_ver=$theme_version
 check
 done
-echo 
 echo "------------------------"
 echo 
+else
+install2=0
 fi
-cd..
 
 #EMUI资源
 
-cd theme_files/hwt
-flist=$(ls | grep \.ini$)
-if [ ! -z $flist ]; then
+cd hwt 2>/dev/null
+flist=$(ls *.ini) 2>/dev/null
+if [ ! -z "$flist" ]; then
 echo "- 检查EMUI/鸿蒙OS图标缓存资源更新情况："
+echo
 url=https://emuiicons-generic.pkg.coding.net/files/zip/
 for f in $flist
 do
-source $f
+source ./$f
 old_ver=$theme_version
 check
 done
-echo 
 echo "------------------------"
 echo 
+else
+install3=0
 fi
-cd..
+
+if [ $install1+$install2+$install3 = 0 ];then
+echo "- 未发现已安装/已缓存的文件"
+fi
