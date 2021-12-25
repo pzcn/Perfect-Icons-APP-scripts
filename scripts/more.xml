@@ -14,7 +14,7 @@
     <action auto-off="true" id="@status" reload="@status" visible="sh online-scripts/misc/installer_check.sh" icon="pic/update.png">
         <title>检查更新</title>
         <set>sh $START_DIR/online-scripts/misc/update_check.sh</set>
-        <summary sh="online-scripts/misc/update_status.sh" />
+        <desc>轻触查看资源更新情况</desc>
     </action>
     <page config-sh="online-scripts/misc/get_changelog.sh" icon="pic/changelog.png">
         <title>更新日志</title>
