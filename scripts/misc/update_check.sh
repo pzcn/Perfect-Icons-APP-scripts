@@ -12,7 +12,6 @@ fi
 }
 
 
-echo 
 echo "------------------------"
 echo 
 modules_installed=0
@@ -23,7 +22,6 @@ modules_installed=1
 elif [ -d "/data/adb/modules/MIUIiconsplus" ]; then
 source /data/adb/modules/MIUIiconsplus/module.prop
 modules_installed=1
-exit 0
 fi
 if [[ modules_installed=1 ]]; then
 url=https://miuiicons-generic.pkg.coding.net/icons/files/
