@@ -1,10 +1,10 @@
 install() {
     echo "- 正在安装$theme_name..."
-    tar -xf "$file" -C "$TEMP_DIR/" >&2
-    mkdir -p $TEMP_DIR/res/drawable-xxhdpi
     cd theme_files/miui
     zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null
     cd ../..
+    tar -xf "$file" -C "$TEMP_DIR/" >&2
+    mkdir -p $TEMP_DIR/res/drawable-xxhdpi
     mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
     rm -rf $TEMP_DIR/icons
     zip -r icons.zip ./layer_animating_icons >/dev/null
