@@ -32,9 +32,9 @@ fi
 var_theme=iconsrepo
 url=https://miuiicons-generic.pkg.coding.net/icons/files/
 old_ver=$version
-$f=iconsrepo.ini
+f=iconsrepo.ini
 check
-$f=${themeid}.ini
+f=${themeid}.ini
 eval old_ver='$'$var_theme
 check
 echo 
@@ -54,12 +54,11 @@ source $f
 old_ver=$theme_version
 check
 done
-cd..
 echo 
 echo "------------------------"
 echo 
 fi
-
+cd..
 
 #EMUI资源
 
@@ -74,8 +73,8 @@ source $f
 old_ver=$theme_version
 check
 done
-cd..
 echo 
 echo "------------------------"
 echo 
 fi
+cd..
