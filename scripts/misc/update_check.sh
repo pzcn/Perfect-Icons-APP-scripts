@@ -44,7 +44,7 @@ check
 echo "------------------------"
 echo 
 else
-install2=0
+install1=1
 fi
 
 
@@ -64,14 +64,11 @@ done
 echo "------------------------"
 echo 
 else
-install2=0
+install2=1
 fi
 
 #EMUI资源
-
-cd hwt 2>/dev/null
-flist=$(ls *.ini) 2>/dev/null
-if [ ! -z "$flist" ]; then
+if [ -d hwt ] && cd hwt && flist=$(ls | grep \.ini$) && [ ! -z "$flist" ]; then
 echo "- 检查EMUI/鸿蒙OS图标缓存资源更新情况："
 echo
 url=https://emuiicons-generic.pkg.coding.net/files/zip/
@@ -84,9 +81,10 @@ done
 echo "------------------------"
 echo 
 else
-install3=0
+install3=1
 fi
-
-if [ $install1+$install2+$install3 = 0 ];then
+if [ $install1+$install2+$install3 = 3 ];then
 echo "- 未发现已安装/已缓存的文件"
 fi
+
+rm -rf $TEMP_DIR/*
