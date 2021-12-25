@@ -121,7 +121,7 @@ source $START_DIR/online-scripts/misc/downloader.sh
     if [ $new_ver -ne $old_ver ] ;then 
     echo "- ${theme_name}有新版本，即将开始下载..."
         cd theme_files/miui/res/drawable-xxhdpi
-        git pull
+        git pull --rebase
     cd ../../../..
     else
     echo "- ${theme_name}没有更新，无需下载..."

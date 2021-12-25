@@ -1,8 +1,7 @@
 
 install() {
     echo "- 正在导出$theme_name..."
-    tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
-    mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
+    zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null
     cd $TEMP_DIR
     tar -xf  $TEMP_DIR/$var_theme.tar.xz -C "$TEMP_DIR/"
     mkdir -p ./res/drawable-xxhdpi
@@ -83,8 +82,30 @@ addon(){
   source theme_files/addon_config
   source $START_DIR/online-scripts/misc/downloader.sh
   [ -d "$mtzdir" ] || {  echo "× 选择导出的文件夹不存在，请重新选择 "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
-  var_theme=icons
-  getfiles
+  var_theme=iconsrepo
+  if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
+    source theme_files/${var_theme}.ini
+    old_ver=$theme_version
+    curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.ini?version=latest"
+    source $TEMP_DIR/${var_theme}.ini
+    new_ver=$theme_version
+    if [ $new_ver -ne $old_ver ] ;then 
+    echo "- ${theme_name}有新版本，即将开始下载..."
+        cd theme_files/miui/res/drawable-xxhdpi
+        git pull --rebase
+    cd ../../../..
+    else
+    echo "- ${theme_name}没有更新，无需下载..."
+    fi
+    echo "$var_theme=$theme_version" >> $TEMP_DIR/module.prop
+  else
+    getfiles
+    tar -xf "$TEMP_DIR/iconsrepo.tar.xz" -C "$TEMP_DIR/" >&2
+    mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
+    unzip $TEMP_DIR/icons.zip -d theme_files/miui >/dev/null
+    rm -rf $TEMP_DIR/icons.zip
+    rm -rf $TEMP_DIR/iconsrepo.tar.xz
+  fi
   var_theme=mtz
   getfiles
   var_theme=$sel_theme
