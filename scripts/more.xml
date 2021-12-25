@@ -11,7 +11,7 @@
     <text visible="online-scripts/misc/announce_check.sh">
         <title>更新</title>
     </text>
-    <action auto-off="true" id="@status" reload="@status" visible="sh online-scripts/misc/installer_check.sh" icon="pic/update.png">
+    <action icon="pic/update.png">
         <title>检查更新</title>
         <set>sh $START_DIR/online-scripts/misc/update_check.sh</set>
         <desc>轻触查看资源更新情况</desc>
