@@ -5,7 +5,9 @@ install() {
     mkdir -p $TEMP_DIR/hwt
     mkdir -p $TEMP_DIR/icons
     mkdir -p $TEMP_DIR/style
-    tar -xf "$TEMP_DIR/icons.tar.xz" -C "$TEMP_DIR/" >&2
+    cd theme_files/hwt/icons
+    zip -r $TEMP_DIR/icons.zip * -x './.git/*' >/dev/null
+    cd ../..
     tar -xf  $TEMP_DIR/$hwt_theme.tar.xz -C "$TEMP_DIR/hwt/"
     mv $TEMP_DIR/hwt/$sel_theme/icons $TEMP_DIR/hwt/$sel_theme/icons.zip
     unzip -qo $TEMP_DIR/hwt/$sel_theme/icons.zip -d $TEMP_DIR/icons
@@ -74,8 +76,26 @@ download() {
   source theme_files/hwt_shape_config
   source $START_DIR/online-scripts/misc/downloader.sh
   [ -d "$hwtdir" ] || {  echo "× 选择导出的文件夹不存在，请重新选择 "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
-  hwt_theme=icons
-  getfiles
+  hwt_theme=iconsrepo
+    if [[ -d theme_files/hwt/icons/.git ]]; then
+    source theme_files/hwt/${hwt_theme}.ini
+    old_ver=$theme_version
+    curl -skLJo "$TEMP_DIR/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.net/files/zip/${hwt_theme}.ini?version=latest"
+    source $TEMP_DIR/${hwt_theme}.ini
+    new_ver=$theme_version
+    if [ $new_ver -ne $old_ver ] ;then 
+    echo "- ${theme_name}有新版本，即将开始下载..."
+    cd theme_files/hwt/repo
+        git pull --rebase
+    cd ../../..
+    else
+    echo "- ${theme_name}没有更新，无需下载..."
+    fi
+  else
+    getfiles
+    tar -xf "$TEMP_DIR/iconsrepo.tar.xz" -C "theme_files/hwt" >&2
+    rm -rf $TEMP_DIR/iconsrepo.tar.xz
+  fi
   hwt_theme=style
   getfiles
   hwt_theme=$sel_theme
