@@ -1,7 +1,9 @@
 
 install() {
     echo "- 正在导出$theme_name..."
+    cd theme_files/miui
     zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null
+    cd ../..
     cd $TEMP_DIR
     tar -xf  $TEMP_DIR/$var_theme.tar.xz -C "$TEMP_DIR/"
     mkdir -p ./res/drawable-xxhdpi
