@@ -93,6 +93,7 @@ download() {
     fi
   else
     getfiles
+    echo "- 正在解压${theme_name}..."
     tar -xf "$TEMP_DIR/iconsrepo.tar.xz" -C "theme_files/hwt" >&2
     rm -rf $TEMP_DIR/iconsrepo.tar.xz
   fi

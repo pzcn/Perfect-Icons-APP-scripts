@@ -129,6 +129,7 @@ source $START_DIR/online-scripts/misc/downloader.sh
     echo "$var_theme=$theme_version" >> $TEMP_DIR/module.prop
   else
     getfiles
+    echo "- 正在解压${theme_name}..."
     tar -xf "$TEMP_DIR/iconsrepo.tar.xz" -C "$TEMP_DIR/" >&2
     mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
     unzip $TEMP_DIR/icons.zip -d theme_files/miui >/dev/null
