@@ -17,7 +17,7 @@ echo
 
 
 echo "------------------------"
-echo 
+echo
 modules_installed=0
 #MIUI模块
 if [ -d "/data/adb/modules_update/MIUIiconsplus" ]; then
@@ -27,7 +27,8 @@ elif [ -d "/data/adb/modules/MIUIiconsplus" ]; then
 source /data/adb/modules/MIUIiconsplus/module.prop
 modules_installed=1
 fi
-if [[ modules_installed=1 ]]; then
+
+if [[ $modules_installed == 1 ]]; then
 url=https://miuiicons-generic.pkg.coding.net/icons/files/
 echo "- 检查MIUI完美图标补全模块更新情况："
 echo
@@ -83,8 +84,12 @@ echo
 else
 install3=1
 fi
-if [ $install1+$install2+$install3 = 3 ];then
+
+if [ $(expr $install1 + $install2 + $install3) = 3 ];then
 echo "- 未发现已安装/已缓存的文件"
+echo
+echo "------------------------"
+ 
 fi
 
 rm -rf $TEMP_DIR/*
