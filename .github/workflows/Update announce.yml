@@ -13,3 +13,5 @@ jobs:
       run: |
         curl -T announce.txt -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/announce.txt?version=latest"
         curl -T announcebeta.txt -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/announcebeta.txt?version=latest"
+        curl -T announce_eng.txt -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/announce_eng.txt?version=latest"
+        curl -T announcebeta_eng.txt -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/announcebeta_eng.txt?version=latest"

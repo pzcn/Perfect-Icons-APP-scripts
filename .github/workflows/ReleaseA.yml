@@ -13,6 +13,7 @@ jobs:
       run: |
         sed -i "s/online-scripts/local-scripts/g" `grep online-scripts -rl scripts`
         sed -i "s/公告-Beta/公告/g" scripts/more.xml
+        sed -i "s/Announcement-Beta/Announcement/g" scripts/eng/more.xml
 
     - name: Push file
       uses: crykn/copy_folder_to_another_repo_action@v1.0.6
