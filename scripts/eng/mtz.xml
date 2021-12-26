@@ -27,8 +27,8 @@
         <set>echo "sel_theme=$state" &gt; theme_files/theme_config </set>
     </picker>
     <switch shell="hidden" icon="pic/addon.png">
-        <title>Customised icons?</title>
-        <desc>While activated, customised icons will be import into the theme.</desc>
+        <title>Customized icons?</title>
+        <desc>While activated, customized icons will be import into the theme.</desc>
         <get>
             source theme_files/addon_config
             echo $addon

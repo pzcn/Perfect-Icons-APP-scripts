@@ -4,13 +4,13 @@ downloader() {
     downloader_result="" # 清空变量，后续此变量将用于存放文件下载后的存储路径
     source $START_DIR/theme_files/download_config
 
-    echo "- 需要下载$theme_name资源... "
+    echo "${string_needtodownloadname_1}${theme_name}${string_needtodownloadname_2}"
 
-    [ $file_size ] || { echo "× 抱歉，在线资源临时维护中，请切换其他主题或稍后再试。" && rm -rf $TEMP_DIR/* 2>/dev/null&& exit 1; }
+    [ $file_size ] || { echo ${string_cannotdownload} && rm -rf $TEMP_DIR/* 2>/dev/null&& exit 1; }
 
-    echo "- 本次需下载 $(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`) MB"
+    echo "${string_needtodownloadsize_1}$(printf '%.1f' `echo "scale=1;$file_size/1048576"|bc`)${string_needtodownloadsize_2}"
     if [ $curlmode == 0 ]; then
-    echo "- 开始下载... "
+    echo $string_startdownload
     # 检查是否下载过相同MD5的文件，并且文件文件还存在
     # 如果存在相同md5的文件，直接输出其路径，并跳过下载
     # downloader/path 目录存储的是此前下载过的文件路径，以md5作为区分

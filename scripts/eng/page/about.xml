@@ -1,7 +1,7 @@
 <group>
     <switch>
      <title>Beta version</title>
-         <desc>When in beta version, the scripts will automatically update itself, and you can check the newest feature. It can be unstable.</desc>
+         <desc>When in beta version, the scripts will automatically update itself, and you will experience the latest features, but with lower stability.</desc>
         <get>
         source theme_files/beta_config
         echo $beta
