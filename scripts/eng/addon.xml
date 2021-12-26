@@ -33,12 +33,12 @@ QQ 8.8.0眨眼张嘴帧动画</slice>
 </group>
 <group>
     <action icon="pic/migrate.png" visible="sh online-scripts/misc/addon_check.sh" id="@addon" reload="@addon">
-        <title>从之前的自定义模块迁移</title>
-        <desc>自动将您安装的自定义模块迁移到新版本位置，并删除之前的自定义模块。</desc>
+        <title>Update module from old customise module</title>
+        <desc>Convert old customise module automatically.</desc>
         <script>sh $START_DIR/online-scripts/misc/addon_remove.sh</script>
     </action>
 </group>
 <group>
-    <page config="page/addon.xml" title="自定义图标使用说明" icon="pic/description.png" />
-    <page config="page/make_icons.xml" title="MIUI分层图标适配指南" icon="pic/qa.png" />
+    <page config="page/addon.xml" title="Icons customise wiki" icon="pic/description.png" />
+    <page config="page/make_icons.xml" title="MIUI Adapted icons wiki" icon="pic/qa.png" />
 </group>
