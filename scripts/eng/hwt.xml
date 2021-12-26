@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <group>
   <text>
-    <title>配置</title>
+    <title>Configuration</title>
   </text>
   <picker auto-off="true" shell="hidden" icon="pic/style.png">
-    <title>选择主题图标</title>
+    <title>Theme</title>
     <options>
       <option value="ColorOS12">ColorOS12</option>
       <option value="Flyme9">Flyme9</option>
