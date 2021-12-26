@@ -6,7 +6,7 @@
         source theme_files/beta_config
         echo $beta
         </get>
-        <set>sh online-scripts/misc/beta.sh</set>
+        <set>source online-scripts/misc/beta.sh</set>
     </switch>
 </group>
 <group>

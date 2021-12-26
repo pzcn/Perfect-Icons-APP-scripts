@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <group>
-  <text visible="online-scripts/misc/announce_check.sh">
+  <text>
     <title>配置</title>
   </text>
   <picker auto-off="true" shell="hidden" icon="pic/style.png">
@@ -21,7 +21,7 @@
       <option value="StarrySky">StarrySky</option>
       <option value="Reconstruction">Reconstruction</option>
     </options>
-    <summary sh="sh online-scripts/misc/get_hwt_name.sh" />
+    <summary sh="source online-scripts/misc/get_hwt_name.sh" />
     <auto-off>true</auto-off>
     <get>source theme_files/hwt_theme_config echo $sel_theme</get>
     <set>echo "sel_theme=$state" &gt; theme_files/hwt_theme_config</set>
@@ -34,7 +34,7 @@
       <option value="L">Large</option>
       <option value="XL">Extra large(Not recommended for Harmony OS)</option>
     </options>
-    <summary sh="sh online-scripts/misc/get_hwt_size.sh" />
+    <summary sh="source online-scripts/misc/get_hwt_size.sh" />
     <auto-off>true</auto-off>
     <get>source theme_files/hwt_size_config echo $hwt_size</get>
     <set>echo "hwt_size=$state" &gt; theme_files/hwt_size_config</set>
@@ -46,7 +46,7 @@
       <option value="SquareCircle">SquareCircle</option>
       <option value="Rectangle">Rectangle</option>
     </options>
-    <summary sh="sh online-scripts/misc/get_hwt_shape.sh" />
+    <summary sh="source online-scripts/misc/get_hwt_shape.sh" />
     <auto-off>true</auto-off>
     <get>source theme_files/hwt_shape_config echo $hwt_shape</get>
     <set>echo "hwt_shape=$state" &gt; theme_files/hwt_shape_config</set>
@@ -59,7 +59,7 @@
   <page title="Themes preview" html="https://icons-demo.vercel.app/" icon="pic/preview.png" />
 </group>
 <group>
-  <text visible="online-scripts/misc/announce_check.sh">
+  <text>
     <title>Export</title>
   </text>
   <action shell="hidden" icon="pic/folder.png">
@@ -71,6 +71,6 @@
   <action icon="pic/start.png">
     <title>Export</title>
     <desc>Check all settings above then tap to export .hwt file.</desc>
-    <set>sh $START_DIR/online-scripts/misc/hwt.sh</set>
+    <set>source $START_DIR/online-scripts/misc/hwt.sh</set>
   </action>
 </group>

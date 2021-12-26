@@ -19,7 +19,7 @@
                 <option value="Reconstruction">EMUI-Reconstruction(Beta)</option>
             </options>
             <auto-off>true</auto-off>
-            <summary sh="sh online-scripts/misc/get_seltheme_name.sh" />
+            <summary sh="source online-scripts/misc/get_seltheme_name.sh" />
             <get> 
             source theme_files/theme_config
             echo $sel_theme 
@@ -46,7 +46,7 @@
         <action confirm="true" icon="pic/start.png" reload="@status,@install,@cleancache">
             <title>Start installation</title>
             <desc>Check all settings above then tap to start installation.</desc>
-            <set>sh $START_DIR/online-scripts/misc/install.sh</set>
+            <set>source $START_DIR/online-scripts/misc/install.sh</set>
         </action>
         <action confirm="true" icon="pic/reboot.png" shell="hidden" warning="Are you sure to reboot your device?">
             <title>Reboot</title>

@@ -18,12 +18,12 @@
             <option value="StarrySky">EMUI-StarrySky(Beta)</option>
             <option value="Reconstruction">EMUI-Reconstruction(Beta)</option>
         </options>
-        <summary sh="sh online-scripts/misc/get_seltheme_name.sh" />
+        <summary sh="source online-scripts/misc/get_seltheme_name.sh" />
         <auto-off>true</auto-off>
         <get> 
             source theme_files/theme_config
-            echo $sel_theme 
-            </get>
+            echo $sel_theme
+        </get>
         <set>echo "sel_theme=$state" &gt; theme_files/theme_config </set>
     </picker>
     <switch shell="hidden" icon="pic/addon.png">
@@ -32,7 +32,7 @@
         <get>
             source theme_files/addon_config
             echo $addon
-            </get>
+        </get>
         <set>echo "addon=$state" &gt; theme_files/addon_config</set>
     </switch>
     <action shell="hidden" icon="pic/folder.png">
@@ -50,6 +50,6 @@
     <action icon="pic/start.png">
         <title>Export</title>
         <desc>Check all settings above then tap to export .mtz file.</desc>
-        <set>sh $START_DIR/online-scripts/misc/mtz.sh</set>
+        <set>source $START_DIR/online-scripts/misc/mtz.sh</set>
     </action>
 </group>
