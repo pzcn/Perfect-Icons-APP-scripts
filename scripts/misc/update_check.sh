@@ -1,3 +1,4 @@
+install_count=0
 [ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] || ( echo "× 未检测到网络连接... "&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; )
 
 check() {
@@ -45,7 +46,7 @@ check
 echo "------------------------"
 echo 
 else
-install1=1
+let install_count=$install_count+1
 fi
 
 
@@ -65,7 +66,7 @@ done
 echo "------------------------"
 echo 
 else
-install2=1
+let install_count=$install_count+1
 fi
 
 #EMUI资源
@@ -82,10 +83,11 @@ done
 echo "------------------------"
 echo 
 else
-install3=1
+let install_count=$install_count+1
 fi
 
-if [ $(expr $install1 + $install2 + $install3) = 3 ];then
+
+if [ $install_count = 3 ];then
 echo "- 未发现已安装/已缓存的文件"
 echo
 echo "------------------------"
