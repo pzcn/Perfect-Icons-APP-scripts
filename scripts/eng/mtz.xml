@@ -11,11 +11,11 @@
             <option value="luck7">Luck7</option>
             <option value="perfectcurve">Perfect Curve</option>
             <option value="Aquamarine">Harmony OS-Aquamarine(Beta)</option>
-            <option value="AmethystLake">EMUI-AmethystLake(Beta)</option>
-            <option value="GoldenBeach">EMUI-GoldenBeach(Beta)</option>
-            <option value="LightWings">EMUI-LightWings(Beta)</option>
+            <option value="AmethystLake">EMUI-Amethyst Lake(Beta)</option>
+            <option value="GoldenBeach">EMUI-Golden Beach(Beta)</option>
+            <option value="LightWings">EMUI-Light Wings(Beta)</option>
             <option value="Nebulae">EMUI-Nebulae(Beta)</option>
-            <option value="StarrySky">EMUI-StarrySky(Beta)</option>
+            <option value="StarrySky">EMUI-Starry Sky(Beta)</option>
             <option value="Reconstruction">EMUI-Reconstruction(Beta)</option>
         </options>
         <summary sh="source online-scripts/misc/get_seltheme_name.sh" />

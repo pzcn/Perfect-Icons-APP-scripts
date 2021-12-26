@@ -1,5 +1,5 @@
 install() {
-    echo "- 正在安装$theme_name..."
+    echo "${string_installing}$theme_name..."
     cd theme_files/miui
     zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null
     cd ../..
@@ -15,7 +15,7 @@ install() {
     [ $addon == 1 ] && addon
     mkdir -p $FAKEMODPATH/system/media/theme/default/
     cp -rf $TEMP_DIR/icons.zip $FAKEMODPATH/system/media/theme/default/icons
-    [ $addon == 1 ] && cp -rf $addon_path/高级附加/* $FAKEMODPATH/system/media/theme/default 2>/dev/null
+    [ $addon == 1 ] && cp -rf $addon_path/${string_advancedaddons}/* $FAKEMODPATH/system/media/theme/default 2>/dev/null
     cp $TEMP_DIR/module.prop $FAKEMODPATH/module.prop
 }
 
@@ -28,10 +28,10 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
 source $TEMP_DIR/${var_theme}.ini
 new_ver=$theme_version
 if [ $new_ver -ne $old_ver ] ;then 
-echo "- ${theme_name}有新版本，即将开始下载..."
+echo "${string_newverdown_1}${theme_name}${string_newverdown_2}"
 download
 else
-echo "- ${theme_name}没有更新，无需下载..."
+echo "${string_vernoneedtodown_1}${theme_name}${string_vernoneedtodown_2}"
 cp -rf theme_files/${var_theme}.ini $TEMP_DIR/${var_theme}.ini
 cp -rf theme_files/${var_theme}.tar.xz $TEMP_DIR/${var_theme}.tar.xz
 fi
@@ -51,13 +51,13 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     mv $downloader_result $TEMP_DIR/$var_theme.tar.xz
 }
 addon(){
-    addon_path=/sdcard/Documents/MIUI完美图标自定义
+    addon_path=/sdcard/Documents/${string_addonfolder}
     if [ -d "$addon_path" ];then
-    echo "- 正在导入自定义图标..."
+    echo "${string_importaddonicons}"
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi/
     mkdir -p $TEMP_DIR/layer_animating_icons
-    cp -rf $addon_path/动态图标/* $TEMP_DIR/layer_animating_icons/ 2>/dev/null
-    cp -rf $addon_path/静态图标/* $TEMP_DIR/res/drawable-xxhdpi/ 2>/dev/null
+    cp -rf $addon_path/${string_animatingicons}/* $TEMP_DIR/layer_animating_icons/ 2>/dev/null
+    cp -rf $addon_path/${string_staticicons}/* $TEMP_DIR/res/drawable-xxhdpi/ 2>/dev/null
     cd $TEMP_DIR
     zip -r icons.zip res >/dev/null
     zip -r icons.zip layer_animating_icons >/dev/null
@@ -80,9 +80,9 @@ patch(){
 
 require_new_magisk() {
   echo
-  echo "- 当前模块不支持此Magisk版本"
+  echo "$string_MagiskNotSupport"
   echo
-  echo "- 请安装最新的 Magisk ！"
+  echo "$string_NeedNewMagisk"
   echo
   exit 1
 }
@@ -102,13 +102,13 @@ source theme_files/addon_config
 FAKEMODPATH=$TEMP_DIR/modpath
 source $START_DIR/online-scripts/misc/downloader.sh
   if [ $var_version -lt 10 ]; then 
-    echo "- 您的 Android 版本不符合要求，即将退出安装。"
+    echo "$string_SysVerNotSupport"
     rm -rf $TEMP_DIR/*
     exit 1
   elif [ $var_miui_version -ge 10 ]; then
-  echo "- 开始安装过程..."
+  echo "$string_startinstallation"
   fi
-  [ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] || {  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; }
+  [ "`curl -I -s --connect-timeout 1 https://miuiiconseng-generic.pkg.coding.net/iconseng/engtest/test?version=latest -w %{http_code} | tail -n1`" == "200" ] || {  echo "${string_nonetworkdetected}"&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; }
   echo ""
   REPLACE="/system/media/theme/miui_mod_icons"
   var_theme=iconsrepo
@@ -119,17 +119,17 @@ source $START_DIR/online-scripts/misc/downloader.sh
     source $TEMP_DIR/${var_theme}.ini
     new_ver=$theme_version
     if [ $new_ver -ne $old_ver ] ;then 
-    echo "- ${theme_name}有新版本，即将开始下载..."
+    echo "${string_newverdown_1}${theme_name}${string_newverdown_2}"
         cd theme_files/miui/res/drawable-xxhdpi
         git pull --rebase
     cd ../../../..
     else
-    echo "- ${theme_name}没有更新，无需下载..."
+    echo "${string_vernoneedtodown_1}${theme_name}${string_vernoneedtodown_2}"
     fi
     echo "$var_theme=$theme_version" >> $TEMP_DIR/module.prop
   else
     getfiles
-    echo "- 正在解压${theme_name}..."
+    echo "${string_extracting}${theme_name}..."
     tar -xf "$TEMP_DIR/iconsrepo.tar.xz" -C "$TEMP_DIR/" >&2
     mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
     unzip $TEMP_DIR/icons.zip -d theme_files/miui >/dev/null
@@ -139,9 +139,9 @@ source $START_DIR/online-scripts/misc/downloader.sh
   var_theme=$sel_theme
   getfiles
   echo "id=MIUIiconsplus
-name=MIUI完美图标补全
+name=${string_projectname}
 author=@PedroZ
-description=使用$theme_name主题并补全MIUI完美图标
+description=${string_moduledescription_1}${theme_name}${string_moduledescription_2}
 version=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
 theme=$theme_name
 themeid=$var_theme" >> $TEMP_DIR/module.prop
@@ -161,6 +161,6 @@ themeid=$var_theme" >> $TEMP_DIR/module.prop
   rm -rf $TEMP_DIR/*
   settings put global is_default_icon 0
   echo ""
-  echo "- 安装成功，请重启设备 (^_^) "
+  echo "${string_installsuccess}"
   echo "---------------------------------------------"
   exit 0

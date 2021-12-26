@@ -9,16 +9,16 @@
       <option value="ColorOS12">ColorOS12</option>
       <option value="Flyme9">Flyme9</option>
       <option value="Aquamarine">Aquamarine</option>
-      <option value="PoeticRomance">PoeticRomance</option>
-      <option value="BlushGold">BlushGold</option>
-      <option value="ClearBlue">ClearBlue</option>
-      <option value="CrushGreen">CrushGreen</option>
-      <option value="PurpleAmber">PurpleAmber</option>
-      <option value="AmethystLake">AmethystLake</option>
-      <option value="GoldenBeach">GoldenBeach</option>
-      <option value="LightWings">LightWings</option>
+      <option value="PoeticRomance">Poetic Romance</option>
+      <option value="BlushGold">Blush Gold</option>
+      <option value="ClearBlue">Clear Blue</option>
+      <option value="CrushGreen">Crush Green</option>
+      <option value="PurpleAmber">Purple Amber</option>
+      <option value="AmethystLake">Amethyst Lake</option>
+      <option value="GoldenBeach">Golden Beach</option>
+      <option value="LightWings">Light Wings</option>
       <option value="Nebulae">Nebulae</option>
-      <option value="StarrySky">StarrySky</option>
+      <option value="StarrySky">Starry Sky</option>
       <option value="Reconstruction">Reconstruction</option>
     </options>
     <summary sh="source online-scripts/misc/get_hwt_name.sh" />
