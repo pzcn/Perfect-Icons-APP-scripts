@@ -47,7 +47,7 @@
     <page config="page/mtz.xml" title="使用说明及常见问题" icon="pic/qa.png"/>
 </group>
 <group>
-    <action icon="pic/start.png">
+    <action icon="pic/start.png" reload="@cleancache">
         <title>开始导出mtz</title>
         <desc>确认上述配置无误后，轻触导出mtz</desc>
         <set>source $START_DIR/online-scripts/misc/mtz.sh</set>

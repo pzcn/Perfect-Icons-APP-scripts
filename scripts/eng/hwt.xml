@@ -68,7 +68,7 @@
     <summary sh="source theme_files/hwt_dir_config ; echo Now at：$hwtdir" />
     <set>echo "hwtdir=$dir" &gt; theme_files/hwt_dir_config</set>
   </action>
-  <action icon="pic/start.png">
+  <action icon="pic/start.png" reload="@cleancache">
     <title>Export</title>
     <desc>Check all settings above then tap to export .hwt file.</desc>
     <set>source $START_DIR/online-scripts/misc/hwt.sh</set>

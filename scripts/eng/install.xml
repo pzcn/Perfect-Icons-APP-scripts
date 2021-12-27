@@ -43,7 +43,7 @@
     </group>
 
     <group>
-        <action confirm="true" icon="pic/start.png" reload="@status,@install,@cleancache">
+        <action confirm="true" icon="pic/start.png" reload="@install,@cleancache">
             <title>Start installation</title>
             <desc>Check all settings above then tap to start installation.</desc>
             <set>source $START_DIR/online-scripts/misc/install.sh</set>

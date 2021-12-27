@@ -47,7 +47,7 @@
     <page config="page/mtz.xml" title="Q and A (in Chinese)" icon="pic/qa.png"/>
 </group>
 <group>
-    <action icon="pic/start.png">
+    <action icon="pic/start.png" reload="@cleancache">
         <title>Export</title>
         <desc>Check all settings above then tap to export .mtz file.</desc>
         <set>source $START_DIR/online-scripts/misc/mtz.sh</set>
