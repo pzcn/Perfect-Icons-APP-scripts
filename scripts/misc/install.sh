@@ -121,7 +121,8 @@ source $START_DIR/online-scripts/misc/downloader.sh
     if [ $new_ver -ne $old_ver ] ;then 
     echo "${string_newverdown_1}${theme_name}${string_newverdown_2}"
         cd theme_files/miui/res/drawable-xxhdpi
-        git pull --rebase
+        git pull --rebase >/dev/null
+        echo "${string_gitpull}"
     cd ../../../..
     else
     echo "${string_vernoneedtodown_1}${theme_name}${string_vernoneedtodown_2}"

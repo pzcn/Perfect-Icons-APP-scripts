@@ -85,7 +85,8 @@ download() {
     if [ $new_ver -ne $old_ver ] ;then 
     echo "${string_newverdown_1}${theme_name}${string_newverdown_2}"
     cd theme_files/hwt/icons
-        git pull --rebase
+    git pull --rebase >/dev/null
+    echo "${string_gitpull}"
     cd ../../..
     curl -skLJo "theme_files/hwt/${hwt_theme}.ini" "https://emuiicons-generic.pkg.coding.net/files/zip/${hwt_theme}.ini?version=latest"
     else
