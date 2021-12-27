@@ -32,7 +32,7 @@
       <option value="S">Small</option>
       <option value="M">Middle</option>
       <option value="L">Large</option>
-      <option value="XL">Extra large(Not recommended for Harmony OS)</option>
+      <option value="XL">Extra large(Not recommended for HarmonyOS)</option>
     </options>
     <summary sh="source online-scripts/misc/get_hwt_size.sh" />
     <auto-off>true</auto-off>

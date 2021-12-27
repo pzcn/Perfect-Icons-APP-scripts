@@ -33,7 +33,7 @@ QQ 8.8.0眨眼张嘴帧动画</slice>
 </group>
 <group>
     <action icon="pic/migrate.png" visible="source online-scripts/misc/addon_check.sh" id="@addon" reload="@addon">
-        <title>Update module from old addon module</title>
+        <title>Update module from Out-of-date addon module</title>
         <desc>Convert old addon module automatically.</desc>
         <script>source $START_DIR/online-scripts/misc/addon_remove.sh</script>
     </action>

@@ -5,13 +5,13 @@ check() {
 curl -skLJo "$TEMP_DIR/$f" "$url/$f?version=latest"
 source $TEMP_DIR/$f
 new_ver=$theme_version
-echo "- 检查${theme_name}"
-echo "  旧版本：$old_ver"
-echo "  新版本：$new_ver"
+echo "${string_checking}${theme_name}"
+echo "${string_localver}$old_ver"
+echo "${string_onlinever}$new_ver"
 if [ $new_ver -ne $old_ver ] ;then 
-echo "  ${theme_name}有新版本"
+echo "${string_hasnewver1}${theme_name}${string_hasnewver2}"
 else
-echo "  ${theme_name}已是最新"
+echo "${string_newestver1}${theme_name}${string_newestver2}"
 fi
 echo
 }
@@ -31,10 +31,10 @@ fi
 
 if [[ $modules_installed == 1 ]]; then
 url=https://miuiicons-generic.pkg.coding.net/icons/files/
-echo "- 检查MIUI完美图标补全模块更新情况："
+echo ${string_checkingmiuimodule}
 echo
 if [ -z $themeid ]; then
-echo "- 检测到您安装了旧版本，无法获取已安装版本号。完成首次更新后即可正常检查更新。"
+echo ${string_outofdatemodule}
 fi
 url=https://miuiicons-generic.pkg.coding.net/icons/files/
 old_ver=$iconsrepo
@@ -54,7 +54,7 @@ fi
 cd theme_files
 flist=$(ls *.ini) 2>/dev/null
 if [ ! -z "$flist" ]; then
-echo "- 检查MIUI图标缓存资源更新情况："
+echo ${string_checkingmiuires}
 echo
 url=https://miuiicons-generic.pkg.coding.net/icons/files/
 for f in $flist
@@ -71,7 +71,7 @@ fi
 
 #EMUI资源
 if [ -d hwt ] && cd hwt && flist=$(ls | grep \.ini$) && [ ! -z "$flist" ]; then
-echo "- 检查EMUI/鸿蒙OS图标缓存资源更新情况："
+echo ${string_checkingemuires}
 echo
 url=https://emuiicons-generic.pkg.coding.net/files/zip/
 for f in $flist
@@ -88,7 +88,7 @@ fi
 
 
 if [ $install_count = 3 ];then
-echo "- 未发现已安装/已缓存的文件"
+echo $string_checknoupfile
 echo
 echo "------------------------"
  
