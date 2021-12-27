@@ -23,6 +23,7 @@ jobs:
         source_folder: 'scripts'
         destination_repo: 'pzcn/MIUI-Icons-APP'
         destination_folder: 'pio/src/main/assets/local-scripts'
+        destination_branch: 'main'
         user_email: 'sdustpedro@gmail.com'
         user_name: 'pzcn'
         
