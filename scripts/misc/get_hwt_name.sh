@@ -13,3 +13,4 @@ source theme_files/hwt_theme_config
 [ $sel_theme = Reconstruction ] && echo "${string_nowselected}${string_Reconstruction}"
 [ $sel_theme = Flyme9 ] && echo "${string_nowselected}${string_Flyme9}"
 [ $sel_theme = ColorOS12 ] && echo "${string_nowselected}${string_ColorOS12}"
+[ $sel_theme = ColorOS12 ] && echo "${string_nowselected}${string_Firmament}"

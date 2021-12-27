@@ -6,6 +6,7 @@
   <picker auto-off="true" shell="hidden" icon="pic/style.png">
     <title>Theme</title>
     <options>
+      <option value="Firmament">Firmament</option>
       <option value="ColorOS12">ColorOS12</option>
       <option value="Flyme9">Flyme9</option>
       <option value="Aquamarine">Aquamarine</option>
