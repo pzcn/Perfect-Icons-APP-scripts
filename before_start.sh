@@ -3,7 +3,7 @@ remote_config="https://miuiicons-generic.pkg.coding.net/icons/files/script23.ini
  [ "`curl -I -s --connect-timeout 1 http://connect.rom.miui.com/generate_204 -w %{http_code} | tail -n1`" == "204" ] || {  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
 extract_dir="$START_DIR/online-scripts"
 
-if [ $language == "" ]; then
+if [ -z "$language" ]; then
     string_startupdate="开始在线更新..."
     string_updatedone="在线更新完成..."
     string_checkonlineconf="检查在线配置..."
