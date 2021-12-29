@@ -52,5 +52,5 @@
     <text>
         <title>其他</title>
     </text>
-    <page config="page/about.xml" title="设置与帮助" desc="几个设置项、一些说明（大部分问题都有答案）、联系我们" icon="pic/about.png" />
+    <page config="page/about.xml" title="设置与帮助" desc="设置、一些说明、联系我们" icon="pic/about.png" />
 </group>
