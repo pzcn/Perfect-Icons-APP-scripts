@@ -37,6 +37,7 @@ if [ -z $themeid ]; then
 echo ${string_outofdatemodule}
 fi
 url=https://miuiicons-generic.pkg.coding.net/icons/files/
+[ -z '$icons' ] || iconsrepo=$icons
 old_ver=$iconsrepo
 f=iconsrepo.ini
 check
