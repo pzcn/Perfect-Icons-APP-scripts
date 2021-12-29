@@ -22,10 +22,10 @@ echo
 modules_installed=0
 #MIUI模块
 if [ -f "/data/adb/modules_update/MIUIiconsplus/module.prop" ]; then
-source /data/adb/modules_update/MIUIiconsplus/module.prop
+source /data/adb/modules_update/MIUIiconsplus/module.prop 2>/dev/null
 modules_installed=1
 elif [ -f "/data/adb/modules/MIUIiconsplus/module.prop" ]; then
-source /data/adb/modules/MIUIiconsplus/module.prop
+source /data/adb/modules/MIUIiconsplus/module.prop 2>/dev/null
 modules_installed=1
 fi
 
