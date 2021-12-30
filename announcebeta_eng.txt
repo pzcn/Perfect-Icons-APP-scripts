@@ -1,1 +1,3 @@
 21-12-26 14:20 English version now has been totally remade. This is the very first version.
+21-12-29 23:38 Use same pic with Chinese version.
+21-12-30 12:10 Fix picker.
