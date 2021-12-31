@@ -85,3 +85,5 @@
     <set>source $START_DIR/online-scripts/misc/hwt.sh</set>
   </action>
 </group>
+<text><title>
+</title></text>
