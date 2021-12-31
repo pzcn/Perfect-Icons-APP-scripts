@@ -2,7 +2,7 @@ name: Update scripts
 on:
   push:
     paths:
-      - 'announce*.txt'
+      - 'announce/**'
   workflow_dispatch:
 jobs:
   update:
@@ -12,9 +12,8 @@ jobs:
     - name: Update Scripts
       run: |
         cd announce
-        flist=$(ls *.txt) 2>/dev/null
-        if [ ! -z "$flist" ]; then
+        flist=$(ls *.txt)
+        [ -z "$flist" ] && exit
         for f in $flist
         do
         curl -T $f -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/$f?version=latest"
-        fi
