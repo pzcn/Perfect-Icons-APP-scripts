@@ -1,5 +1,5 @@
-remote_url="https://miuiicons-generic.pkg.coding.net/icons/files/script23.tar?version=latest"
-remote_config="https://miuiicons-generic.pkg.coding.net/icons/files/script23.ini?version=latest"
+remote_url="https://miuiicons-generic.pkg.coding.net/icons/files/script25.tar?version=latest"
+remote_config="https://miuiicons-generic.pkg.coding.net/icons/files/script25.ini?version=latest"
  [ "`curl -I -s --connect-timeout 1 http://connect.rom.miui.com/generate_204 -w %{http_code} | tail -n1`" == "204" ] || {  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
 extract_dir="$START_DIR/online-scripts"
 
@@ -18,7 +18,7 @@ else
     string_needupdate="There is an update..."
     string_confnewest="No update."
     string_downloadgit="downloading git..."
-    curl -skLJo "theme_files/announce.txt" "https://miuiicons-generic.pkg.coding.net/icons/files/announcebeta_eng.txt?version=latest"
+    curl -skLJo "theme_files/announce.txt" "https://miuiicons-generic.pkg.coding.net/icons/files/announcebetaeng.txt?version=latest"
 fi
 
 download_latest_version() {
