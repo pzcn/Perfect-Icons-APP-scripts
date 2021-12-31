@@ -7,7 +7,7 @@ install() {
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi
     mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
     rm -rf $TEMP_DIR/icons
-    cd $TEMP_DIR/
+    cd $TEMP_DIR
     zip -r $TEMP_DIR/icons.zip ./layer_animating_icons >/dev/null
     zip -r $TEMP_DIR/icons.zip ./res >/dev/null
     rm -rf $TEMP_DIR/res
