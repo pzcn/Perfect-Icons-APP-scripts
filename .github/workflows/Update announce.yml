@@ -1,4 +1,4 @@
-name: Update scripts
+name: Update announce
 on:
   push:
     paths:
@@ -17,3 +17,4 @@ jobs:
         for f in $flist
         do
         curl -T $f -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/$f?version=latest"
+        done
