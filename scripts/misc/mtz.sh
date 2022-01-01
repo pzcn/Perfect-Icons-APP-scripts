@@ -96,6 +96,7 @@ addon(){
         cd theme_files/miui/res/drawable-xxhdpi
         export LD_LIBRARY_PATH=${START_DIR}/script/toolkit/so: $LD_LIBRARY_PATH
         git pull --rebase >/dev/null
+        cp -rf $TEMP_DIR/${var_theme}.ini ${START_DIR}/theme_files/${var_theme}.ini
         echo "${string_gitpull}"
     cd ../../../..
     else
