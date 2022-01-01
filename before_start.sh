@@ -1,9 +1,9 @@
-remote_url="https://miuiicons-generic.pkg.coding.net/icons/files/script25.tar?version=latest"
-remote_config="https://miuiicons-generic.pkg.coding.net/icons/files/script25.ini?version=latest"
+remote_url="https://miuiicons-generic.pkg.coding.net/icons/files/script251.tar?version=latest"
+remote_config="https://miuiicons-generic.pkg.coding.net/icons/files/script251.ini?version=latest"
  [ "`curl -I -s --connect-timeout 1 http://connect.rom.miui.com/generate_204 -w %{http_code} | tail -n1`" == "204" ] || {  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
 extract_dir="$START_DIR/online-scripts"
 
-if [ -z "$language" ]; then
+if [ $LANGUAGE == zh-rCN ]; then
     string_startupdate="开始在线更新..."
     string_updatedone="在线更新完成..."
     string_checkonlineconf="检查在线配置..."
