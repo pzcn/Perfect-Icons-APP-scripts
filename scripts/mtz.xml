@@ -48,14 +48,14 @@
 </group>
 <group>
     <action icon="pic/start.png" reload="@cleancache">
-        <title>试用主题图标</title>
+        <title>导出mtz并试用</title>
         <desc>点击会应用主题，一段时间后会恢复默认。请及时切换回原来的主题。</desc>
         <set>source $START_DIR/online-scripts/misc/mtz.sh apply</set>
     </action>
     <action icon="pic/start.png" reload="@cleancache">
-        <title>开始导出mtz</title>
+        <title>仅导出mtz</title>
         <desc>确认上述配置无误后，轻触导出mtz</desc>
-        <set>source $START_DIR/online-scripts/misc/mtz.sh save</set>
+        <set>source $START_DIR/online-scripts/misc/mtz.sh</set>
     </action>
 </group>
 <text><title>
