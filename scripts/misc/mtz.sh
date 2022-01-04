@@ -24,7 +24,6 @@ install() {
     zip -r mtz.zip * >/dev/null
     mtzfilepath=$mtzdir/${theme_name}${string_projectname}-$time.mtz
     mv mtz.zip $mtzfilepath
-    rm -rf $TEMP_DIR/*
     echo "${string_mtzhasexportto} $mtzfilepath"
     echo "${string_mtznotice}"
     }
@@ -118,8 +117,9 @@ addon(){
   getfiles
   install
   if [ "$1" == apply ]; then 
+    echo 3秒后会自动切换主题
+    sleep 3
     sh $START_DIR/online-scripts/misc/am.sh start -a android.intent.action.MAIN -n "com.android.thememanager/.ApplyThemeForScreenshot" --es theme_file_path "$mtzfilepath" --es api_called_from "test" > /dev/null
-    echo "主题试用"
   fi
 
   rm -rf $TEMP_DIR/*
