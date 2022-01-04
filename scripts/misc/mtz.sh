@@ -22,9 +22,10 @@ install() {
     cd $TEMP_DIR/mtztmp
     time=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
     zip -r mtz.zip * >/dev/null
-    mv mtz.zip $mtzdir/${theme_name}${string_projectname}-$time.mtz
+    mtzfilepath=$mtzdir/${theme_name}${string_projectname}-$time.mtz
+    mv mtz.zip $mtzfilepath
     rm -rf $TEMP_DIR/*
-    echo "${string_mtzhasexportto} $mtzdir/${theme_name}${string_projectname}-$time.mtz"
+    echo "${string_mtzhasexportto} $mtzfilepath"
     echo "${string_mtznotice}"
     }
 
@@ -116,10 +117,8 @@ addon(){
   var_theme=$sel_theme
   getfiles
   install
-  if [ "$1" == save ]; then 
-
-  elif [ "$1" == apply ]; then 
-    sh $START_DIR/online-scripts/misc/am.sh start -a android.intent.action.MAIN -n "com.android.thememanager/ApplyThemeForScreenshot" --es theme_file_path "$mtzdir/${theme_name}${string_projectname}-$time.mtz" --es api_called_from "test" > /dev/null
+  if [ "$1" == apply ]; then 
+    sh $START_DIR/online-scripts/misc/am.sh start -a android.intent.action.MAIN -n "com.android.thememanager/.ApplyThemeForScreenshot" --es theme_file_path "$mtzfilepath" --es api_called_from "test" > /dev/null
     echo "主题试用"
   fi
 
