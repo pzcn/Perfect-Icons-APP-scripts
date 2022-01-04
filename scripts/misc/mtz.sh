@@ -20,6 +20,8 @@ install() {
     cp -rf $TEMP_DIR/icons.zip $TEMP_DIR/mtztmp/icons
     sed -i "s/themename/$theme_name/g" $TEMP_DIR/mtztmp/description.xml
     cd $TEMP_DIR/mtztmp
+    rm -rf com.miui.home
+    rm -rf wallpaper
     time=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
     zip -r mtz.zip * >/dev/null
     mtzfilepath=$mtzdir/${theme_name}${string_projectname}-$time.mtz
