@@ -9,7 +9,6 @@ if [ $LANGUAGE == zh-rCN ]; then
     string_checkonlineconf="检查在线配置..."
     string_needupdate="检查到新版本..."
     string_confnewest="配置文件已是最新..."
-    string_downloadgit="下载git..."
     curl -skLJo "theme_files/announce.txt" "https://miuiicons-generic.pkg.coding.net/icons/files/announcebeta.txt?version=latest"
 else
     string_startupdate="Starting online update..."
@@ -17,7 +16,6 @@ else
     string_checkonlineconf="Checking online configuration..."
     string_needupdate="There is an update..."
     string_confnewest="No update."
-    string_downloadgit="downloading git..."
     curl -skLJo "theme_files/announce.txt" "https://miuiicons-generic.pkg.coding.net/icons/files/announcebetaeng.txt?version=latest"
 fi
 
@@ -41,7 +39,6 @@ old_ver=$script_version
 curl -skLJo "$TEMP_DIR/script.ini" $remote_config
 source $TEMP_DIR/script.ini
 new_ver=$script_version
-[ ! -f $START_DIR/script/toolkit/git ] && echo $string_downloadgit && curl -skLJo $START_DIR/script/toolkit/git https://miuiicons-generic.pkg.coding.net/icons/files/git?version=latest && chmod 777 $START_DIR/script/toolkit/git 
 if [ $new_ver -gt $old_ver ] ;then
 echo $string_needupdate
 rm -rf $extract_dir
