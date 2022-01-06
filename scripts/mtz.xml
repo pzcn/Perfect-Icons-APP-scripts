@@ -58,5 +58,18 @@
         <set>source $START_DIR/online-scripts/misc/mtz.sh</set>
     </action>
 </group>
+
+<group visible="$ROOT_PERMISSION" >
+    <action icon="pic/start.png">
+        <title>防止恢复默认主题</title>
+        <desc>仅本次开机有效，重启后失效。仅需root权限，不需要magisk</desc>
+        <set>chmod 731 /data/system/theme; echo "已完成"</set>
+    </action>
+    <action icon="pic/start.png">
+        <title>[Magisk]防止恢复默认主题</title>
+        <desc>安装防止恢复的Magisk模块，重启不会失效</desc>
+        <set>source $START_DIR/online-scripts/misc/mtcrack.sh</set>
+    </action>
+</group>
 <text><title>
 </title></text>
