@@ -59,7 +59,7 @@
     </action>
 </group>
 
-<group visible="$ROOT_PERMISSION" >
+<group visible="source online-scripts/misc/installer_check.sh" >
     <action icon="pic/start.png">
         <title>防止恢复默认主题</title>
         <desc>仅本次开机有效，重启后失效。仅需root权限，不需要magisk</desc>

@@ -47,10 +47,28 @@
     <page config="page/mtz.xml" title="Q and A (in Chinese)" icon="../pic/qa.png"/>
 </group>
 <group>
-    <action icon="../pic/start.png" reload="@cleancache">
-        <title>Export</title>
-        <desc>Check all settings above then tap to export .mtz file.</desc>
+    <action icon="pic/start.png" reload="@cleancache">
+        <title>Save mtz file and try it out</title>
+        <desc>Click to apply the theme, and the default will be restored after a period of time. Please switch back to the original theme in time.</desc>
+        <set>source $START_DIR/online-scripts/misc/mtz.sh apply</set>
+    </action>
+    <action icon="pic/start.png" reload="@cleancache">
+        <title>Only save mtz file</title>
+        <desc>After confirming that the above configuration is correct, tap to save mtz file</desc>
         <set>source $START_DIR/online-scripts/misc/mtz.sh</set>
+    </action>
+</group>
+
+<group visible="source online-scripts/misc/installer_check.sh" >
+    <action icon="pic/start.png">
+        <title>Prevent restoring the default theme</title>
+        <desc>It will become restore after restarting. Only root permission is required, no magisk is required</desc>
+        <set>chmod 731 /data/system/theme; echo "Done!已完成!"</set>
+    </action>
+    <action icon="pic/start.png">
+        <title>[Magisk]Prevent restoring the default theme</title>
+        <desc>Install Magisk module to prevent restore, it still works after restarting</desc>
+        <set>source $START_DIR/online-scripts/misc/mtcrack.sh</set>
     </action>
 </group>
 <text><title>
