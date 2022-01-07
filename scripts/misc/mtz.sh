@@ -119,8 +119,18 @@ addon(){
   getfiles
   install
   if [ "$1" == apply ]; then 
-    echo 3秒后会自动切换主题
-    sleep 3
+    echo ${string_mtztrailtimeout}
+    echo ${string_mtztrailwarn}
+    echo 5...
+    sleep 1
+    echo 4...
+    sleep 1
+    echo 3...
+    sleep 1
+    echo 2...
+    sleep 1
+    echo 1...
+    sleep 1
     sh $START_DIR/online-scripts/misc/am.sh start -a android.intent.action.MAIN -n "com.android.thememanager/.ApplyThemeForScreenshot" --es theme_file_path "$mtzfilepath" --es api_called_from "test" > /dev/null
   fi
 
