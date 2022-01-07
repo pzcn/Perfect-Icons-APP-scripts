@@ -24,12 +24,12 @@ versionCode=1" >> $TEMP_DIR/module.prop
 
 echo '#!/system/bin/sh
 chmod 731 /data/system/theme
-rm -rf /data/system/package_cache/*' >$TMPDIR/service.sh
+rm -rf /data/system/package_cache/*' >>$TMPDIR/service.sh
 
 echo '#!/system/bin/sh
 rm -rf /data/system/package_cache/*
 chmod 775 /data/system/theme
-rm -rf /data/system/theme/rights' >$TMPDIR/uninstall.sh
+rm -rf /data/system/theme/rights' >>$TMPDIR/uninstall.sh
 
   mkdir -p $MODPATH
   cp -rf $FAKEMODPATH/. $MODPATH
