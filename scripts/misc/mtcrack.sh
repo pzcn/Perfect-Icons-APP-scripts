@@ -16,7 +16,7 @@ MODPATH=/data/adb/modules_update/antimithemerestore
 rm -rf $MODPATH 2>/dev/null
 
 echo "id=antimithemerestore
-name=MIUI ${string_antimodulename}
+name=${string_antimodulename}
 author=@PedroZ
 description=${string_antimoduledescription}
 version=1.0
