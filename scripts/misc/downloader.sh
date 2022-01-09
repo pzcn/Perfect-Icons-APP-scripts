@@ -66,7 +66,10 @@ downloader() {
         if [[ -f "$hisotry" ]]; then
             downloader_result=`cat "$hisotry"`
         else
-            echo ${string_downloaderror} && rm -rf $TEMP_DIR/* >/dev/null && exit 1;
+            echo $string_downloadfailed
+            rm -rf $TEMP_DIR/* >/dev/null
+            rm -rf $downloader_result
+            exit 1
         fi
     else
         downloader_result=`cat $START_DIR/downloader/result/$task_id`
@@ -85,6 +88,8 @@ downloader() {
     if [[ ! "$downloader_result" = "" ]]; then
     echo $string_downloadsuccess
     else
-    echo $string_downloadfailed && rm -rf $TEMP_DIR/* >/dev/null && exit 1;
+    echo $string_downloadfailed
+    rm -rf $TEMP_DIR/* >/dev/null
+    exit 1
     fi
 }
