@@ -1,1 +1,6 @@
-English version now has been totally remade. This is the very first version.
+Announcement on the recent interruption of MIUI downloads:
+
+Recently, MIUI users may not be able to download normally due to the failure of the download service platform they rely on. The solutions are as follows:
+Option 1: In the settings of MIUI download management, turn off the Thunderbolt download engine and clean up the perfect icon app cache.
+Solution 2: Turn on the download compatibility mode in the app settings (the download progress will not be displayed).
+If you do not encounter the above situation, please ignore this announcement. At the same time, it is also actively communicating with the download service platform to try to solve this problem. Sorry for the inconvenience caused.
