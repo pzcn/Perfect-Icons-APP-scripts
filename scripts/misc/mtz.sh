@@ -21,8 +21,8 @@ install() {
     sed -i "s/themename/$theme_name/g" $TEMP_DIR/mtztmp/description.xml
     cd $TEMP_DIR/mtztmp
     if [ "$1" == apply ]; then 
-    rm -rf com.miui.home
-    rm -rf wallpaper
+     rm -rf com.miui.home
+     rm -rf wallpaper
     fi
     time=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
     zip -r mtz.zip * >/dev/null
