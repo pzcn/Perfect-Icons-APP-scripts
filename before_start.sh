@@ -24,7 +24,7 @@ download_latest_version() {
     mkdir -p $extract_dir
     curl -skLJo "$extract_dir/script.tar" $remote_url
     curl -skLJo "$extract_dir/script.ini" $remote_config
-    tar -xf "$extract_dir/script.tar" -C "$extract_dir"
+    toybox tar -xf "$extract_dir/script.tar" -C "$extract_dir"
     rm -rf $extract_dir/script.tar
     chmod 755 -R "$extract_dir"
     find "$extract_dir" -name "*.sh" | xargs dos2unix 1>/dev/null
