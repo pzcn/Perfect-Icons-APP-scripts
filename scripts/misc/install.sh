@@ -14,9 +14,14 @@ install() {
     rm -rf $TEMP_DIR/layer_animating_icons
     cd $START_DIR
     [ $addon == 1 ] && addon
-    mkdir -p $FAKEMODPATH/system/media/theme/default/
-    cp -rf $TEMP_DIR/icons.zip $FAKEMODPATH/system/media/theme/default/icons
-    [ $addon == 1 ] && cp -rf $addon_path/${string_advancedaddons}/* $FAKEMODPATH/system/media/theme/default 2>/dev/null
+    if [ $ANDROID_SDK -lt 33 ] ;then
+    mediapath=system
+    else
+    mediapath=product
+    fi
+    mkdir -p $FAKEMODPATH/$mediapath/media/theme/default/
+    cp -rf $TEMP_DIR/icons.zip $FAKEMODPATH/$mediapath/media/theme/default/icons
+    [ $addon == 1 ] && cp -rf $addon_path/${string_advancedaddons}/* $FAKEMODPATH/$mediapath/media/theme/default 2>/dev/null
     cp $TEMP_DIR/module.prop $FAKEMODPATH/module.prop
 }
 
