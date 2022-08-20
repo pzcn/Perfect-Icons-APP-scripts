@@ -17,10 +17,11 @@ install() {
     if [ $ANDROID_SDK -lt 33 ] ;then
     mediapath=system
     else
-    mediapath=product
+    mediapath=system/product
     fi
     mkdir -p $FAKEMODPATH/$mediapath/media/theme/default/
     cp -rf $TEMP_DIR/icons.zip $FAKEMODPATH/$mediapath/media/theme/default/icons
+    mktouch $FAKEMODPATH/$mediapath/media/theme/miui_mod_icons/.replace
     [ $addon == 1 ] && cp -rf $addon_path/${string_advancedaddons}/* $FAKEMODPATH/$mediapath/media/theme/default 2>/dev/null
     cp $TEMP_DIR/module.prop $FAKEMODPATH/module.prop
 }
@@ -116,7 +117,7 @@ source $START_DIR/online-scripts/misc/downloader.sh
   fi
   [ "`curl -I -s --connect-timeout 1 https://miuiicons-generic.pkg.coding.net/icons/files/check?version=latest -w %{http_code} | tail -n1`" == "200" ] || {  echo "${string_nonetworkdetected}"&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; }
   echo ""
-  REPLACE="/system/media/theme/miui_mod_icons"
+
   var_theme=iconsrepo
   if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
     source theme_files/${var_theme}.ini
@@ -158,9 +159,6 @@ themeid=$var_theme" >> $TEMP_DIR/module.prop
   mkdir -p $MODPATH
   cp -rf $FAKEMODPATH/. $MODPATH
   set_perm_recursive $MODPATH 0 0 0755 0644
-  for TARGET in $REPLACE; do
-  mktouch $MODPATH$TARGET/.replace
-  done
   mktouch /data/adb/modules/MIUIiconsplus/update
   cp -af $MODPATH/module.prop /data/adb/modules/MIUIiconsplus/module.prop
   rm -rf \
