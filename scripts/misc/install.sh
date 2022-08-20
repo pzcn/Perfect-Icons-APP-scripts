@@ -5,7 +5,7 @@ install() {
     cd ../..
     toybox tar -xf "$file" -C "$TEMP_DIR/" >&2
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi
-    mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
+    mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi >/dev/null
     rm -rf $TEMP_DIR/icons
     cd $TEMP_DIR
     zip -r $TEMP_DIR/icons.zip ./layer_animating_icons >/dev/null
