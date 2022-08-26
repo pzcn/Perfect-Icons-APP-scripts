@@ -12,7 +12,7 @@ jobs:
     - name: Update Scripts
       run: |
         cd announce
-        flist=$(ls *.txt)
+        flist=$(ls)
         [ -z "$flist" ] && exit
         for f in $flist
         do
