@@ -69,7 +69,7 @@ download() {
   exec 3>&2
   exec 2>/dev/null
   mkdir -p theme_files/hwt
-  curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/link.ini?version=latest"
+  curl -skLJo "$TEMP_DIR/link.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/link.ini?version=latest"
   source $TEMP_DIR/link.ini
   [ "`curl -I -s --connect-timeout 3 ${link_check} -w %{http_code} | tail -n1`" == "200" ] || {  echo "${string_nonetworkdetected}"&& rm -rf $TEMP_DIR/* 2>/dev/null && exit 1; }
   source theme_files/hwt_theme_config
