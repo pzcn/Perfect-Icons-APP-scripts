@@ -99,11 +99,9 @@ addon(){
   exec 2>/dev/null
   curl -skLJo "$TEMP_DIR/link.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/link.ini?version=latest"
   source $TEMP_DIR/link.ini
-  echo http_code
   http_code="`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`" 
-
 if [ "$http_code" != null ];then
-  if [[ ! "${httpcode[@]}"  =~ "$http_code" ]]; then
+    if [ ! "$httpcode" == *$http_code* ]; then
     {  echo "${string_nonetworkdetected}" && rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
   fi
 else
