@@ -100,10 +100,16 @@ addon(){
   curl -skLJo "$TEMP_DIR/link.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/link.ini?version=latest"
   source $TEMP_DIR/link.ini
   echo http_code
-  echo "`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`"
-  if [ "`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`" != "200" ] || [ "`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`" != "302" ]; then
-     {  echo "${string_nonetworkdetected}" && rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
+  http_code="`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`" 
+
+if [ "$http_code" != null ];then
+  if [[ ! "${httpcode[@]}"  =~ "$http_code" ]]; then
+    {  echo "${string_nonetworkdetected}" && rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
   fi
+else
+  {  echo "${string_nonetworkdetected}" && rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
+fi
+
   source theme_files/theme_config
   source theme_files/mtzdir_config
   source theme_files/addon_config
