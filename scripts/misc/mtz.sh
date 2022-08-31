@@ -101,7 +101,7 @@ addon(){
   source $TEMP_DIR/link.ini
   echo http_code
   echo "`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`"
-  if [ "`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`" ! == "200" ] || [ "`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`" ! == "308" ]; then
+  if [ "`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`" != "200" ] || [ "`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`" != "302" ]; then
      {  echo "${string_nonetworkdetected}" && rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
   fi
   source theme_files/theme_config
