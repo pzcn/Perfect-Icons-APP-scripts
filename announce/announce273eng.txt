@@ -1,1 +1,1 @@
-The current version has fixed the problem that in MIUI, opening the downloader Thunder acceleration caused the download to be interrupted. If you still have problems, please contact the developer for feedback.
+This version will be unavailable in November, please update in time
