@@ -1,1 +1,1 @@
-The new version has been released, which solves the conflict between downloading and Thunderbolt, please update the new version in time
+At present, the download has been optimized using the banknote capability. Thanks to the donors, the list can be viewed in the upper right corner (the statistics are as of the release of the version, and some have no remarks)
