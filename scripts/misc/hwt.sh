@@ -68,10 +68,10 @@ download() {
     else
       curl -skLJo "$TEMP_DIR/${hwt_theme}.tar.xz" "https://emuiicons-generic.pkg.coding.net/files/zip/${var_theme}.tar.xz?version=latest"
        [ $hwt_theme == iconsrepo ] || cp "$TEMP_DIR/${hwt_theme}.tar.xz" "theme_files/hwt/${hwt_theme}.tar.xz"
-        if [[ "$md5" = "`md5sum theme_files/hwt/${hwt_theme}.tar.xz|cut -d ' ' -f1`" ]]; then
+        if [[ "$md5" = "`md5sum $TEMP_DIR/hwt/${hwt_theme}.tar.xz|cut -d ' ' -f1`" ]]; then
       echo $string_downloadsuccess
     else
-      echo $string_downloadfailed
+      echo ${string_downloaderror}
     rm -rf $TEMP_DIR/* >/dev/null
     exit 1
     fi

@@ -65,10 +65,10 @@ curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.n
     else
       curl -skLJo "$TEMP_DIR/${var_theme}.tar.xz" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.tar.xz?version=latest"
       [ $var_theme == iconsrepo ] || cp "$TEMP_DIR/${var_theme}.tar.xz" "theme_files/${var_theme}.tar.xz"
-        if [[ "$md5" = "`md5sum theme_files/${var_theme}.tar.xz|cut -d ' ' -f1`" ]]; then
+        if [[ "$md5" = "`md5sum $TEMP_DIR/${var_theme}.tar.xz|cut -d ' ' -f1`" ]]; then
       echo $string_downloadsuccess
     else
-      echo $string_downloadfailed
+      echo ${string_downloaderror}
     rm -rf $TEMP_DIR/* >/dev/null
     exit 1
     fi
