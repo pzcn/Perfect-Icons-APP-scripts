@@ -1,0 +1,21 @@
+name: Update announce
+on:
+  schedule:
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update Links
+      run: |
+        t=$(TZ=UTC-8 date +%d)
+        if [ `expr $t % 2` -eq 0 ] ; then
+         i=1
+        else
+         i=2
+        fi
+        echo "link $i"
+        curl -T ./link/$i.ini -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/link.ini?version=latest"
+        
