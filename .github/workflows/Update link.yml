@@ -1,4 +1,4 @@
-name: Update Links
+name: Daily Job
 on:
   schedule:
     - cron: '0 20 * * *'
@@ -18,3 +18,25 @@ jobs:
         fi
         echo "link $i"
         curl -T ./link/$i.ini -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/link.ini?version=latest"
+
+    - name: update ali token
+      run: |
+        sudo apt install jq
+        mkdir $GITHUB_WORKSPACE/aliyunpan
+        curl --user ${{ secrets.WEBDAV_PASS }} ${{ secrets.WEBDAV_LINK }} -o $GITHUB_WORKSPACE/aliyunpan/token
+        source $GITHUB_WORKSPACE/aliyunpan/token
+        wget https://github.com/tickstep/aliyunpan/releases/download/v0.2.1/aliyunpan-v0.2.1-linux-amd64.zip
+        unzip aliyunpan-v0.2.1-linux-amd64.zip
+        export ALIYUNPAN_CONFIG_DIR=$GITHUB_WORKSPACE/aliyunpan/config
+        ./aliyunpan-v0.2.1-linux-amd64/aliyunpan login -RefreshToken=$token
+        ./aliyunpan-v0.2.1-linux-amd64/aliyunpan token update
+        echo  $(jq -r '.userList[].refreshToken' $GITHUB_WORKSPACE/aliyunpan/config/aliyunpan_config.json) >> $GITHUB_WORKSPACE/aliyunpan/token
+        curl --user ${{ secrets.WEBDAV_PASS }} -T $GITHUB_WORKSPACE/aliyunpan/token ${{ secrets.WEBDAV_LINK }}
+        
+    - name: DEL OLD FLOW
+      uses: Mattraks/delete-workflow-runs@v2
+      with:
+        token: ${{ github.token }}
+        repository: ${{ github.repository }}
+        retain_days: 3
+        keep_minimum_runs: 6
