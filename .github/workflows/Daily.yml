@@ -30,7 +30,7 @@ jobs:
         export ALIYUNPAN_CONFIG_DIR=$GITHUB_WORKSPACE/aliyunpan/config
         ./aliyunpan-v0.2.1-linux-amd64/aliyunpan login -RefreshToken=$token
         ./aliyunpan-v0.2.1-linux-amd64/aliyunpan token update
-        echo  $(jq -r '.userList[].refreshToken' $GITHUB_WORKSPACE/aliyunpan/config/aliyunpan_config.json) >> $GITHUB_WORKSPACE/aliyunpan/token
+        echo  "token=$(jq -r '.userList[].refreshToken' $GITHUB_WORKSPACE/aliyunpan/config/aliyunpan_config.json)" > $GITHUB_WORKSPACE/aliyunpan/token
         curl --user ${{ secrets.WEBDAV_PASS }} -T $GITHUB_WORKSPACE/aliyunpan/token ${{ secrets.WEBDAV_LINK }}
         
     - name: DEL OLD FLOW
