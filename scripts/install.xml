@@ -55,5 +55,14 @@
             <set>/system/bin/sync;/system/bin/svc power reboot || reboot</set>
         </action>
 </group>
+
+    <group>
+    <page>
+        <config>disabledynamicicons.xml</config>
+        <title>禁用动态图标</title>
+        <desc>可禁用某些或全部图标的动画效果</desc>
+    </page>
+    </group>
+
 <text><title>
 </title></text>
