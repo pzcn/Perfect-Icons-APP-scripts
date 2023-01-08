@@ -30,8 +30,8 @@
 <group>
     <text>
         <title>禁用所有app的动态图标</title>
-            <desc>点击后将禁用所有动态图标，并点击下方重新安装（等同Magisk模块页面的“开始安装”）即可立即禁用，后续更新时亦将按照设定自动禁用。
-            </desc></text>
+        <desc>点击后将禁用所有动态图标，并点击下方重新安装（等同Magisk模块页面的“开始安装”）即可立即禁用，后续更新时亦将按照设定自动禁用。</desc>
+    </text>
         <action>
             <title>禁用全部</title>
             <set>source $START_DIR/online-scripts/misc/install.sh</set>
