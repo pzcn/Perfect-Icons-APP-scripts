@@ -12,8 +12,7 @@
             <desc>在下方选择想要禁用动画图标的app，并点击下方重新安装（等同Magisk模块页面的“开始安装”）即可立即禁用，后续更新时亦将自动禁用。
 请按需选择，如需全部禁用，请使用下方的禁用全部，不建议使用列表中的全选功能（会降低安装效率）。
 列表内会显示全部app，不代表列表内出现的app使用了动态图标。
-再次强调，按需选择，请勿全选！
-            </desc>
+再次强调，按需选择，请勿全选！</desc>
         </text>
         <action>
             <title>选择APP</title>
@@ -32,8 +31,7 @@
     <text>
         <title>禁用所有app的动态图标</title>
             <desc>点击后将禁用所有动态图标，并点击下方重新安装（等同Magisk模块页面的“开始安装”）即可立即禁用，后续更新时亦将按照设定自动禁用。
-            </desc>
-    </text>
+            </desc></text>
         <action>
             <title>禁用全部</title>
             <set>source $START_DIR/online-scripts/misc/install.sh</set>
