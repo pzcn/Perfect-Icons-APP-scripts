@@ -13,9 +13,6 @@ fi
 
 if [ $1 = sel ] ; then
 if [ -s theme_files/denylist ] ; then
-	list=$(cat theme_files/denylist)
-	if [ $list -ne all ];then
 	cat theme_files/denylist
-	fi
 fi
 fi
