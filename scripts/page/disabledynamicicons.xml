@@ -14,7 +14,7 @@
 列表内会显示全部app，不代表列表内出现的app使用了动态图标。
 再次强调，按需选择，请勿全选！</desc>
         </text>
-        <action>
+        <action reload="page">
             <title>选择APP</title>
             <desc>支持多选，选择想要禁用的app并重新安装即可。</desc>
             <param
@@ -33,13 +33,13 @@
         <desc>点击后将禁用所有动态图标，并点击下方重新安装（等同Magisk模块页面的“开始安装”）即可立即禁用，后续更新时亦将按照设定自动禁用。</desc>
     </text>
         <action>
-            <title>禁用全部</title>
+            <title reload="page">禁用全部</title>
             <set>echo "all" &gt; theme_files/denylist</set>
         </action>
 </group>
 
 <group>
-        <action>
+        <action reload="page">
             <title>清除禁用列表</title>
             <desc>点击恢复设定的禁用状态</desc>
             <set>rm -rf theme_files/denylist</set>
