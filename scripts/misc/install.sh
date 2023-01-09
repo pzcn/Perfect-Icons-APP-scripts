@@ -2,8 +2,10 @@ disable_dynamicicon() {
 test=`head -n 1 theme_files/denylist`
 if [ $test = all ] ; then
   echo "- 禁用所有动态图标..."
-  rm $TEMP_DIR/layer_animating_icons/*
-  mktouch $TEMP_DIR/layer_animating_icons/.replace
+  cd layer_animating_icons
+  rm -rf *
+  mktouch .replace
+  cd ..
 elif [ "$test" = "" ] ; then
   :
 else
@@ -11,9 +13,11 @@ else
   $TEMP_DIR/layer_animating_icons
   for pkg in theme_files/denylist
   do
-  rm $TEMP_DIR/layer_animating_icons/$pkg/*
-  mktouch $TEMP_DIR/layer_animating_icons/$pkg/.replace
+  cd layer_animating_icons/$pkg
+  rm -rf *
+  mktouch .replace
   echo "- ""$pkg"
+  cd ../..
   done
   echo "- 禁用已完成"
 fi
@@ -29,7 +33,7 @@ install() {
     mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
     rm -rf $TEMP_DIR/icons
     cd $TEMP_DIR
-    zip -r $TEMP_DIR/icons.zip ./layer_animating_icons >/dev/null
+    zip -r $TEMP_DIR/icons.zip ./echo "-  ""$pkg" >/dev/null
     zip -r $TEMP_DIR/icons.zip ./res >/dev/null
     rm -rf $TEMP_DIR/res
     rm -rf $TEMP_DIR/layer_animating_icons
