@@ -57,7 +57,7 @@
 </group>
 
     <group>
-    <page>
+    <page icon="pic/install.png">
         <config>page/disabledynamicicons.xml</config>
         <title>禁用动态图标</title>
         <desc>可禁用某些或全部图标的动画效果</desc>
