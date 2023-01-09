@@ -1,3 +1,24 @@
+disable_dynamicicon() {
+test=`head -n 1 theme_files/denylist`
+if [ $test = all ] ; then
+  echo "- 禁用所有动态图标..."
+  rm $TEMP_DIR/layer_animating_icons/*
+  mktouch $TEMP_DIR/layer_animating_icons/.replace
+elif [ "$test" = "" ] ; then
+  :
+else
+  echo "- 禁用下列app的动态图标："
+  $TEMP_DIR/layer_animating_icons
+  for pkg in theme_files/denylist
+  do
+  rm $TEMP_DIR/layer_animating_icons/$pkg/*
+  mktouch $TEMP_DIR/layer_animating_icons/$pkg/.replace
+  echo "- ""$pkg"
+  done
+  echo "- 禁用已完成"
+fi
+}
+
 install() {
     echo "${string_installing}$theme_name..."
     cd theme_files/miui
@@ -179,6 +200,7 @@ description=${string_moduledescription_1}${theme_name}${string_moduledescription
 version=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
 theme=$theme_name
 themeid=$var_theme" >> $TEMP_DIR/module.prop
+  disable_dynamicicon
   install
   mkdir -p $MODPATH
   cp -rf $FAKEMODPATH/. $MODPATH
