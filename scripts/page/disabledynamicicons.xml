@@ -39,7 +39,7 @@
 </group>
 
 <group>
-        <action reload="page" shell="hidden" icon="../pic/aclean.png">
+        <action reload="page" shell="hidden" icon="../pic/clean.png">
             <title>清除禁用列表</title>
             <desc>点击恢复设定的禁用状态</desc>
             <set>rm -rf theme_files/denylist</set>
