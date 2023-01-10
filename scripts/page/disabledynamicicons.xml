@@ -46,10 +46,3 @@
         </action>
 </group>
 
-<group>
-        <action icon="../pic/install.png">
-            <title>重新安装</title>
-            <desc>点击重新安装以应用变更</desc>
-            <set>source $START_DIR/online-scripts/misc/install.sh</set>
-        </action>
-</group>
