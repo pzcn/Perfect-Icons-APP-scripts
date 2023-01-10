@@ -2,22 +2,15 @@ disable_dynamicicon() {
 test=`head -n 1 theme_files/denylist`
 if [ $test = all ] ; then
   echo "- 禁用所有动态图标..."
-  cd layer_animating_icons
-  rm -rf *
-  mktouch .replace
-  cd ..
+  rm -rf $TEMP_DIR/layer_animating_icons
 elif [ "$test" = "" ] ; then
   :
 else
   echo "- 禁用下列app的动态图标："
-  $TEMP_DIR/layer_animating_icons
-  for pkg in theme_files/denylist
+  for p in theme_files/denylist
   do
-  cd layer_animating_icons/$pkg
-  rm -rf *
-  mktouch .replace
+  rm -rf layer_animating_icons/$p
   echo "- ""$pkg"
-  cd ../..
   done
   echo "- 禁用已完成"
 fi
@@ -32,6 +25,7 @@ install() {
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi
     mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
     rm -rf $TEMP_DIR/icons
+    [ -f theme_files/denylist ] && disable_dynamicicon
     cd $TEMP_DIR
     zip -r $TEMP_DIR/icons.zip ./echo "-  ""$pkg" >/dev/null
     zip -r $TEMP_DIR/icons.zip ./res >/dev/null
@@ -204,7 +198,6 @@ description=${string_moduledescription_1}${theme_name}${string_moduledescription
 version=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
 theme=$theme_name
 themeid=$var_theme" >> $TEMP_DIR/module.prop
-  disable_dynamicicon
   install
   mkdir -p $MODPATH
   cp -rf $FAKEMODPATH/. $MODPATH
