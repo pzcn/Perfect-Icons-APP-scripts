@@ -1,6 +1,6 @@
 disable_dynamicicon() {
 test=`head -n 1 ${START_DIR}/theme_files/denylist`
-if [ $test = all ] ; then
+if [ "$test" = "all" ] ; then
   echo "- 禁用所有动态图标..."
   rm -rf $TEMP_DIR/layer_animating_icons
 elif [ "$test" = "" ] ; then
