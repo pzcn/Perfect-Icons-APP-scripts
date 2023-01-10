@@ -27,7 +27,7 @@ install() {
     rm -rf $TEMP_DIR/icons
     [ -f theme_files/denylist ] && disable_dynamicicon
     cd $TEMP_DIR
-    zip -r $TEMP_DIR/icons.zip ./echo "-  ""$pkg" >/dev/null
+    zip -r $TEMP_DIR/icons.zip ./layer_animating_icons >/dev/null
     zip -r $TEMP_DIR/icons.zip ./res >/dev/null
     rm -rf $TEMP_DIR/res
     rm -rf $TEMP_DIR/layer_animating_icons
