@@ -9,8 +9,7 @@ else
   echo "- 禁用下列app的动态图标："
   for p in theme_files/denylist
   do
-  rm -rf layer_animating_icons/$p
-  echo "- ""$pkg"
+    [ -f layer_animating_icons/$p ] && rm -rf layer_animating_icons/$p && echo "- ""$pkg"
   done
   echo "- 禁用已完成"
 fi
