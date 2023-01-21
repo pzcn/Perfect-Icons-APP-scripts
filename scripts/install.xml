@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <group>
+  <text>
+    <title>配置</title>
+  </text>
         <picker auto-off="true" interruptible="false" shell="hidden" icon="pic/style.png">
             <title>选择主题图标</title>
             <options>
@@ -34,7 +37,7 @@
     </page>
         <switch shell="hidden" icon="pic/addon.png">
             <title>是否启用自定义图标</title>
-            <desc>开启后，安装时将会导入您的自定义图标。</desc>
+            <desc>开启后，将会导入您的自定义图标。</desc>
             <get>
             source theme_files/addon_config
             echo $addon
@@ -43,22 +46,49 @@
         </switch>
 </group>
 
-    <group>
+<group>
          <page title="预览主题图标" html="https://icons-demo.pedroz.eu.org/" icon="pic/preview.png"/>
          <page config="page/install.xml" title="使用说明及常见问题" icon="pic/qa.png"/>
-    </group>
+</group>
 
-    <group>
-        <action confirm="true" icon="pic/install.png" reload="@install,@cleancache">
-            <title>开始安装</title>
-            <desc>确认上述配置无误后，轻触进行安装</desc>
+<group visible="source online-scripts/misc/installer_check.sh">
+  <text>
+    <title>安装模块</title>
+  </text>
+        <action confirm="true" icon="pic/magisk.png" reload="@install,@cleancache" before-read="source online-scripts/misc/addon_init.sh magisk" visible=" -f /data/adb/magisk.db ">
+            <title>安装模块（Magisk）</title>
+            <desc>您可能安装有 Magisk，确认上述配置无误后，将以 Magisk 模块方式安装完美图标。</desc>
             <set>source $START_DIR/online-scripts/misc/install.sh</set>
         </action>
+
+        <action confirm="true" icon="pic/kernelsu.png" reload="@install,@cleancache" before-read="source online-scripts/misc/addon_init.sh kernelsu" visible="-f /data/adb/ksud ">
+            <title>安装模块（KernelSU）</title>
+            <desc>您可能安装有 KernelSU，确认上述配置无误后，将以 KernelSU 模块方式安装完美图标。</desc>
+            <set>source $START_DIR/online-scripts/misc/install.sh</set>
+        </action>
+
         <action confirm="true" icon="pic/reboot.png" shell="hidden" warning="确认重启？">
             <title>重启设备</title>
             <desc>轻触重启</desc>
             <set>/system/bin/sync;/system/bin/svc power reboot || reboot</set>
         </action>
+</group>
+
+<group>
+  <text>
+    <title>导出模块</title>
+  </text>
+    <action shell="hidden" icon="pic/folder.png">
+        <title>选择文件保存位置</title>
+        <param name="dir" type="folder" value="/sdcard/Download" />
+        <summary sh="source theme_files/mtzdir_config ; echo 当前路径为：$mtzdir " />
+        <set>echo "mtzdir=$dir" &gt; theme_files/mtzdir_config</set>
+    </action>
+    <action icon="pic/save.png" reload="@cleancache">
+        <title>导出模块包</title>
+        <desc>确认上述配置无误后，导出模块后可自行进行安装</desc>
+        <set>source $START_DIR/online-scripts/misc/install.sh download</set>
+    </action>
 </group>
 
 <text><title>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <group>
     <text>
-        <title>动态图标仅有列表：</title>
+        <title>动态图标禁用列表：</title>
         <desc sh="source online-scripts/misc/get_denylist.sh list"/>
     </text>
 </group>
