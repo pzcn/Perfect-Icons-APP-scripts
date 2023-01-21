@@ -10,29 +10,22 @@ fi
 }
 
 if [ "$1" == noroot ]; then 
-system_check
-else
-	if [ $ROOT_PERMISSION == true ]; then
-		system_check
-	else
-		echo 0
-	fi
-fi	
-
-if [ "$1" == kernelsu ]; then 
-system_check
-else
+	system_check
+elif [ "$1" == kernelsu ]; then 
 	if [ -f /data/adb/magisk.db ]; then
 		system_check
 	else
 		echo 0
 	fi
-fi	
-
-if [ "$1" == magisk ]; then 
-system_check
-else
+elif [ "$1" == magisk ]; then 
 	if [ -f /data/adb/ksud ]; then
+		system_check
+	else
+		echo 0
+	fi
+
+else
+	if [ $ROOT_PERMISSION == true ]; then
 		system_check
 	else
 		echo 0
