@@ -19,4 +19,22 @@ else
 	fi
 fi	
 
+if [ "$1" == kernelsu ]; then 
+system_check
+else
+	if [ -f /data/adb/magisk.db ]; then
+		system_check
+	else
+		echo 0
+	fi
+fi	
 
+if [ "$1" == magisk ]; then 
+system_check
+else
+	if [ -f /data/adb/ksud ]; then
+		system_check
+	else
+		echo 0
+	fi
+fi	
