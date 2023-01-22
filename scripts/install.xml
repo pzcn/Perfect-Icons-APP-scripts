@@ -57,13 +57,13 @@
   </text>
         <action confirm="true" icon="pic/magisk.png" reload="@install,@cleancache" before-read="source online-scripts/misc/addon_init.sh magisk" visible="source online-scripts/misc/installer_check.sh magisk">
             <title>安装模块（Magisk）</title>
-            <desc>您可能安装有 Magisk，确认上述配置无误后，将以 Magisk 模块方式安装完美图标。</desc>
+            <desc>确认上述配置无误后，将以 Magisk 模块方式安装完美图标。</desc>
             <set>source $START_DIR/online-scripts/misc/module.sh magisk</set>
         </action>
 
         <action confirm="true" icon="pic/kernelsu.png" reload="@install,@cleancache" before-read="source online-scripts/misc/addon_init.sh kernelsu" visible="source online-scripts/misc/installer_check.sh kernelsu">
             <title>安装模块（KernelSU）</title>
-            <desc>您可能安装有 KernelSU，确认上述配置无误后，将以 KernelSU 模块方式安装完美图标。</desc>
+            <desc>您可能安装了 KernelSU，确认上述配置无误后，将以 KernelSU 模块方式安装完美图标。</desc>
             <set>source $START_DIR/online-scripts/misc/module.sh kernelsu</set>
         </action>
 
@@ -81,7 +81,7 @@
     <action shell="hidden" icon="pic/folder.png">
         <title>选择文件保存位置</title>
         <param name="dir" type="folder" value="/sdcard/Download" />
-        <summary sh="source theme_files/moduledir_config ; echo 当前路径为：$zipoutdir " />
+        <summary sh="source theme_files/zipoutdir_config ; echo 当前路径为：$zipoutdir " />
         <set>echo "zipoutdir=$dir" &gt; theme_files/zipoutdir_config</set>
     </action>
     <action icon="pic/save.png" reload="@cleancache">
