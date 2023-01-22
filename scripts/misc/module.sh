@@ -118,10 +118,17 @@ install() {
     module_files
     zip -r module.zip * >/dev/null
     if [ "$1" == kernelsu ]; then 
-      [[ -f "$TOOLKIT/mount" ]] && rm $TOOLKIT/mount
-      [[ -f "$TOOLKIT/losetup" ]] && rm $TOOLKIT/losetup
+    if [ -f "$TOOLKIT/mount" ]; then
+      rm $TOOLKIT/mount
+    fi
+    if [ -f "$TOOLKIT/losetup" ]; then
+      rm $TOOLKIT/losetup
+    fi
       echo 安装KernelSU模块
-      [ -f /data/adb/ksud ]  && /data/adb/ksud module install module.zip
+    if [ -f "/data/adb/ksud" ]; then
+      /data/adb/ksud module install $TEMP_DIR/moduletmp/module.zip
+    fi
+
     else
     time=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
     modulefilepath=$moduledir/${theme_name}${string_projectname}-$time.zip
@@ -240,7 +247,7 @@ fi
   fi
   var_theme=$sel_theme
   getfiles
-  install
+  install $1
   rm -rf $TEMP_DIR/*
   echo "---------------------------------------------"
   exit 0
