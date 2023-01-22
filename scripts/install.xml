@@ -81,8 +81,8 @@
     <action shell="hidden" icon="pic/folder.png">
         <title>选择文件保存位置</title>
         <param name="dir" type="folder" value="/sdcard/Download" />
-        <summary sh="source theme_files/moduledir_config ; echo 当前路径为：$moduledir " />
-        <set>echo "moduledir=$dir" &gt; theme_files/moduledir_config</set>
+        <summary sh="source theme_files/moduledir_config ; echo 当前路径为：$zipoutdir " />
+        <set>echo "zipoutdir=$dir" &gt; theme_files/zipoutdir_config</set>
     </action>
     <action icon="pic/save.png" reload="@cleancache">
         <title>导出模块包</title>

@@ -79,7 +79,7 @@ themeid=$var_theme" >> $TEMP_DIR/moduletmp/module.prop
 }
 save() {
     time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
-    modulefilepath=${moduledir}/${string_projectname}-$time.zip
+    modulefilepath=${zipoutdir}/${string_projectname}-$time.zip
     mv $TEMP_DIR/moduletmp/module.zip ${modulefilepath}
     echo "- 模块已保存至""$modulefilepath"
 }
@@ -127,7 +127,6 @@ install() {
       if [ -f "$TOOLKIT/losetup" ]; then
         rm $TOOLKIT/losetup
       fi
-        echo 安装KernelSU模块
       if [ -f "/data/adb/ksud" ]; then
         /data/adb/ksud module install $TEMP_DIR/moduletmp/module.zip >/dev/null
         echo "- 已安装为KernelSU模块，重启后生效"
@@ -208,6 +207,22 @@ addon(){
 }
   exec 3>&2
   exec 2>/dev/null
+
+if [ -n "$1" ]; then 
+  var_version="`getprop ro.build.version.release`"
+  var_miui_version="`getprop ro.miui.ui.version.code`" 
+  if [ $var_version -lt 10 ]; then 
+  echo "- 您的 Android 版本不符合要求，即将退出安装。"
+  rm -rf $TEMP_DIR/*
+  exit 1
+  fi
+  if [ $var_miui_version -lt 11 ]; then 
+  echo "- 您的 MIUI 版本不符合要求或者不是MIUI，即将退出安装。"
+  rm -rf $TEMP_DIR/*
+  exit 1
+  fi
+fi
+
   curl -skLJo "$TEMP_DIR/link.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/link.ini?version=latest"
   source $TEMP_DIR/link.ini
   http_code="`curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1`" 
@@ -220,10 +235,10 @@ else
 fi
 
   source theme_files/theme_config
-  source theme_files/moduledir_config
+  source theme_files/zipoutdir_config
   source theme_files/addon_config
   source $START_DIR/online-scripts/misc/downloader.sh
-  [ -d "$moduledir" ] || {  echo ${string_dirnotexist} && rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
+  [ -d "$zipoutdir" ] || {  echo ${string_dirnotexist} && rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
   var_theme=iconsrepo
   if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
     source theme_files/${var_theme}.ini
