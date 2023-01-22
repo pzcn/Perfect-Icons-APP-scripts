@@ -1,88 +1,75 @@
-modile_files() { 
-  mkdir -p META-INF/com/google/android
-  if [ "$1" == kernelsu ]; then 
-  cat > META-INF/com/google/android/update-binary << 'EOF'
+module_files() { 
+mkdir -p META-INF/com/google/android
+echo "#MAGISK" >> META-INF/com/google/android/updater-script
+cat > META-INF/com/google/android/update-binary << 'EOF'
 #!/sbin/sh
-EOF
-else
-    cat > META-INF/com/google/android/update-binary << 'EOF'
-#!/sbin/sh
-umask 022
-TMPDIR=/dev/tmp
-rm -rf $TMPDIR 2>/dev/null
-mkdir -p $TMPDIR
-OUTFD=$2
-ZIPFILE=$3
-unzip -oj "$ZIPFILE" module.prop 'common/*' -d $TMPDIR >&2
-var_version="`getprop ro.build.version.release`"
-var_miui_version="`getprop ro.miui.ui.version.code`"
-print_modname() {
- echo "---------------------------------------------"
- echo "  MIUI完美图标补全计划"
- echo "  MIUI-Adapted-Icons-Complement-Project"
- echo "---------------------------------------------"
-}
 
-on_install() {
-  if [ $var_version -lt 10 ]; then 
-    echo "- 您的 Android 版本不符合要求，即将退出安装。"
-    rm -rf $TMPDIR
-    exit 1
-  elif [ $var_version -lt 13 ] ;then
-    mediapath=system/media/theme
-  else
-    mediapath=system/product/media/theme
-  fi
-  if [ $var_miui_version -lt 11 ]; then 
-    echo "- 您的 MIUI 版本不符合要求，即将退出安装。"
-    rm -rf $TMPDIR
-    exit 1
-  fi
-  mkdir -p $MODPATH/$mediapath/default/
-  mktouch $MODPATH/$mediapath/miui_mod_icons/.replace
-  unzip -oj "$ZIPFILE" icons -d $MODPATH/$mediapath/default >&2
-  mv $TMPDIR/module.prop $MODPATH/module.prop
-}
+#################
+# Initialization
+#################
+
+umask 022
+
+# echo before loading util_functions
+ui_print() { echo "$1"; }
 
 require_new_magisk() {
-  echo
-  echo "- 当前模块不支持此Magisk版本"
-  echo
-  echo "- 请安装最新的 Magisk ！"
-  echo
+  ui_print "*******************************"
+  ui_print " Please install Magisk v20.4+! "
+  ui_print "*******************************"
   exit 1
 }
 
+#########################
+# Load util_functions.sh
+#########################
+
+OUTFD=$2
+ZIPFILE=$3
+
 mount /data 2>/dev/null
+
 [ -f /data/adb/magisk/util_functions.sh ] || require_new_magisk
 . /data/adb/magisk/util_functions.sh
-[ $MAGISK_VER_CODE -gt 18100 ] || require_new_magisk
-$BOOTMODE && boot_actions || recovery_actions
-$BOOTMODE && MODDIRNAME=modules_update || MODDIRNAME=modules
-MODULEROOT=$NVBASE/$MODDIRNAME
-MODID=`grep_prop id $TMPDIR/module.prop`
-MODPATH=$MODULEROOT/$MODID
-MODNAME=`grep_prop name $TMPDIR/module.prop`
-MODVERSION=`grep_prop version $TMPDIR/module.prop`
-rm -rf $MODPATH 2>/dev/null
-mkdir -p $MODPATH
-print_modname
-on_install
+[ $MAGISK_VER_CODE -lt 20400 ] && require_new_magisk
 
-if $BOOTMODE; then
-  mktouch $NVBASE/modules/$MODID/update
-  cp -af $MODPATH/module.prop $NVBASE/modules/$MODID/module.prop
+install_module
+exit 0
+EOF
+
+cat > customize.sh << 'EOF'
+#!/sbin/sh
+SKIPUNZIP=1
+
+ui_print "---------------------------------------------"
+ui_print "  MIUI完美图标补全计划"
+ui_print "  MIUI-Adapted-Icons-Complement-Project"
+ui_print "---------------------------------------------"
+
+var_version="`getprop ro.build.version.release`"
+var_miui_version="`getprop ro.miui.ui.version.code`"
+
+if [ $var_version -lt 10 ]; then 
+  abort "- 您的 Android 版本不符合要求，即将退出安装。"
+elif [ $var_version -lt 13 ] ;then
+  mediapath=system/media/theme
+else
+  mediapath=system/product/media/theme
 fi
+if [ $var_miui_version -lt 11 ]; then 
+  abort "- 您的 MIUI 版本不符合要求，即将退出安装。"
+fi
+mkdir -p $MODPATH/$mediapath/default/
+mktouch $MODPATH/$mediapath/miui_mod_icons/.replace
+unzip -oj "$ZIPFILE" icons -d $MODPATH/$mediapath/default >&2
+mv $TMPDIR/module.prop $MODPATH/module.prop
 
-$BOOTMODE || recovery_cleanup
-rm -rf $TMPDIR
 echo ""
 echo "- 安装成功，请重启设备"
 echo "---------------------------------------------"
-exit 0
 EOF
-fi
-  echo "id=MIUIiconsplus
+
+echo "id=MIUIiconsplus
 name=MIUI ${string_projectname}
 author=@PedroZ
 description=${string_moduledescription_1}${theme_name}${string_moduledescription_2}
@@ -128,7 +115,7 @@ install() {
     mkdir $TEMP_DIR/moduletmp
     cp -rf $TEMP_DIR/icons.zip $TEMP_DIR/moduletmp/icons
     cd $TEMP_DIR/moduletmp
-    modile_files
+    module_files
     zip -r module.zip * >/dev/null
     if [ "$1" == kernelsu ]; then 
       [ -f /data/adb/ksud ]  && /data/adb/ksud module install module.zip
