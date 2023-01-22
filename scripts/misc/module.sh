@@ -79,8 +79,9 @@ themeid=$var_theme" >> $TEMP_DIR/moduletmp/module.prop
 }
 save() {
     time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
-    modulefilepath=${moduledir}/${theme_name}${string_projectname}-$time.zip
+    modulefilepath=${moduledir}/${string_projectname}-$time.zip
     mv $TEMP_DIR/moduletmp/module.zip ${modulefilepath}
+    echo "- 模块已保存至""$modulefilepath"
 }
 disable_dynamicicon() {
 test=`head -n 1 ${START_DIR}/theme_files/denylist`
@@ -128,11 +129,15 @@ install() {
       fi
         echo 安装KernelSU模块
       if [ -f "/data/adb/ksud" ]; then
-        /data/adb/ksud module install $TEMP_DIR/moduletmp/module.zip
+        /data/adb/ksud module install $TEMP_DIR/moduletmp/module.zip >/dev/null
+        echo "- 已安装为KernelSU模块，重启后生效"
+      else
+        { echo "- 无法安装模块，模块已导出，请手动安装。"; save; }
       fi
     elif [ "$1" == magisk ]; then
-      type magisk >/dev/null 2>&1 || { echo "-  无法安装模块，模块已导出，请手动安装。"; save; }
-      magisk --install-module $TEMP_DIR/moduletmp/module.zip
+      type magisk >/dev/null 2>&1 || { echo "- 无法安装模块，模块已导出，请手动安装。"; save; }
+      magisk --install-module $TEMP_DIR/moduletmp/module.zip >/dev/null
+      echo "- 已安装为Magisk模块，重启后生效"
     else
       save
     fi
