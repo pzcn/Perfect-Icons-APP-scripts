@@ -18,7 +18,7 @@ elif [ "$1" == kernelsu ]; then
 		echo 0
 	fi
 elif [ "$1" == magisk ]; then 
-	if [ -f /data/adb/magisk.db ]; then
+	if [ `magisk -V` -lt 20400 ]; then
 		system_check
 	else
 		echo 0
