@@ -118,6 +118,9 @@ install() {
     module_files
     zip -r module.zip * >/dev/null
     if [ "$1" == kernelsu ]; then 
+      [[ -f "$TOOLKIT/mount" ]] && rm $TOOLKIT/mount
+      [[ -f "$TOOLKIT/losetup" ]] && rm $TOOLKIT/losetup
+      echo 安装KernelSU模块
       [ -f /data/adb/ksud ]  && /data/adb/ksud module install module.zip
     else
     time=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
