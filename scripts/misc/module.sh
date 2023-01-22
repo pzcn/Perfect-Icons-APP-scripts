@@ -1,7 +1,7 @@
 module_files() { 
-mkdir -p META-INF/com/google/android
-echo "#MAGISK" >> META-INF/com/google/android/updater-script
-cat > META-INF/com/google/android/update-binary << 'EOF'
+mkdir -p $TEMP_DIR/META-INF/com/google/android
+echo "#MAGISK" >> $TEMP_DIR/META-INF/com/google/android/updater-script
+cat > $TEMP_DIR/META-INF/com/google/android/update-binary << 'EOF'
 #!/sbin/sh
 
 #################
@@ -37,7 +37,7 @@ install_module
 exit 0
 EOF
 
-cat > customize.sh << 'EOF'
+cat > $TEMP_DIR/customize.sh << 'EOF'
 #!/sbin/sh
 SKIPUNZIP=1
 
@@ -75,9 +75,13 @@ author=@PedroZ
 description=${string_moduledescription_1}${theme_name}${string_moduledescription_2}
 version=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
 theme=$theme_name
-themeid=$var_theme" >> module.prop
+themeid=$var_theme" >> $TEMP_DIR/module.prop
 }
-
+save() {
+    time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
+    modulefilepath=${moduledir}/${theme_name}${string_projectname}-$time.zip
+    mv $TEMP_DIR/moduletmp/module.zip ${modulefilepath}
+}
 disable_dynamicicon() {
 test=`head -n 1 ${START_DIR}/theme_files/denylist`
 if [ "$test" = "all" ] ; then
@@ -97,20 +101,18 @@ fi
 
 install() {
     echo "${string_exporting}$theme_name..."
-    cd theme_files/miui
+    cd ${START_DIR}/theme_files/miui
     zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null
-    cd ../..
     cd $TEMP_DIR
     toybox tar -xf  $TEMP_DIR/$var_theme.tar.xz -C "$TEMP_DIR/"
-    mkdir -p ./res/drawable-xxhdpi
-    mv  icons/* ./res/drawable-xxhdpi 2>/dev/null
-    rm -rf icons
+    mkdir -p $TEMP_DIR/res/drawable-xxhdpi
+    mv  $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
+    rm -rf $TEMP_DIR/icons
     [ -f ${START_DIR}/theme_files/denylist ] && disable_dynamicicon
     zip -r icons.zip ./layer_animating_icons >/dev/null
     zip -r icons.zip ./res >/dev/null
-    rm -rf res
-    rm -rf layer_animating_icons
-    cd ..
+    rm -rf $TEMP_DIR/res
+    rm -rf $TEMP_DIR/layer_animating_icons
     [ $addon == 1 ] && addon
     mkdir $TEMP_DIR/moduletmp
     cp -rf $TEMP_DIR/icons.zip $TEMP_DIR/moduletmp/icons
@@ -118,28 +120,28 @@ install() {
     module_files
     zip -r module.zip * >/dev/null
     if [ "$1" == kernelsu ]; then 
-    if [ -f "$TOOLKIT/mount" ]; then
-      rm $TOOLKIT/mount
-    fi
-    if [ -f "$TOOLKIT/losetup" ]; then
-      rm $TOOLKIT/losetup
-    fi
-      echo 安装KernelSU模块
-    if [ -f "/data/adb/ksud" ]; then
-      /data/adb/ksud module install $TEMP_DIR/moduletmp/module.zip
-    fi
-
+      if [ -f "$TOOLKIT/mount" ]; then
+        rm $TOOLKIT/mount
+      fi
+      if [ -f "$TOOLKIT/losetup" ]; then
+        rm $TOOLKIT/losetup
+      fi
+        echo 安装KernelSU模块
+      if [ -f "/data/adb/ksud" ]; then
+        /data/adb/ksud module install $TEMP_DIR/moduletmp/module.zip
+      fi
+    elif [ "$1" == magisk ]; then
+      type magisk >/dev/null 2>&1 || { echo "-  无法安装模块，模块已导出，请手动安装。"; save; }
+      magisk --install-module $TEMP_DIR/moduletmp/module.zip
     else
-    time=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
-    modulefilepath=$moduledir/${theme_name}${string_projectname}-$time.zip
-    mv module.zip $modulefilepath
+      save
     fi
     }
 
 getfiles() {
 file=$TEMP_DIR/$var_theme.tar.xz
-if [ -f "theme_files/${var_theme}.tar.xz" ]; then
-source theme_files/${var_theme}.ini
+if [ -f "${START_DIR}/theme_files/${var_theme}.tar.xz" ]; then
+source ${START_DIR}/theme_files/${var_theme}.ini
 old_ver=$theme_version
 curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.ini?version=latest"
 source $TEMP_DIR/${var_theme}.ini
