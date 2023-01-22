@@ -12,7 +12,7 @@ fi
 if [ "$1" == noroot ]; then 
 	system_check
 elif [ "$1" == kernelsu ]; then 
-	if [ -f /data/adb/magisk.db ]; then
+	if [ type magisk ]; then
 		system_check
 	else
 		echo 0
