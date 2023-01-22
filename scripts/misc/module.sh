@@ -1,7 +1,7 @@
 module_files() { 
-mkdir -p $TEMP_DIR/META-INF/com/google/android
-echo "#MAGISK" >> $TEMP_DIR/META-INF/com/google/android/updater-script
-cat > $TEMP_DIR/META-INF/com/google/android/update-binary << 'EOF'
+mkdir -p $TEMP_DIR/moduletmp/META-INF/com/google/android
+echo "#MAGISK" >> $TEMP_DIR/moduletmp/META-INF/com/google/android/updater-script
+cat > $TEMP_DIR/moduletmp/META-INF/com/google/android/update-binary << 'EOF'
 #!/sbin/sh
 
 #################
@@ -37,7 +37,7 @@ install_module
 exit 0
 EOF
 
-cat > $TEMP_DIR/customize.sh << 'EOF'
+cat > $TEMP_DIR/moduletmp/customize.sh << 'EOF'
 #!/sbin/sh
 SKIPUNZIP=1
 
@@ -75,7 +75,7 @@ author=@PedroZ
 description=${string_moduledescription_1}${theme_name}${string_moduledescription_2}
 version=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
 theme=$theme_name
-themeid=$var_theme" >> $TEMP_DIR/module.prop
+themeid=$var_theme" >> $TEMP_DIR/moduletmp/module.prop
 }
 save() {
     time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
