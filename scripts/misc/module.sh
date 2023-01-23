@@ -171,10 +171,10 @@ getfiles() {
 file=$TEMP_DIR/$var_theme.tar.xz
 if [ -f "${START_DIR}/theme_files/${var_theme}.tar.xz" ]; then
 source ${START_DIR}/theme_files/${var_theme}.ini
-get_theme_name
 old_ver=$theme_version
 curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.ini?version=latest"
 source $TEMP_DIR/${var_theme}.ini
+get_theme_name
 new_ver=$theme_version
 if [ $new_ver -ne $old_ver ] ;then 
 echo "${string_newverdown_1}${theme_name}${string_newverdown_2}"
