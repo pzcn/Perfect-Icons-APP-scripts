@@ -18,7 +18,7 @@
     </action>
     <page config-sh="source online-scripts/misc/get_changelog.sh" icon="pic/changelog.png">
         <title>更新日志</title>
-        <desc>查看近期更新日志</desc>
+        <desc>查看近期更新日志，获取更新通知</desc>
     </page>
 </group>
 
@@ -42,7 +42,7 @@
 
 <group>
     <text>
-        <title>HarmonyOS/EMUI/MagicOS</title>
+        <title>HarmonyOS/EMUI</title>
     </text>
     <page config="hwt.xml" title="下载hwt主题包" icon="pic/download.png" desc="HarmonyOS/EMUI11系统可用" before-read="source online-scripts/misc/hwt_init.sh" />
     <page config="page/emui10.xml" title="下载hwt单层图标主题包" icon="pic/clouddownload.png" desc="EMUI10及以下系统可用" />
