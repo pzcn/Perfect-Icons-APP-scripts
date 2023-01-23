@@ -51,10 +51,11 @@
 </group>
 
 <group visible="source online-scripts/misc/installer_check.sh">
-  <text>
+  <text visible="source online-scripts/misc/installer_check.sh notboth">
     <title>安装模块</title>
   </text>
     <text visible="source online-scripts/misc/installer_check.sh both">
+        <title>安装模块</title>
         <desc>注意：如果您同时将模块安装到Magisk和KernelSU，请自行处理二者优先级关系。</desc>
     </text>
         <action confirm="true" icon="pic/magisk.png" reload="@install,@cleancache" before-read="source online-scripts/misc/addon_init.sh" visible="source online-scripts/misc/installer_check.sh magisk">
