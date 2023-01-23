@@ -23,6 +23,8 @@ elif [ "$1" == magisk ]; then
 	else
 		echo 0
 	fi
+elif [ "$1" == both ]; then 
+	[ `magisk -V` -ge 20400 ] && [ -n "$(cat /proc/kallsyms | grep ksu_)" ] && echo 0
 else
 	if [ $ROOT_PERMISSION == true ]; then
 		system_check $1
