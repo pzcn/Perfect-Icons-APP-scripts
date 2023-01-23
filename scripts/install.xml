@@ -30,20 +30,16 @@
             </get>
             <set>echo "sel_theme=$state" &gt; theme_files/theme_config </set>
         </picker>
+    <page icon="pic/addon.png" before-read="source online-scripts/misc/addon_init.sh">
+        <config>addon.xml</config>
+        <title>图标自定义</title>
+        <desc>图标自定义的开关、配置说明及图标存档下载</desc>
+    </page>
     <page icon="pic/disabledynamic.png">
-        <config>page/disabledynamicicons.xml</config>
+        <config>disabledynamicicons.xml</config>
         <title>禁用动态图标</title>
         <desc>可禁用某些或全部图标的动画效果</desc>
     </page>
-        <switch shell="hidden" icon="pic/addon.png">
-            <title>是否启用自定义图标</title>
-            <desc>开启后，将会导入您的自定义图标。</desc>
-            <get>
-            source theme_files/addon_config
-            echo $addon
-            </get>
-            <set>echo "addon=$state" &gt; theme_files/addon_config</set>
-        </switch>
 </group>
 
 <group>
