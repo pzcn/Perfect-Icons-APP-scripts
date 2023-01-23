@@ -43,6 +43,9 @@
 </group>
 
 <group>
+  <text>
+    <title>其他</title>
+  </text>
          <page title="预览主题图标" html="https://icons-demo.pedroz.eu.org/" icon="pic/preview.png"/>
          <page config="page/install.xml" title="使用说明及常见问题" icon="pic/qa.png"/>
 </group>
