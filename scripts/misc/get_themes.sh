@@ -15,7 +15,7 @@ get_theme_name() {
 [ $themeid = Reconstruction ] && name=${string_EMUIReconstruction}
 [ $themeid = iOS ] && name=${string_iOS}
 }
-if [ `magisk -V` -ge 20400 ]; then
+
 if [ -d "/data/adb/modules_update/MIUIiconsplus" ]; then
 source /data/adb/modules_update/MIUIiconsplus/module.prop
 get_theme_name
@@ -24,16 +24,10 @@ elif [ -d "/data/adb/modules/MIUIiconsplus" ]; then
 source /data/adb/modules/MIUIiconsplus/module.prop
 get_theme_name
 echo "Magisk${string_nowinstalled}${name}${string_themepack}"
-else
-echo "Magisk$string_notinstalled"
-fi
 fi
 
-if [ -n "$(cat /proc/kallsyms | grep ksu_)" ]; then
 if [ -d "/data/adb/ksu/modules/MIUIiconsplus" ]; then
 source /data/adb/ksu/modules/MIUIiconsplus/module.prop
 get_theme_name
-echo "KernelSU${string_nowinstalled}${name}${string_themepack}${string_reboottomakeitwork}"
-else
-echo "KernelSU$string_notinstalled"
+echo "KernelSU${string_nowinstalled}${name}${string_themepack}"
 fi
