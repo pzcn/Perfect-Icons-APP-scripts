@@ -77,12 +77,32 @@ version=$(TZ=$(getprop persist.sys.timezone) date '+%Y%m%d%H%M')
 theme=$theme_name
 themeid=$var_theme" >> $TEMP_DIR/moduletmp/module.prop
 }
+
+get_theme_name() {
+[ $var_theme = default ] && theme_name=${string_default}
+[ $var_theme = coloros12 ] && theme_name=${string_ColorOS12}
+[ $var_theme = explore ] && theme_name=${string_explore}
+[ $var_theme = flyme9 ] && theme_name=${string_Flyme9}
+[ $var_theme = lrone ] && theme_name=${string_lrone}
+[ $var_theme = luck7 ] && theme_name=${string_luck7}
+[ $var_theme = perfectcurve ] && theme_name=${string_perfectcurve}
+[ $var_theme = Aquamarine ] && theme_name=${string_HarmonyOSAquamarine}
+[ $var_theme = AmethystLake ] && theme_name=${string_EMUIAmethystLake}
+[ $var_theme = GoldenBeach ] && theme_name=${string_EMUIGoldenBeach}
+[ $var_theme = LightWings ] && theme_name=${string_EMUILightWings}
+[ $var_theme = Nebulae ] && theme_name=${string_EMUINebulae}
+[ $var_theme = StarrySky ] && theme_name=${string_EMUIStarrySky}
+[ $var_theme = Reconstruction ] && theme_name=${string_EMUIReconstruction}
+[ $var_theme = iOS ] && theme_name=${string_iOS}
+}
+
 save() {
     time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
     modulefilepath=${zipoutdir}/${string_projectname}-$time.zip
     mv $TEMP_DIR/moduletmp/module.zip ${modulefilepath}
     echo "- 模块已保存至""$modulefilepath"
 }
+
 disable_dynamicicon() {
 test=`head -n 1 ${START_DIR}/theme_files/denylist`
 if [ "$test" = "all" ] ; then
@@ -243,6 +263,7 @@ fi
   source theme_files/zipoutdir_config
   source theme_files/addon_config
   source $START_DIR/online-scripts/misc/downloader.sh
+  
   [ -d "$zipoutdir" ] || {  echo ${string_dirnotexist} && rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
   var_theme=iconsrepo
   if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
