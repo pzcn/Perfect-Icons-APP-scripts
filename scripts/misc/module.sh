@@ -45,7 +45,10 @@ ui_print "---------------------------------------------"
 ui_print "  MIUI完美图标补全计划"
 ui_print "  MIUI-Adapted-Icons-Complement-Project"
 ui_print "---------------------------------------------"
-
+ui_print "- 本模块下载自【完美图标计划】APP"
+ui_print "- 在酷安搜索【完美图标计划】获取更多信息"
+ui_print "- QQ群：561180493"
+ui_print "---------------------------------------------"
 var_version="`getprop ro.build.version.release`"
 var_miui_version="`getprop ro.miui.ui.version.code`"
 
@@ -59,13 +62,14 @@ fi
 if [ $var_miui_version -lt 11 ]; then 
   abort "- 您的 MIUI 版本不符合要求，即将退出安装。"
 fi
+echo "- 安装中..."
 mkdir -p $MODPATH/$mediapath/default/
 mktouch $MODPATH/$mediapath/miui_mod_icons/.replace
 unzip -oj "$ZIPFILE" icons -d $MODPATH/$mediapath/default >&2
 mv $TMPDIR/module.prop $MODPATH/module.prop
 
 echo ""
-echo "- 安装成功，请重启设备"
+echo "√ 安装成功，请重启设备"
 echo "---------------------------------------------"
 EOF
 
@@ -98,9 +102,9 @@ get_theme_name() {
 
 save() {
     time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
-    modulefilepath=${zipoutdir}/${string_projectname}-$time.zip
+    modulefilepath=${zipoutdir}/${theme_name}${string_projectname}模块-$time.zip
     mv $TEMP_DIR/moduletmp/module.zip ${modulefilepath}
-    echo "- 模块已保存至""$modulefilepath"
+    echo "√ 模块已保存至""$modulefilepath"
 }
 
 disable_dynamicicon() {
@@ -149,17 +153,17 @@ install() {
       fi
       if [ -f "/data/adb/ksud" ]; then
         /data/adb/ksud module install $TEMP_DIR/moduletmp/module.zip >/dev/null
-        echo "- 已安装为KernelSU模块，重启后生效"
+        echo "√ 已安装为KernelSU模块，重启后生效"
       else
-        echo "- 无法安装模块，模块即将导出，请手动安装。"
+        echo "× 无法安装模块，模块即将导出，请手动安装。"
         save
       fi
     elif [ "$1" == magisk ]; then
       if [ `magisk -V` -ge 20400 ] ; then
         magisk --install-module $TEMP_DIR/moduletmp/module.zip >/dev/null
-        echo "- 已安装为Magisk模块，重启后生效"
+        echo "√ 已安装为Magisk模块，重启后生效"
       else
-        echo "- 无法安装模块，模块即将导出，请手动安装。"
+        echo "× 无法安装模块，模块即将导出，请手动安装。"
         save
       fi
     else
