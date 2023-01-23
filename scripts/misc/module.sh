@@ -135,7 +135,7 @@ install() {
         save
       fi
     elif [ "$1" == magisk ]; then
-      if [ `magisk -V` -lt 20400 ] ; then
+      if [ `magisk -V` -ge 20400 ] ; then
         magisk --install-module $TEMP_DIR/moduletmp/module.zip >/dev/null
         echo "- 已安装为Magisk模块，重启后生效"
       else
