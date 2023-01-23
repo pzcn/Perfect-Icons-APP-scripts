@@ -56,7 +56,7 @@
   </text>
     <text visible="source online-scripts/misc/installer_check.sh both">
         <title>安装模块</title>
-        <desc>注意：如果您同时将模块安装到Magisk和KernelSU，请自行处理二者优先级关系。</desc>
+        <desc>注意：如果您同时将模块安装到Magisk和KernelSU，请自行处理二者优先级关系。建议模块仅应用在一种root方案中。</desc>
     </text>
         <action confirm="true" icon="pic/magisk.png" reload="@install,@cleancache" before-read="source online-scripts/misc/addon_init.sh" visible="source online-scripts/misc/installer_check.sh magisk">
             <title>安装模块（Magisk）</title>
