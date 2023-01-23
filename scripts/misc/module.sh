@@ -79,21 +79,21 @@ themeid=$var_theme" >> $TEMP_DIR/moduletmp/module.prop
 }
 
 get_theme_name() {
-[ $var_theme = default ] && theme_name=${string_default}
-[ $var_theme = coloros12 ] && theme_name=${string_ColorOS12}
-[ $var_theme = explore ] && theme_name=${string_explore}
-[ $var_theme = flyme9 ] && theme_name=${string_Flyme9}
-[ $var_theme = lrone ] && theme_name=${string_lrone}
-[ $var_theme = luck7 ] && theme_name=${string_luck7}
-[ $var_theme = perfectcurve ] && theme_name=${string_perfectcurve}
-[ $var_theme = Aquamarine ] && theme_name=${string_HarmonyOSAquamarine}
-[ $var_theme = AmethystLake ] && theme_name=${string_EMUIAmethystLake}
-[ $var_theme = GoldenBeach ] && theme_name=${string_EMUIGoldenBeach}
-[ $var_theme = LightWings ] && theme_name=${string_EMUILightWings}
-[ $var_theme = Nebulae ] && theme_name=${string_EMUINebulae}
-[ $var_theme = StarrySky ] && theme_name=${string_EMUIStarrySky}
-[ $var_theme = Reconstruction ] && theme_name=${string_EMUIReconstruction}
-[ $var_theme = iOS ] && theme_name=${string_iOS}
+[ $sel_theme = default ] && theme_name=${string_default}
+[ $sel_theme = coloros12 ] && theme_name=${string_ColorOS12}
+[ $sel_theme = explore ] && theme_name=${string_explore}
+[ $sel_theme = flyme9 ] && theme_name=${string_Flyme9}
+[ $sel_theme = lrone ] && theme_name=${string_lrone}
+[ $sel_theme = luck7 ] && theme_name=${string_luck7}
+[ $sel_theme = perfectcurve ] && theme_name=${string_perfectcurve}
+[ $sel_theme = Aquamarine ] && theme_name=${string_HarmonyOSAquamarine}
+[ $sel_theme = AmethystLake ] && theme_name=${string_EMUIAmethystLake}
+[ $sel_theme = GoldenBeach ] && theme_name=${string_EMUIGoldenBeach}
+[ $sel_theme = LightWings ] && theme_name=${string_EMUILightWings}
+[ $sel_theme = Nebulae ] && theme_name=${string_EMUINebulae}
+[ $sel_theme = StarrySky ] && theme_name=${string_EMUIStarrySky}
+[ $sel_theme = Reconstruction ] && theme_name=${string_EMUIReconstruction}
+[ $sel_theme = iOS ] && theme_name=${string_iOS}
 }
 
 save() {
@@ -263,7 +263,7 @@ fi
   source theme_files/zipoutdir_config
   source theme_files/addon_config
   source $START_DIR/online-scripts/misc/downloader.sh
-  
+  get_theme_name
   [ -d "$zipoutdir" ] || {  echo ${string_dirnotexist} && rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
   var_theme=iconsrepo
   if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
