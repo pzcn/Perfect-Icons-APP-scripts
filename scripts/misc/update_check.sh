@@ -5,6 +5,7 @@ check() {
 curl -skLJo "$TEMP_DIR/$f" "$url/$f?version=latest"
 source $TEMP_DIR/$f
 new_ver=$theme_version
+source $START_DIR/online-scripts/misc/get_theme_name.sh
 echo "${string_checking}${theme_name}"
 echo "${string_localver}$old_ver"
 echo "${string_onlinever}$new_ver"
@@ -26,7 +27,6 @@ url=https://miuiicons-generic.pkg.coding.net/icons/files/
 for f in $flist
 do
 source ./$f
-source $START_DIR/online-scripts/misc/get_theme_name.sh
 old_ver=$theme_version
 check
 done
