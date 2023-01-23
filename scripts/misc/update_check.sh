@@ -26,6 +26,7 @@ url=https://miuiicons-generic.pkg.coding.net/icons/files/
 for f in $flist
 do
 source ./$f
+source $START_DIR/online-scripts/misc/get_theme_name.sh
 old_ver=$theme_version
 check
 done

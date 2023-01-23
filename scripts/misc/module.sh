@@ -82,24 +82,6 @@ theme=$theme_name
 themeid=$var_theme" >> $TEMP_DIR/moduletmp/module.prop
 }
 
-get_theme_name() {
-[ $theme_name = default ] && theme_name=${string_default}${string_themepack}
-[ $theme_name = coloros12 ] && theme_name=${string_ColorOS12}${string_themepack}
-[ $theme_name = explore ] && theme_name=${string_explore}${string_themepack}
-[ $theme_name = flyme9 ] && theme_name=${string_Flyme9}${string_themepack}
-[ $theme_name = lrone ] && theme_name=${string_lrone}${string_themepack}
-[ $theme_name = luck7 ] && theme_name=${string_luck7}${string_themepack}
-[ $theme_name = perfectcurve ] && theme_name=${string_perfectcurve}${string_themepack}
-[ $theme_name = Aquamarine ] && theme_name=${string_HarmonyOSAquamarine}${string_themepack}
-[ $theme_name = AmethystLake ] && theme_name=${string_EMUIAmethystLake}${string_themepack}
-[ $theme_name = GoldenBeach ] && theme_name=${string_EMUIGoldenBeach}${string_themepack}
-[ $theme_name = LightWings ] && theme_name=${string_EMUILightWings}${string_themepack}
-[ $theme_name = Nebulae ] && theme_name=${string_EMUINebulae}${string_themepack}
-[ $theme_name = StarrySky ] && theme_name=${string_EMUIStarrySky}${string_themepack}
-[ $theme_name = Reconstruction ] && theme_name=${string_EMUIReconstruction}${string_themepack}
-[ $theme_name = iOS ] && theme_name=${string_iOS}${string_themepack}
-}
-
 save() {
     time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
     modulefilepath=${zipoutdir}/${theme_name}${string_projectname}模块-$time.zip
@@ -178,7 +160,7 @@ source ${START_DIR}/theme_files/${var_theme}.ini
 old_ver=$theme_version
 curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.ini?version=latest"
 source $TEMP_DIR/${var_theme}.ini
-get_theme_name
+source $START_DIR/online-scripts/misc/get_theme_name.sh
 new_ver=$theme_version
 if [ $new_ver -ne $old_ver ] ;then 
 echo "${string_newverdown_1}${theme_name}${string_newverdown_2}"
