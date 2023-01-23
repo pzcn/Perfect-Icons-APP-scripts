@@ -134,9 +134,12 @@ install() {
         { echo "- 无法安装模块，模块已导出，请手动安装。"; save; }
       fi
     elif [ "$1" == magisk ]; then
-      [ `magisk -V` -lt 20400 ] || { echo "- 无法安装模块，模块已导出，请手动安装。"; save; }
-      magisk --install-module $TEMP_DIR/moduletmp/module.zip >/dev/null
-      echo "- 已安装为Magisk模块，重启后生效"
+      if [ `magisk -V` -lt 20400 ] ; then
+        magisk --install-module $TEMP_DIR/moduletmp/module.zip >/dev/null
+        echo "- 已安装为Magisk模块，重启后生效"
+      else
+        { echo "- 无法安装模块，模块已导出，请手动安装。"; save; }
+      fi
     else
       save
     fi
