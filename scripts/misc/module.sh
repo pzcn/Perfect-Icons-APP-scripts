@@ -67,7 +67,7 @@ mkdir -p $MODPATH/$mediapath/default/
 mktouch $MODPATH/$mediapath/miui_mod_icons/.replace
 unzip -oj "$ZIPFILE" icons -d $MODPATH/$mediapath/default >&2
 mv $TMPDIR/module.prop $MODPATH/module.prop
-
+settings put global is_default_icon 0
 echo ""
 echo "√ 安装成功，请重启设备"
 echo "---------------------------------------------"

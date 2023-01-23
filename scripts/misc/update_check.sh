@@ -16,44 +16,6 @@ fi
 echo
 }
 
-
-echo "------------------------"
-echo
-modules_installed=0
-#MIUI模块
-if [ -f "/data/adb/modules_update/MIUIiconsplus/module.prop" ]; then
-source /data/adb/modules_update/MIUIiconsplus/module.prop 2>/dev/null
-modules_installed=1
-elif [ -f "/data/adb/modules/MIUIiconsplus/module.prop" ]; then
-source /data/adb/modules/MIUIiconsplus/module.prop 2>/dev/null
-modules_installed=1
-fi
-
-if [[ $modules_installed == 1 ]]; then
-url=https://miuiicons-generic.pkg.coding.net/icons/files/
-echo ${string_checkingmiuimodule}
-echo
-if [ -z $themeid ]; then
-echo ${string_outofdatemodule}
-fi
-url=https://miuiicons-generic.pkg.coding.net/icons/files/
-if [ -z "$icons" ];then
-	old_ver=$iconsrepo
-else
-	old_ver=$icons
-fi
-f=iconsrepo.ini
-check
-f=${themeid}.ini
-eval old_ver='$'$themeid
-check
-echo "------------------------"
-echo 
-else
-let install_count=$install_count+1
-fi
-
-
 #MIUI主图标包资源
 cd theme_files
 flist=$(ls *.ini) 2>/dev/null
