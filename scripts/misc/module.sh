@@ -15,14 +15,7 @@ module_files() {
   echo "#MAGISK" >>$TEMP_DIR/moduletmp/META-INF/com/google/android/updater-script
   cat >$TEMP_DIR/moduletmp/META-INF/com/google/android/update-binary <<'EOF'
 #!/sbin/sh
-
-#################
-# Initialization
-#################
-
 umask 022
-
-# echo before loading util_functions
 ui_print() { echo "$1"; }
 
 require_new_magisk() {
@@ -31,11 +24,6 @@ require_new_magisk() {
   ui_print "*******************************"
   exit 1
 }
-
-#########################
-# Load util_functions.sh
-#########################
-
 OUTFD=$2
 ZIPFILE=$3
 
@@ -44,10 +32,8 @@ mount /data 2>/dev/null
 [ -f /data/adb/magisk/util_functions.sh ] || require_new_magisk
 . /data/adb/magisk/util_functions.sh
 [ $MAGISK_VER_CODE -lt 20400 ] && require_new_magisk
-
 install_module
 exit 0
-
 EOF
 
   cat >$TEMP_DIR/moduletmp/customize.sh <<'EOF'
