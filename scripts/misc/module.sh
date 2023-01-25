@@ -62,6 +62,7 @@ ui_print "- 在酷安搜索【完美图标计划】获取更多信息"
 ui_print "- QQ群：561180493"
 ui_print "---------------------------------------------"
 
+SKIPUNZIP=1
 var_version="`getprop ro.build.version.release`"
 var_miui_version="`getprop ro.miui.ui.version.code`"
 if [ $var_version -lt 10 ]; then 
@@ -80,6 +81,7 @@ REPLACE="/$mediapath/miui_mod_icons"
 echo "- 安装中..."
 mkdir -p $MODPATH/$mediapath/default/
 unzip -oj "$ZIPFILE" icons -d $MODPATH/$mediapath/default/ >&2
+unzip -oj "$ZIPFILE" module.prop -d $MODPATH/ >&2
 settings put global is_default_icon 0
 set_perm_recursive $MODPATH 0 0 0755 0644
 
