@@ -53,6 +53,17 @@ EOF
   cat >$TEMP_DIR/moduletmp/install.sh <<'EOF'
 #!/sbin/sh
 
+ui_print "---------------------------------------------"
+ui_print "  MIUI完美图标补全计划"
+ui_print "  MIUI-Adapted-Icons-Complement-Project"
+ui_print "---------------------------------------------"
+ui_print "- 本模块下载自【完美图标计划】APP"
+ui_print "- 在酷安搜索【完美图标计划】获取更多信息"
+ui_print "- QQ群：561180493"
+ui_print "---------------------------------------------"
+
+var_version="`getprop ro.build.version.release`"
+var_miui_version="`getprop ro.miui.ui.version.code`"
 if [ $var_version -lt 10 ]; then 
   abort "- 您的 Android 版本不符合要求，即将退出安装。"
 elif [ $var_version -lt 13 ] ;then
@@ -64,44 +75,17 @@ if [ $var_miui_version -lt 10 ]; then
   abort "- 您的 MIUI 版本不符合要求，即将退出安装。"
 fi
 
-SKIPUNZIP=true
-SKIPMOUNT=false
-PROPFILE=false
-POSTFSDATA=false
-LATESTARTSERVICE=false
 REPLACE="$mediapath/miui_mod_icons"
-
-print_modname() {
-ui_print "---------------------------------------------"
-ui_print "  MIUI完美图标补全计划"
-ui_print "  MIUI-Adapted-Icons-Complement-Project"
-ui_print "---------------------------------------------"
-ui_print "- 本模块下载自【完美图标计划】APP"
-ui_print "- 在酷安搜索【完美图标计划】获取更多信息"
-ui_print "- QQ群：561180493"
-ui_print "---------------------------------------------"
-}
-
-
-on_install() {
-[[ -d /sbin/.core/mirror ]] && MIRRORPATH=/sbin/.core/mirror || unset MIRRORPATH
-var_version="`getprop ro.build.version.release`"
-var_miui_version="`getprop ro.miui.ui.version.code`"
 
 echo "- 安装中..."
 mkdir -p $MODPATH/$mediapath/default/
 unzip -oj "$ZIPFILE" icons -d $MODPATH/$mediapath/default/ >&2
 settings put global is_default_icon 0
-echo ""
-echo "√ 安装成功，请重启设备"
-echo "---------------------------------------------"
-}
-
-set_permissions() {
-  set_perm_recursive $MODPATH 0 0 0755 0644
-}
+set_perm_recursive $MODPATH 0 0 0755 0644
 
 rm -rf /data/system/package_cache/*
+echo "√ 安装成功，请重启设备"
+echo "---------------------------------------------"
 EOF
 
   echo "id=MIUIiconsplus
