@@ -50,7 +50,7 @@ exit 0
 
 EOF
 
-  cat >$TEMP_DIR/moduletmp/install.sh <<'EOF'
+  cat >$TEMP_DIR/moduletmp/customize.sh <<'EOF'
 #!/sbin/sh
 
 ui_print "---------------------------------------------"
@@ -75,7 +75,7 @@ if [ $var_miui_version -lt 10 ]; then
   abort "- 您的 MIUI 版本不符合要求，即将退出安装。"
 fi
 
-REPLACE="$mediapath/miui_mod_icons"
+REPLACE="/$mediapath/miui_mod_icons"
 
 echo "- 安装中..."
 mkdir -p $MODPATH/$mediapath/default/
