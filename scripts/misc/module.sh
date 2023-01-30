@@ -67,6 +67,7 @@ REPLACE="/$mediapath/miui_mod_icons"
 echo "- 安装中..."
 mkdir -p $MODPATH/$mediapath/default/
 unzip -oj "$ZIPFILE" icons -d $MODPATH/$mediapath/default/ >&2
+unzip -oj "$ZIPFILE" addon/* -d $MODPATH/$mediapath/default/ >&2
 unzip -oj "$ZIPFILE" module.prop -d $MODPATH/ >&2
 settings put global is_default_icon 0
 set_perm_recursive $MODPATH 0 0 0755 0644
@@ -211,8 +212,9 @@ addon() {
     echo "${string_importaddonicons}"
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi/
     mkdir -p $TEMP_DIR/layer_animating_icons
-    cp -rf $addon_path/${string_animatingicons}/* $TEMP_DIR/layer_animating_icons/ >/dev/null
-    cp -rf $addon_path/${string_staticicons}/* $TEMP_DIR/res/drawable-xxhdpi/ >/dev/null
+    [ -d "$addon_path/${string_animatingicons}" ] && cp -rf $addon_path/${string_animatingicons}/* $TEMP_DIR/layer_animating_icons/ >/dev/null
+    [ -d "$addon_path/${string_staticicons}" ] && cp -rf $addon_path/${string_staticicons}/* $TEMP_DIR/res/drawable-xxhdpi/ >/dev/null
+    [ -d "$addon_path/${string_advancedaddons}" ] && cp -rf $addon_path/${string_advancedaddons}/* $TEMP_DIR/addons/ 2>/dev/null
     cd $TEMP_DIR
     zip -r icons.zip res >/dev/null
     zip -r icons.zip layer_animating_icons >/dev/null

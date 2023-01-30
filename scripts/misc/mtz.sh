@@ -45,6 +45,7 @@ install() {
   mkdir $TEMP_DIR/mtztmp
   tar -xf "$TEMP_DIR/mtz.tar.xz" -C "$TEMP_DIR/mtztmp" >&2
   cp -rf $TEMP_DIR/icons.zip $TEMP_DIR/mtztmp/icons
+  cp -rf $TEMP_DIR/addons/* $TEMP_DIR/mtztmp/
   sed -i "s/themename/$theme_name/g" $TEMP_DIR/mtztmp/description.xml
   cd $TEMP_DIR/mtztmp
   if [ "$1" == apply ]; then
@@ -115,8 +116,9 @@ addon() {
     echo "${string_importaddonicons}"
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi/
     mkdir -p $TEMP_DIR/layer_animating_icons
-    cp -rf $addon_path/${string_animatingicons}/* $TEMP_DIR/layer_animating_icons/ >/dev/null
-    cp -rf $addon_path/${string_staticicons}/* $TEMP_DIR/res/drawable-xxhdpi/ >/dev/null
+    [ -d "$addon_path/${string_animatingicons}" ] && cp -rf $addon_path/${string_animatingicons}/* $TEMP_DIR/layer_animating_icons/ >/dev/null
+    [ -d "$addon_path/${string_staticicons}" ] && cp -rf $addon_path/${string_staticicons}/* $TEMP_DIR/res/drawable-xxhdpi/ >/dev/null
+    [ -d "$addon_path/${string_advancedaddons}" ] && cp -rf $addon_path/${string_advancedaddons}/* $TEMP_DIR/addons/ 2>/dev/null
     cd $TEMP_DIR
     zip -r icons.zip res >/dev/null
     zip -r icons.zip layer_animating_icons >/dev/null
