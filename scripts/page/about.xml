@@ -44,7 +44,7 @@ else
 fi
 </set>
         </action>
-    <page title="查看服务器状态" html="https://status.pedroz.eu.org/status/icons"/>
+    <page title="查看服务器状态" link="https://status.pedroz.eu.org/status/icons"/>
 <group>
     <text>
     <title>使用文档</title>
