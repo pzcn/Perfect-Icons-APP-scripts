@@ -45,11 +45,6 @@ fi
 </set>
         </action>
     <page title="查看服务器状态" html="https://status.pedroz.eu.org/status/icons"/>
-</group>
-  </text>
-         <page title="预览主题图标" html="https://icons-demo.pedroz.eu.org/" icon="pic/preview.png"/>
-         <page config="page/install.xml" title="使用说明及常见问题" icon="pic/qa.png"/>
-</group>
 <group>
     <text>
     <title>使用文档</title>
