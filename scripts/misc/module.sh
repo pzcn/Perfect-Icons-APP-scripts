@@ -123,8 +123,8 @@ install() {
   zip -r icons.zip ./res >/dev/null
   rm -rf $TEMP_DIR/res
   rm -rf $TEMP_DIR/layer_animating_icons
-  [ $addon == 1 ] && addon
   mkdir $TEMP_DIR/moduletmp
+  [ $addon == 1 ] && addon
   cp -rf $TEMP_DIR/icons.zip $TEMP_DIR/moduletmp/icons
   cd $TEMP_DIR/moduletmp
   module_files
@@ -212,9 +212,10 @@ addon() {
     echo "${string_importaddonicons}"
     mkdir -p $TEMP_DIR/res/drawable-xxhdpi/
     mkdir -p $TEMP_DIR/layer_animating_icons
+    mkdir -p $TEMP_DIR/moduletmp/addons/
     [ -d "$addon_path/${string_animatingicons}" ] && cp -rf $addon_path/${string_animatingicons}/* $TEMP_DIR/layer_animating_icons/ >/dev/null
     [ -d "$addon_path/${string_staticicons}" ] && cp -rf $addon_path/${string_staticicons}/* $TEMP_DIR/res/drawable-xxhdpi/ >/dev/null
-    [ -d "$addon_path/${string_advancedaddons}" ] && cp -rf $addon_path/${string_advancedaddons}/* $TEMP_DIR/addons/ 2>/dev/null
+    [ -d "$addon_path/${string_advancedaddons}" ] && cp -rf $addon_path/${string_advancedaddons}/* $TEMP_DIR/moduletmp/addons/ 2>/dev/null
     cd $TEMP_DIR
     zip -r icons.zip res >/dev/null
     zip -r icons.zip layer_animating_icons >/dev/null
