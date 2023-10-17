@@ -138,6 +138,7 @@ install() {
   mv $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
   rm -rf $TEMP_DIR/icons
   [ -f ${START_DIR}/theme_files/denylist ] && disable_dynamicicon
+  transform_config
   zip -r icons.zip ./layer_animating_icons >/dev/null
   zip -r icons.zip ./res >/dev/null
   rm -rf $TEMP_DIR/res
@@ -241,6 +242,15 @@ addon() {
     cd ..
   fi
 }
+
+transform_config() {
+  if [ $new_transform_config = 1 ]; then
+    rm -rf transform_config.xml
+    mv transform_config2.xml transform_config.xml
+  else
+    rm -rf transform_config2.xml
+  fi
+}
 exec 3>&2
 exec 2>/dev/null
 
@@ -285,6 +295,7 @@ done
 source theme_files/theme_config
 source theme_files/zipoutdir_config
 source theme_files/addon_config
+source theme_files/new_transform_config
 source $START_DIR/online-scripts/misc/downloader.sh
 [ -d "$zipoutdir" ] || { echo ${string_dirnotexist} && cleanall >/dev/null && exit 1; }
 var_theme=iconsrepo
