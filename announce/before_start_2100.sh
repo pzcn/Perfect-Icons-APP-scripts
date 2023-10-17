@@ -1,5 +1,5 @@
 var_miui_version=""
-if [ !-f "theme_files/zipoutdir_config" ]; then
+if [ ! -f "theme_files/new_transform_config" ]; then
     if [ $(getprop ro.miui.ui.version.code) -le 14 ]; then
         touch theme_files/addon_config
         echo "addon=0" > theme_files/addon_config
