@@ -131,6 +131,7 @@ disable_dynamicicon() {
 install() {
   echo "${string_exporting}$theme_name..."
   cd ${START_DIR}/theme_files/miui
+  transform_config
   zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null
   cd $TEMP_DIR
   tar -xf $TEMP_DIR/$var_theme.tar.xz -C "$TEMP_DIR/"
@@ -138,7 +139,6 @@ install() {
   mv $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
   rm -rf $TEMP_DIR/icons
   [ -f ${START_DIR}/theme_files/denylist ] && disable_dynamicicon
-  transform_config
   zip -r icons.zip ./layer_animating_icons >/dev/null
   zip -r icons.zip ./res >/dev/null
   rm -rf $TEMP_DIR/res
