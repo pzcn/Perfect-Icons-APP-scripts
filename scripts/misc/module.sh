@@ -245,10 +245,9 @@ addon() {
 
 transform_config() {
   if [ $new_transform_config = 1 ]; then
-    rm -rf transform_config.xml
-    mv transform_config2.xml transform_config.xml
+    cp -rf $START_DIR/online-scripts/misc/transform_config2.xml transform_config.xml
   else
-    rm -rf transform_config2.xml
+    cp -rf $START_DIR/online-scripts/misc/transform_config1.xml transform_config.xml
   fi
 }
 exec 3>&2
