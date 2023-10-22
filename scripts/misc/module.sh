@@ -181,7 +181,7 @@ getfiles() {
   if [ -f "${START_DIR}/theme_files/${var_theme}.tar.xz" ]; then
     source ${START_DIR}/theme_files/${var_theme}.ini
     old_ver=$theme_version
-    curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.ini?version=latest"
+    curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/hyper/${var_theme}.ini?version=latest"
     source $TEMP_DIR/${var_theme}.ini
     source $START_DIR/online-scripts/misc/get_theme_name.sh
     new_ver=$theme_version
@@ -199,22 +199,22 @@ getfiles() {
 }
 
 download() {
-  curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.ini?version=latest"
+  curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/hyper/${var_theme}.ini?version=latest"
   mkdir theme_files 2>/dev/null
   source $TEMP_DIR/${var_theme}.ini
   source $START_DIR/online-scripts/misc/get_theme_name.sh
   cp -rf $TEMP_DIR/${var_theme}.ini theme_files/${var_theme}.ini
   if [ $file_size -gt 5242880 ]; then
-    downloadUrl=${link_miui}/${var_theme}.tar.xz
+    downloadUrl=${link_hyper}/${var_theme}.tar.xz
     downloader "$downloadUrl" $md5
-    [ $var_theme == iconsrepo2 ] || cp $downloader_result theme_files/${var_theme}.tar.xz
+    [ $var_theme == iconsrepo ] || cp $downloader_result theme_files/${var_theme}.tar.xz
     mv $downloader_result $TEMP_DIR/$var_theme.tar.xz
   else
     echo "${string_needtodownloadname_1}${theme_name}${string_needtodownloadname_2}"
     [ $file_size ] || { echo ${string_cannotdownload} && cleanall 2>/dev/null && exit 1; }
     echo "${string_needtodownloadsize_1}$(printf '%.1f' $(echo "scale=1;$file_size/1048576" | bc))${string_needtodownloadsize_2}"
-    curl -skLJo "$TEMP_DIR/${var_theme}.tar.xz" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.tar.xz?version=latest"
-    [ $var_theme == iconsrepo2 ] || cp "$TEMP_DIR/${var_theme}.tar.xz" "theme_files/${var_theme}.tar.xz"
+    curl -skLJo "$TEMP_DIR/${var_theme}.tar.xz" "https://miuiicons-generic.pkg.coding.net/icons/hyper/${var_theme}.tar.xz?version=latest"
+    [ $var_theme == iconsrepo ] || cp "$TEMP_DIR/${var_theme}.tar.xz" "theme_files/${var_theme}.tar.xz"
     md5_loacl=$(md5sum $TEMP_DIR/${var_theme}.tar.xz | cut -d ' ' -f1)
     if [[ "$md5" == "$md5_loacl" ]]; then
       echo $string_downloadsuccess
@@ -297,11 +297,11 @@ source theme_files/addon_config
 source theme_files/new_transform_config
 source $START_DIR/online-scripts/misc/downloader.sh
 [ -d "$zipoutdir" ] || { echo ${string_dirnotexist} && cleanall >/dev/null && exit 1; }
-var_theme=iconsrepo2
+var_theme=iconsrepo
 if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
   source theme_files/${var_theme}.ini
   old_ver=$theme_version
-  curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/${var_theme}.ini?version=latest"
+  curl -skLJo "$TEMP_DIR/${var_theme}.ini" "https://miuiicons-generic.pkg.coding.net/icons/hyper/${var_theme}.ini?version=latest"
   source $TEMP_DIR/${var_theme}.ini
   source $START_DIR/online-scripts/misc/get_theme_name.sh
   new_ver=$theme_version
@@ -320,11 +320,11 @@ if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
 else
   getfiles
   echo "${string_extracting}${theme_name}..."
-  tar -xf "$TEMP_DIR/iconsrepo2.tar.xz" -C "$TEMP_DIR/" >&2
+  tar -xf "$TEMP_DIR/iconsrepo.tar.xz" -C "$TEMP_DIR/" >&2
   mv $TEMP_DIR/icons $TEMP_DIR/icons.zip
   unzip $TEMP_DIR/icons.zip -d theme_files/miui >/dev/null
   rm -rf $TEMP_DIR/icons.zip
-  rm -rf $TEMP_DIR/iconsrepo2.tar.xz
+  rm -rf $TEMP_DIR/iconsrepo.tar.xz
 fi
 var_theme=$sel_theme
 getfiles
