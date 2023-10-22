@@ -37,7 +37,6 @@
         <title>下载模块包</title>
         <desc>下载图标包模块，支持Magisk和KernelSU</desc>
     </page>
-    <page config="mtz.xml" title="下载mtz主题包" icon="pic/save.png" desc="导出mtz主题包导出后需要MIUI主题设计师账号才能使用" before-read="source online-scripts/misc/addon_init.sh" />
 </group>
 
 <group>

@@ -30,7 +30,6 @@
         <title>Download module</title>
         <desc>Download module, support install with Magisk or KernelSU</desc>
     </page>
-    <page config="mtz.xml" title="Export .mtz file" icon="../pic/download.png" desc="Export .mtz file for importing MIUI Perfect Icons in Themes app manually." before-read="source online-scripts/misc/addon_init.sh" />
 </group>
 
 <group>

@@ -43,7 +43,7 @@
         <title>禁用动态图标</title>
         <desc>可禁用某些或全部图标的动画效果</desc>
     </page>
-    <switch shell="hidden" icon="pic/addon.png">
+    <switch shell="hidden" icon="pic/shape.png">
         <title>是否启用新版遮罩</title>
         <desc>如果你使用的是HyperOS的新桌面，请开启这个选项。如果是MIUI那就关闭。</desc>
         <get>

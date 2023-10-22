@@ -42,7 +42,7 @@
         <title>Disable dynamic icons</title>
         <desc>Ability to disable animation effects for some or all icons</desc>
     </page>
-    <switch shell="hidden" icon="pic/addon.png">
+    <switch shell="hidden" icon="pic/shape.png">
         <title>Enable the new mask</title>
         <desc>If you are using the new desktop of HyperOS, please enable this option. If it's MIUI, keep it off.</desc>
         <get>
