@@ -197,6 +197,7 @@ pack() {
   mkdir $TEMP_DIR/moduletmp
   [ $addon == 1 ] && addon
   mv $TEMP_DIR/icons.zip $TEMP_DIR/moduletmp/icons
+  cd ${START_DIR}
 }
 
 install() {
@@ -276,7 +277,7 @@ download() {
     downloadUrl=${link_hyper}/${var_theme}.tar.xz
     downloader "$downloadUrl" $md5
     [ $var_theme == iconsrepo ] || cp $downloader_result theme_files/${var_theme}.tar.xz
-    cp -rf $downloader_result $TEMP_DIR/$var_theme.tar.xz
+    mv $downloader_result $TEMP_DIR/$var_theme.tar.xz
   else
     echo "${string_needtodownloadname_1}${theme_name}${string_needtodownloadname_2}"
     [ $file_size ] || { echo ${string_cannotdownload} && cleanall 2>/dev/null && exit 1; }
