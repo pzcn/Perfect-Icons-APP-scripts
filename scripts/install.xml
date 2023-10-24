@@ -54,14 +54,6 @@
     </switch>
 </group>
 
-<group>
-  <text>
-    <title>其他</title>
-  </text>
-         <page title="预览主题图标" html="https://icons-demo.pedroz.eu.org/" icon="pic/preview.png"/>
-         <page config="page/install.xml" title="使用说明及常见问题" icon="pic/qa.png"/>
-</group>
-
 <group visible="source online-scripts/misc/installer_check.sh">
   <text visible="source online-scripts/misc/installer_check.sh notboth">
     <title>安装模块</title>
@@ -91,7 +83,7 @@
 
 <group>
   <text>
-    <title>导出模块</title>
+    <title>下载至本地</title>
   </text>
     <action shell="hidden" icon="pic/folder.png">
         <title>选择文件保存位置</title>
@@ -109,6 +101,14 @@
         <desc>确认上述配置无误后，下载mtz主题包，需要主题破解才能应用。</desc>
         <set>source $START_DIR/online-scripts/misc/module.sh mtz</set>
     </action>
+</group>
+
+<group>
+  <text>
+    <title>其他</title>
+  </text>
+         <page title="预览主题图标" html="https://icons-demo.pedroz.eu.org/" icon="pic/preview.png"/>
+         <page config="page/install.xml" title="使用说明及常见问题" icon="pic/qa.png"/>
 </group>
 
 <text><title>

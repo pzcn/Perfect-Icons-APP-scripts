@@ -28,14 +28,14 @@
     </text>
     <page id="@install" icon="pic/module.png" visible="source online-scripts/misc/installer_check.sh" >
         <config>install.xml</config>
-        <title>下载</title>
-        <desc>以模块形式进行安装图标，支持Magisk和KernelSU</desc>
+        <title>下载安装模块或mtz主题</title>
+        <desc>下载并安装模块（支持Magisk和KernelSU）或mtz主题</desc>
         <summary sh="source online-scripts/misc/get_themes.sh" />
     </page>
     <page id="@install" icon="pic/module.png" visible="source online-scripts/misc/installer_check.sh norootcheck" >
         <config>install.xml</config>
-        <title>下载</title>
-        <desc>下载图标包模块（支持Magisk和KernelSU）或mtz主题（需主题破解）</desc>
+        <title>下载模块或mtz主题</title>
+        <desc>下载模块（支持Magisk和KernelSU）或mtz主题（需主题破解）</desc>
     </page>
 </group>
 
