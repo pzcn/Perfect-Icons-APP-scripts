@@ -29,7 +29,7 @@
     <page id="@install" icon="pic/xiaomi.png" visible="source online-scripts/misc/installer_check.sh" >
         <config>install.xml</config>
         <title>下载安装模块或mtz主题</title>
-        <desc>HarmonyOS/EMUI11系统可用</desc>
+        <desc>HyperOS/MIUI系统可用</desc>
     </page>
     <page id="@install" icon="pic/xiaomi.png" visible="source online-scripts/misc/installer_check.sh norootcheck" >
         <config>install.xml</config>
