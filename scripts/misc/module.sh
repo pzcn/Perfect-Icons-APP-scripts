@@ -233,8 +233,8 @@ install() {
 save_mtz() {
   var_theme=mtz
   getfiles
-  tar -xf "$TEMP_DIR/mtz.tar.xz" -C "$TEMP_DIR/mtztmp" >&2
-  sed -i "s/themename/$theme_name/g" $TEMP_DIR/mtztmp/description.xml
+  tar -xf "$TEMP_DIR/mtz.tar.xz" -C "$TEMP_DIR/moduletmp" >&2
+  sed -i "s/themename/$theme_name/g" $TEMP_DIR/moduletmp/description.xml
   cd $TEMP_DIR/moduletmp
   time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
   zip -r mtz.zip * >/dev/null

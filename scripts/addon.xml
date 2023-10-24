@@ -26,8 +26,8 @@
     </action>
 </group>
 <group>
-    <page config="page/addon.xml" title="自定义图标使用说明" icon="pic/description.png" />
-    <page config="page/make_icons.xml" title="MIUI分层图标适配指南" icon="pic/qa.png" />
+    <page title="自定义图标使用说明" html="https://www.yuque.com/pedeoz/mua67k/bg668dqpli7brqgi" icon="pic/description.png"/>
+    <page title="完美图标适配指南" html="https://www.yuque.com/pedeoz/mua67k/ao7yvw37irgdghr6" icon="pic/qa.png"/>
 </group>
 <text><title>
 </title></text>

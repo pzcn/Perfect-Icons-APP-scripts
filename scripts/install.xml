@@ -101,7 +101,7 @@
     </action>
     <action icon="pic/module.png" reload="@cleancache">
         <title>下载模块包</title>
-        <desc>确认上述配置无误后，下载模块后可自行进行安装</desc>
+        <desc>确认上述配置无误后，下载模块后可自行安装</desc>
         <set>source $START_DIR/online-scripts/misc/module.sh save</set>
     </action>
     <action icon="pic/brush.png" reload="@cleancache">
@@ -116,7 +116,7 @@
     <title>其他</title>
   </text>
          <page title="预览主题图标" html="https://icons-demo.pedroz.eu.org/" icon="pic/preview.png"/>
-         <page config="page/install.xml" title="使用说明及常见问题" icon="pic/qa.png"/>
+         <page title="HyperOS/MIUI 完美图标使用指南" html="https://www.yuque.com/pedeoz/mua67k/crit9tn6d1334zt0" icon="pic/qa.png"/>
 </group>
 
 <text><title>
