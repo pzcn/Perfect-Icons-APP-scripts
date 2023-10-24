@@ -73,12 +73,12 @@
     </get>
     <set>echo "hwt_shape=$state" &gt; theme_files/hwt_shape_config</set>
   </picker>
-  <page html="https://icons-demo.vercel.app/" title="预览主题图标" icon="pic/preview.png" visible="false" />
+  <page link="https://icons-demo.vercel.app/" title="预览主题图标" icon="pic/preview.png" visible="false" />
   <page config="page/hwt.xml" title="使用说明及常见问题" icon="pic/qa.png" visible="false" />
 </group>
 <group>
   <title>预览</title>
-  <page title="预览主题图标" html="https://icons-demo.pedroz.eu.org/" icon="pic/preview.png" />
+  <page title="预览主题图标" link="https://icons-demo.pedroz.eu.org/" icon="pic/preview.png" />
 </group>
 <group>
   <text>
@@ -100,8 +100,8 @@
   <text>
     <title>单层图标下载</title>
   </text>
-  <page title="下载hwt单层图标主题包" html="https://www.yuque.com/pedeoz/icons/tui2csib0wm0l4lg" icon="pic/clouddownload.png"/ desc="EMUI10及以下系统可用">
-  <page title="HyperOS/MIUI 完美图标使用指南" html="https://www.yuque.com/pedeoz/icons/tui2csib0wm0l4lg" icon="pic/qa.png"/>
+  <page title="下载hwt单层图标主题包" link="https://www.yuque.com/pedeoz/icons/tui2csib0wm0l4lg" icon="pic/clouddownload.png"/ desc="EMUI10及以下系统可用">
+  <page title="HyperOS/MIUI 完美图标使用指南" link="https://www.yuque.com/pedeoz/icons/tui2csib0wm0l4lg" icon="pic/qa.png"/>
 </group>
 <text><title>
 </title></text>

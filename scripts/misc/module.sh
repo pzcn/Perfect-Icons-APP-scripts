@@ -231,15 +231,15 @@ install() {
 }
 
 save_mtz() {
+  themename2=$theme_name
   var_theme=mtz
   getfiles
-
   tar -xf "$TEMP_DIR/mtz.tar.xz" -C "$TEMP_DIR/moduletmp" >&2
-  sed -i "s/themename/$theme_name2/g" $TEMP_DIR/moduletmp/description.xml
+  sed -i "s/themename/$themename2/g" $TEMP_DIR/moduletmp/description.xml
   cd $TEMP_DIR/moduletmp
   time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
   zip -r mtz.zip * >/dev/null
-  mtzfilepath=${zipoutdir}/${theme_name2}${string_projectname}-$time.mtz
+  mtzfilepath=${zipoutdir}/${themename2}${string_projectname}-$time.mtz
   mv $TEMP_DIR/moduletmp/mtz.zip ${mtzfilepath}
   echo "√ mtz主题已保存至""$mtzfilepath"
 }
@@ -276,7 +276,7 @@ download() {
     downloadUrl=${link_hyper}/${var_theme}.tar.xz
     downloader "$downloadUrl" $md5
     [ $var_theme == iconsrepo ] || cp $downloader_result theme_files/${var_theme}.tar.xz
-    mv $downloader_result $TEMP_DIR/$var_theme.tar.xz
+    cp -rf $downloader_result $TEMP_DIR/$var_theme.tar.xz
   else
     echo "${string_needtodownloadname_1}${theme_name}${string_needtodownloadname_2}"
     [ $file_size ] || { echo ${string_cannotdownload} && cleanall 2>/dev/null && exit 1; }
@@ -360,7 +360,6 @@ fi
 var_theme=$sel_theme
 getfiles
 pack
-themename2=$theme_name
 if [ "$1" == mtz ]; then
   save_mtz
 else
