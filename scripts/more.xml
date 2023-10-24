@@ -26,13 +26,13 @@
     <text>
         <title>HyperOS/MIUI</title>
     </text>
-    <page id="@install" icon="pic/module.png" visible="source online-scripts/misc/installer_check.sh" >
+    <page id="@install" icon="pic/xiaomi.png" visible="source online-scripts/misc/installer_check.sh" >
         <config>install.xml</config>
         <title>下载安装模块或mtz主题</title>
         <desc>下载安装模块（支持Magisk和KernelSU）模块或下载mtz主题（需要主题破解或设计师账号）</desc>
         <summary sh="source online-scripts/misc/get_themes.sh" />
     </page>
-    <page id="@install" icon="pic/module.png" visible="source online-scripts/misc/installer_check.sh norootcheck" >
+    <page id="@install" icon="pic/xiaomi.png" visible="source online-scripts/misc/installer_check.sh norootcheck" >
         <config>install.xml</config>
         <title>下载模块或mtz主题</title>
         <desc>下载模块（支持Magisk和KernelSU）模块或下载mtz主题（需要主题破解或设计师账号）</desc>
@@ -43,7 +43,7 @@
     <text>
         <title>HarmonyOS/EMUI</title>
     </text>
-    <page config="hwt.xml" title="下载hwt主题包" icon="pic/download.png" desc="HarmonyOS/EMUI11系统可用" before-read="source online-scripts/misc/hwt_init.sh" />
+    <page config="hwt.xml" title="下载hwt主题包" icon="pic/huawei.png" desc="HarmonyOS/EMUI11系统可用" before-read="source online-scripts/misc/hwt_init.sh" />
 </group>
 
 <group>
