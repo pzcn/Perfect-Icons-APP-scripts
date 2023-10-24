@@ -1,3 +1,54 @@
+device_check() {
+if [ -n "$1" ]; then
+  var_version="$(getprop ro.build.version.release)"
+  var_miui_version="$(getprop ro.miui.ui.version.code)"
+  if [ $var_version -lt 10 ]; then
+    echo "- 您的 Android 版本不符合要求，即将退出安装。"
+    cleanall
+    exit 1
+  fi
+  if [ $var_miui_version -lt 10 ]; then
+    echo "- 您的 MIUI 版本不符合要求或者不是 MIUI，即将退出安装。"
+    cleanall
+    exit 1
+  fi
+fi
+}
+
+network_check() {
+a=0
+b=0
+while [ "$b" -lt 3 ]
+do
+      let "b = $b + 1"
+  curl -skLJo "$TEMP_DIR/link.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/link.ini?version=latest"
+if [ -f $TEMP_DIR/link.ini ]; then
+  source $TEMP_DIR/link.ini
+  http_code="$(curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1)"
+  if [ "$http_code" != null ]; then
+    if [[ ! $httpcode == *$http_code* ]]; then
+      let "a = $a + 1"
+    fi
+  else
+    let "a = $a + 1"
+  fi
+else
+  let "a = $a + 1"
+fi
+[ "$a" -ne "$b" ] && b=3
+done
+[ "$a" = 3 ] &&  echo "${string_nonetworkdetected}" && cleanall >/dev/null && exit 1
+}
+
+init() {
+source theme_files/theme_config
+source theme_files/zipoutdir_config
+source theme_files/addon_config
+source theme_files/new_transform_config
+source $START_DIR/online-scripts/misc/downloader.sh
+[ -d "$zipoutdir" ] || { echo ${string_dirnotexist} && cleanall >/dev/null && exit 1; }
+}
+
 cleanall() {
 if [[ -d "${START_DIR}/downloader" ]]; then
   rm -rf ${START_DIR}/downloader/*
@@ -128,7 +179,7 @@ disable_dynamicicon() {
   fi
 }
 
-install() {
+pack() {
   echo "${string_exporting}$theme_name..."
   cd ${START_DIR}/theme_files/miui
   transform_config
@@ -145,7 +196,10 @@ install() {
   rm -rf $TEMP_DIR/layer_animating_icons
   mkdir $TEMP_DIR/moduletmp
   [ $addon == 1 ] && addon
-  cp -rf $TEMP_DIR/icons.zip $TEMP_DIR/moduletmp/icons
+  mv $TEMP_DIR/icons.zip $TEMP_DIR/moduletmp/icons
+}
+
+install() {
   cd $TEMP_DIR/moduletmp
   module_files
   zip -r module.zip * >/dev/null
@@ -171,9 +225,22 @@ install() {
       echo "× 无法安装模块，模块即将导出，请手动安装。"
       save
     fi
-  else
+  elif [ "$1" == save ]; then
     save
   fi
+}
+
+save_mtz() {
+  var_theme=$sel_theme
+  getfiles
+  tar -xf "$TEMP_DIR/mtz.tar.xz" -C "$TEMP_DIR/mtztmp" >&2
+  sed -i "s/themename/$theme_name/g" $TEMP_DIR/mtztmp/description.xml
+  cd $TEMP_DIR/moduletmp
+  time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
+  zip -r mtz.zip * >/dev/null
+  mtzfilepath=${zipoutdir}/${theme_name}${string_projectname}-$time.mtz
+  mv $TEMP_DIR/moduletmp/mtz.zip ${mtzfilepath}
+  echo "√ mtz主题已保存至""$mtzfilepath"
 }
 
 getfiles() {
@@ -250,53 +317,12 @@ transform_config() {
     cp -rf $START_DIR/online-scripts/misc/transform_config1.xml transform_config.xml
   fi
 }
+
 exec 3>&2
 exec 2>/dev/null
-
-if [ -n "$1" ]; then
-  var_version="$(getprop ro.build.version.release)"
-  var_miui_version="$(getprop ro.miui.ui.version.code)"
-  if [ $var_version -lt 10 ]; then
-    echo "- 您的 Android 版本不符合要求，即将退出安装。"
-    cleanall
-    exit 1
-  fi
-  if [ $var_miui_version -lt 10 ]; then
-    echo "- 您的 MIUI 版本不符合要求或者不是 MIUI，即将退出安装。"
-    cleanall
-    exit 1
-  fi
-fi
-
-a=0
-b=0
-while [ "$b" -lt 3 ]
-do
-      let "b = $b + 1"
-  curl -skLJo "$TEMP_DIR/link.ini" "https://miuiicons-generic.pkg.coding.net/icons/files/link.ini?version=latest"
-if [ -f $TEMP_DIR/link.ini ]; then
-  source $TEMP_DIR/link.ini
-  http_code="$(curl -I -s --connect-timeout 1 ${link_check} -w %{http_code} | tail -n1)"
-  if [ "$http_code" != null ]; then
-    if [[ ! $httpcode == *$http_code* ]]; then
-      let "a = $a + 1"
-    fi
-  else
-    let "a = $a + 1"
-  fi
-else
-  let "a = $a + 1"
-fi
-[ "$a" -ne "$b" ] && b=3
-done
-[ "$a" = 3 ] &&  echo "${string_nonetworkdetected}" && cleanall >/dev/null && exit 1
-
-source theme_files/theme_config
-source theme_files/zipoutdir_config
-source theme_files/addon_config
-source theme_files/new_transform_config
-source $START_DIR/online-scripts/misc/downloader.sh
-[ -d "$zipoutdir" ] || { echo ${string_dirnotexist} && cleanall >/dev/null && exit 1; }
+device_check
+network_check
+init
 var_theme=iconsrepo
 if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
   source theme_files/${var_theme}.ini
@@ -328,7 +354,12 @@ else
 fi
 var_theme=$sel_theme
 getfiles
-install $1
+pack
+if [ "$1" == mtz ]; then
+  save_mtz
+else
+  install $1
+fi
 cleanall
 echo "---------------------------------------------"
 exit 0

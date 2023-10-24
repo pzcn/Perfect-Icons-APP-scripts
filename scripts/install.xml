@@ -100,9 +100,14 @@
         <set>echo "zipoutdir=$dir" &gt; theme_files/zipoutdir_config</set>
     </action>
     <action icon="pic/save.png" reload="@cleancache">
-        <title>导出模块包</title>
-        <desc>确认上述配置无误后，导出模块后可自行进行安装</desc>
-        <set>source $START_DIR/online-scripts/misc/module.sh</set>
+        <title>下载模块包</title>
+        <desc>确认上述配置无误后，下载模块后可自行进行安装</desc>
+        <set>source $START_DIR/online-scripts/misc/module.sh save</set>
+    </action>
+    <action icon="pic/save.png" reload="@cleancache">
+        <title>下载mtz主题包</title>
+        <desc>确认上述配置无误后，下载mtz主题包，需要主题破解才能应用。</desc>
+        <set>source $START_DIR/online-scripts/misc/module.sh mtz</set>
     </action>
 </group>
 
