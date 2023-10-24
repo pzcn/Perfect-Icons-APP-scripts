@@ -1,3 +1,5 @@
+exec 3>&2
+exec 2>/dev/null
 cleanall() {
 if [[ -d "${START_DIR}/downloader" ]]; then
   rm -rf ${START_DIR}/downloader/*

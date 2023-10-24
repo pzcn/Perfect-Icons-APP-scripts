@@ -13,7 +13,7 @@
     </text>
     <page config-sh="source online-scripts/misc/get_changelog.sh" icon="pic/changelog.png">
         <title>更新日志及检查更新</title>
-        <desc>查看近期更新日志，检查是否有更新，获取更新通知</desc>
+        <desc>查看近期更新日志，检查更新，获取更新通知</desc>
     </page>
 </group>
 
