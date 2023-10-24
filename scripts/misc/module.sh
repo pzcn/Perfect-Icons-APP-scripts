@@ -233,12 +233,13 @@ install() {
 save_mtz() {
   var_theme=mtz
   getfiles
+
   tar -xf "$TEMP_DIR/mtz.tar.xz" -C "$TEMP_DIR/moduletmp" >&2
-  sed -i "s/themename/$theme_name/g" $TEMP_DIR/moduletmp/description.xml
+  sed -i "s/themename/$theme_name2/g" $TEMP_DIR/moduletmp/description.xml
   cd $TEMP_DIR/moduletmp
   time=$(TZ=$(getprop persist.sys.timezone) date '+%m%d%H%M')
   zip -r mtz.zip * >/dev/null
-  mtzfilepath=${zipoutdir}/${theme_name}${string_projectname}-$time.mtz
+  mtzfilepath=${zipoutdir}/${theme_name2}${string_projectname}-$time.mtz
   mv $TEMP_DIR/moduletmp/mtz.zip ${mtzfilepath}
   echo "√ mtz主题已保存至""$mtzfilepath"
 }
@@ -359,6 +360,7 @@ fi
 var_theme=$sel_theme
 getfiles
 pack
+themename2=$theme_name
 if [ "$1" == mtz ]; then
   save_mtz
 else

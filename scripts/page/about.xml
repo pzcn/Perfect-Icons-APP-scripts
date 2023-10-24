@@ -51,12 +51,12 @@ fi
     <text>
     <title>使用文档</title>
     </text>
-    <page title="完美图标项目介绍" html="https://www.yuque.com/pedeoz/mua67k/crit9tn6d1334zt0"/>
-    <page title="HyperOS/MIUI 使用指南" html="https://www.yuque.com/pedeoz/mua67k/er8ige3ldvc7wn1n"/>
-    <page title="HarmonyOS/EMUI 使用指南" html="https://www.yuque.com/pedeoz/mua67k/tui2csib0wm0l4lg"/>
-    <page title="自定义图标使用指南" html="https://www.yuque.com/pedeoz/mua67k/tui2csib0wm0l4lg"/>
-    <page title="完美图标适配指南" html="https://www.yuque.com/pedeoz/mua67k/ao7yvw37irgdghr6"/>
-    <page title="3.0版本更新说明" html="https://www.yuque.com/pedeoz/mua67k/xpqqtku1lkacpal4"/>
+    <page title="完美图标项目介绍" html="https://www.yuque.com/pedeoz/icons/crit9tn6d1334zt0"/>
+    <page title="HyperOS/MIUI 使用指南" html="https://www.yuque.com/pedeoz/icons/er8ige3ldvc7wn1n"/>
+    <page title="HarmonyOS/EMUI 使用指南" html="https://www.yuque.com/pedeoz/icons/tui2csib0wm0l4lg"/>
+    <page title="自定义图标使用指南" html="https://www.yuque.com/pedeoz/icons/tui2csib0wm0l4lg"/>
+    <page title="完美图标适配指南" html="https://www.yuque.com/pedeoz/icons/ao7yvw37irgdghr6"/>
+    <page title="3.0版本更新说明" html="https://www.yuque.com/pedeoz/icons/xpqqtku1lkacpal4"/>
     <page config="download.xml" title="下载相关问题"/>
 </group>
 <group>
