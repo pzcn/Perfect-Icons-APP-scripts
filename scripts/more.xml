@@ -11,14 +11,9 @@
     <text>
         <title>更新</title>
     </text>
-    <action icon="pic/update.png">
-        <title>检查更新</title>
-        <set>source $START_DIR/online-scripts/misc/update_check.sh</set>
-        <desc sh="source online-scripts/misc/get_count.sh"/>
-    </action>
     <page config-sh="source online-scripts/misc/get_changelog.sh" icon="pic/changelog.png">
-        <title>更新日志</title>
-        <desc>查看近期更新日志，获取更新通知</desc>
+        <title>更新日志及检查更新</title>
+        <desc>查看近期更新日志，检查是否有更新，获取更新通知</desc>
     </page>
 </group>
 
