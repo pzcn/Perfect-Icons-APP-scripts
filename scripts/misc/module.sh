@@ -271,7 +271,7 @@ download() {
   source $TEMP_DIR/${var_theme}.ini
   source $START_DIR/online-scripts/misc/get_theme_name.sh
   cp -rf $TEMP_DIR/${var_theme}.ini theme_files/${var_theme}.ini
-  if [ $file_size -gt 5242880 ]; then
+  if [ $file_size -gt 6291456 ]; then
     downloadUrl=${link_hyper}/${var_theme}.tar.xz
     downloader "$downloadUrl" $md5
     [ $var_theme == iconsrepo ] || cp $downloader_result theme_files/${var_theme}.tar.xz
@@ -320,7 +320,11 @@ transform_config() {
 
 exec 3>&2
 exec 2>/dev/null
-device_check
+
+if [ "$1" !== mtz ]; then
+  device_check
+fi
+
 network_check
 init
 var_theme=iconsrepo
