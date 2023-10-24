@@ -44,7 +44,6 @@
         <title>HarmonyOS/EMUI</title>
     </text>
     <page config="hwt.xml" title="下载hwt主题包" icon="pic/download.png" desc="HarmonyOS/EMUI11系统可用" before-read="source online-scripts/misc/hwt_init.sh" />
-    <page config="page/emui10.xml" title="下载hwt单层图标主题包" icon="pic/clouddownload.png" desc="EMUI10及以下系统可用" />
 </group>
 
 <group>
