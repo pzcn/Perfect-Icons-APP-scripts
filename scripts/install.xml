@@ -2,7 +2,7 @@
 <group>
     <text>
         <title>HyperOS/MIUI</title>
-        <desc>提供适用于Magisk或KernelSU的模块，提供mtz主题包（需要主题破解）</desc>
+        <desc>提供适用于Magisk或KernelSU的模块，提供mtz主题包（需要主题破解）。首次使用前请仔细阅读使用指南。</desc>
     </text>
 </group>
 <group>
