@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <group>
+    <text>
+        <title>HarmonyOS/EMUI</title>
+        <desc>提供适用于HarmonyOS和EMUI11的分层图标包</desc>
+    </text>
+</group>
+<group>
   <text>
     <title>配置</title>
   </text>

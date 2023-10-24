@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <group>
+<group>
+    <text>
+        <title>HyperOS/MIUI</title>
+        <desc>提供适用于Magisk或KernelSU的模块，提供mtz主题包（需要主题破解）</desc>
+    </text>
+</group>
+<group>
   <text>
     <title>配置</title>
   </text>
@@ -45,7 +51,7 @@
     </page>
     <switch shell="hidden" icon="pic/addon.png">
         <title>是否启用新版遮罩</title>
-        <desc>如果你使用的是HyperOS的新桌面，请开启这个选项。如果是MIUI那就关闭。</desc>
+        <desc>如果你使用的是HyperOS的新桌面，请开启这个选项。如果是MIUI那就关闭。如果图标大小异常，可尝试切换。</desc>
         <get>
             source theme_files/new_transform_config
             echo $new_transform_config
