@@ -96,7 +96,7 @@
     <action shell="hidden" icon="../pic/folder.png">
         <title>Choose where to save the file</title>
         <param name="dir" type="folder" value="/sdcard/Download" />
-        <summary sh="source theme_files/zipoutdir_config ; echo 当前路径为：$zipoutdir " />
+        <summary sh="source theme_files/zipoutdir_config ; echo The current path is: $zipoutdir " />
         <set>echo "zipoutdir=$dir" &gt; theme_files/zipoutdir_config</set>
     </action>
     <action icon="../pic/module.png" confirm="true">
