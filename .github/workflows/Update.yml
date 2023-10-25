@@ -11,4 +11,4 @@ jobs:
     - uses: actions/checkout@v2
     - name: Update Scripts
       run: |
-        curl -T before_start.sh -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/before_start_2100.sh?version=latest"
+        curl -T before_start.sh -u ${{secrets.coding_password}} "https://miuiicons-generic.pkg.coding.net/icons/files/before_start_3000.sh?version=latest"
