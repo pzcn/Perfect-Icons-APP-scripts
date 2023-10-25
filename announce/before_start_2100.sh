@@ -1,4 +1,3 @@
-var_miui_version=""
 if [ ! -f "theme_files/new_transform_config" ]; then
     if [ $(getprop ro.miui.ui.version.code) -le 14 ]; then
         touch theme_files/new_transform_config
