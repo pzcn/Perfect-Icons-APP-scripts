@@ -1,17 +1,5 @@
-var_miui_version=""
-if [ ! -f "theme_files/new_transform_config" ]; then
-    if [ $(getprop ro.miui.ui.version.code) -le 14 ]; then
-        touch theme_files/new_transform_config
-        echo "new_transform_config=0" > theme_files/new_transform_config
-    else
-        touch theme_files/new_transform_config
-        echo "new_transform_config=1" > theme_files/new_transform_config
-    fi
-fi
-
-
-remote_url="https://miuiicons-generic.pkg.coding.net/icons/files/script2100.tar?version=latest"
-remote_config="https://miuiicons-generic.pkg.coding.net/icons/files/script2100.ini?version=latest"
+remote_url="https://miuiicons-generic.pkg.coding.net/icons/files/script3000.tar?version=latest"
+remote_config="https://miuiicons-generic.pkg.coding.net/icons/files/script3000.ini?version=latest"
  [ "`curl -I -s --connect-timeout 1 http://connect.rom.miui.com/generate_204 -w %{http_code} | tail -n1`" == "204" ] || {  echo "× 未检测到网络连接，取消安装 ... "&& rm -rf $TEMP_DIR/* >/dev/null && exit 1; }
 extract_dir="$START_DIR/online-scripts"
 
