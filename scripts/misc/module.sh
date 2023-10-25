@@ -323,7 +323,7 @@ transform_config() {
 exec 3>&2
 exec 2>/dev/null
 
-if [ "$1" !== mtz ]; then
+if [ "$1" ! == mtz ]; then
   device_check
 fi
 
