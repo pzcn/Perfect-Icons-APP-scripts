@@ -75,14 +75,14 @@
             <set>source $START_DIR/online-scripts/misc/module.sh magisk</set>
         </action>
 
-        <action confirm="true" icon="pic/kernelsu.png" reload="@install,@cleancache" before-read="source online-scripts/misc/addon_init.sh" visible="source online-scripts/misc/installer_check.sh kernelsu" warning="确认安装？">
+        <action confirm="true" icon="pic/kernelsu.png" reload="@install,@cleancache" before-read="source online-scripts/misc/addon_init.sh" visible="source online-scripts/misc/installer_check.sh kernelsu">
             <title>安装模块（KernelSU）</title>
             <desc>确认上述配置无误后，将以 KernelSU 模块方式安装完美图标。</desc>
             <summary sh="source online-scripts/misc/get_themes.sh kernelsu" />
             <set>source $START_DIR/online-scripts/misc/module.sh kernelsu</set>
         </action>
 
-        <action confirm="true" icon="pic/reboot.png" shell="hidden" warning="确认重启？">
+        <action confirm="true" icon="pic/reboot.png" shell="hidden">
             <title>重启设备</title>
             <desc>轻触重启</desc>
             <set>/system/bin/sync;/system/bin/svc power reboot || reboot</set>
@@ -93,18 +93,18 @@
   <text>
     <title>下载至本地</title>
   </text>
-    <action shell="hidden" icon="pic/folder.png">
+    <action  shell="hidden" icon="pic/folder.png">
         <title>选择文件保存位置</title>
         <param name="dir" type="folder" value="/sdcard/Download" />
         <summary sh="source theme_files/zipoutdir_config ; echo 当前路径为：$zipoutdir " />
         <set>echo "zipoutdir=$dir" &gt; theme_files/zipoutdir_config</set>
     </action>
-    <action icon="pic/module.png" reload="@cleancache" warning="确认下载？">
+    <action icon="pic/module.png" confirm="true">
         <title>下载模块包</title>
         <desc>确认上述配置无误后，下载模块后可自行安装</desc>
         <set>source $START_DIR/online-scripts/misc/module.sh save</set>
     </action>
-    <action icon="pic/brush.png" reload="@cleancache" warning="确认下载？">
+    <action icon="pic/brush.png" confirm="true">
         <title>下载mtz主题包</title>
         <desc>确认上述配置无误后，下载mtz主题包，需要主题破解才能应用。</desc>
         <set>source $START_DIR/online-scripts/misc/module.sh mtz</set>
