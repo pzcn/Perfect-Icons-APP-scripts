@@ -141,14 +141,14 @@ else
   fi
 fi
 
-REPLACE="/$MEDIAPATH/theme/miui_mod_icons"
+REPLACE="/$MEDIAPATH/theme/miui_mod_icons/dynamic"
 
 echo "- 安装中..."
 echo "- installing..."
 
 mkdir -p ${MODPATH}/${MEDIAPATH}/theme/default/
 unzip -oj "$ZIPFILE" icons -d $MODPATH/$MEDIAPATH/theme/default/ >&2
-unzip -o "$ZIPFILE" miui_mod_icons -d $MODPATH/$MEDIAPATH/theme/ >&2
+unzip -oj "$ZIPFILE" miui_mod_icons/* -d $MODPATH/$MEDIAPATH/theme/miui_mod_icons >&2
 unzip -oj "$ZIPFILE" addons/* -d $MODPATH/$MEDIAPATH/theme/default/ >&2
 unzip -oj "$ZIPFILE" module.prop -d $MODPATH/ >&2
 unzip -oj "$ZIPFILE" post-fs-data.sh -d $MODPATH/ >&2 
