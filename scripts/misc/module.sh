@@ -206,6 +206,7 @@ pack() {
   transform_config
   [ $addon == 1 ] && addon
   if [ "$1" != mtz ]; then
+    mkdir $TEMP_DIR/miui_mod_icons
     mv $TEMP_DIR/res/drawable-xxhdpi/*.png $TEMP_DIR/miui_mod_icons
   fi
   cd $TEMP_DIR
