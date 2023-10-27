@@ -194,7 +194,7 @@ disable_dynamicicon() {
 }
 
 pack() {
-  echo "${string_exporting}$theme_name..."
+  echo "${string_exporting}$theme_name${string_plzwait}..."
   cd ${START_DIR}/theme_files/miui
   zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null  
   cd $TEMP_DIR
@@ -206,7 +206,7 @@ pack() {
   transform_config
   [ $addon == 1 ] && addon
   if [ "$1" != mtz ]; then
-    cp -rf "$TEMP_DIR/res/drawable-xxhdpi/*.png" $TEMP_DIR/miui_mod_icons
+    mv $TEMP_DIR/res/drawable-xxhdpi/*.png $TEMP_DIR/miui_mod_icons
   fi
   cd $TEMP_DIR
   zip -r icons.zip ./layer_animating_icons >/dev/null
