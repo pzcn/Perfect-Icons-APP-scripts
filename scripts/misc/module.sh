@@ -195,6 +195,7 @@ disable_dynamicicon() {
 
 pack() {
   echo "${string_exporting}$theme_name..."
+  zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null  
   cd $TEMP_DIR
   tar -xf $TEMP_DIR/$var_theme.tar.xz -C "$TEMP_DIR/"
   mkdir -p $TEMP_DIR/res/drawable-xxhdpi
@@ -203,13 +204,6 @@ pack() {
   [ -f ${START_DIR}/theme_files/denylist ] && disable_dynamicicon
   transform_config
   cd ${START_DIR}/theme_files/miui
-  if [ "$1" == mtz ]; then
-    zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null
-  else
-    zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' './res/drawable-xxhdpi/*.png' >/dev/null
-    mkdir $TEMP_DIR/miui_mod_icons
-    cp -rf "${START_DIR}/theme_files/miui/res/drawable-xxhdpi/*.png" $TEMP_DIR/miui_mod_icons
-  fi
   cd $TEMP_DIR
   zip -r icons.zip ./layer_animating_icons >/dev/null
   zip -r icons.zip ./res >/dev/null
@@ -217,6 +211,9 @@ pack() {
   rm -rf $TEMP_DIR/layer_animating_icons
   mkdir $TEMP_DIR/moduletmp
   [ $addon == 1 ] && addon
+  if [ "$1" != mtz ]; then
+    cp -rf "$TEMP_DIR/res/drawable-xxhdpi/*.png" $TEMP_DIR/miui_mod_icons
+  fi
   mv $TEMP_DIR/icons.zip $TEMP_DIR/moduletmp/icons
   [ -d "$TEMP_DIR/miui_mod_icons" ] && mv $TEMP_DIR/miui_mod_icons $TEMP_DIR/moduletmp
   cd ${START_DIR}
