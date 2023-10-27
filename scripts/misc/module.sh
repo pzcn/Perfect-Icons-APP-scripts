@@ -141,7 +141,7 @@ else
   fi
 fi
 
-
+REPLACE="$MEDIAPATH/theme/miui_mod_icons"
 
 echo "- 安装中..."
 echo "- installing..."
@@ -149,10 +149,8 @@ mkdir -p ${MODPATH}${MEDIAPATH}/theme/default/
 unzip -oj "$ZIPFILE" icons -d $MODPATH/$MEDIAPATH/theme/default/ >&2
 if [ $var_miui_version -gt 14 ]; then 
   mkdir -p "$MEDIAPATH/theme/miui_mod_icons"
-  unzip "$MODPATH/$MEDIAPATH/theme/default/icons" icon_*.png -d "$MEDIAPATH/theme/miui_mod_icons"
-  zip -d "$MODPATH/$MEDIAPATH/theme/default/icons" icon_*.png
-else
-  REPLACE="$MEDIAPATH/theme/miui_mod_icons"
+  unzip "$MODPATH/$MEDIAPATH/theme/default/icons" "res/drawable-xxhdpi/icon_*.png" -d "$MEDIAPATH/theme/miui_mod_icons"
+  zip -d "$MODPATH/$MEDIAPATH/theme/default/icons" "res/drawable-xxhdpi/icon_*.png"
 fi
 unzip -oj "$ZIPFILE" addons/* -d $MODPATH/$MEDIAPATH/theme/default/ >&2
 unzip -oj "$ZIPFILE" module.prop -d $MODPATH/ >&2
