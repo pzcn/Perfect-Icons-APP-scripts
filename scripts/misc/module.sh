@@ -141,22 +141,21 @@ else
   fi
 fi
 
-REPLACE="$MEDIAPATH/theme/miui_mod_icons"
-
 echo "- 安装中..."
 echo "- installing..."
 mkdir -p ${MODPATH}${MEDIAPATH}/theme/default/
 unzip -oj "$ZIPFILE" icons -d $MODPATH/$MEDIAPATH/theme/default/ >&2
 if [ $var_miui_version -gt 14 ]; then 
   mkdir -p "$MEDIAPATH/theme/miui_mod_icons"
-  unzip "$MODPATH/$MEDIAPATH/theme/default/icons" "res/drawable-xxhdpi/icon_*.png" -d "$MEDIAPATH/theme/miui_mod_icons"
-  zip -d "$MODPATH/$MEDIAPATH/theme/default/icons" "res/drawable-xxhdpi/icon_*.png"
+  unzip "$MODPATH/$MEDIAPATH/theme/default/icons" "res/drawable-xxhdpi/*.png" -d "$MEDIAPATH/theme/miui_mod_icons"
+  zip -d "$MEDIAPATH/theme/miui_mod_icons" "res/drawable-xxhdpi/*.png"
+else
+  REPLACE="$MEDIAPATH/theme/miui_mod_icons"
 fi
 unzip -oj "$ZIPFILE" addons/* -d $MODPATH/$MEDIAPATH/theme/default/ >&2
 unzip -oj "$ZIPFILE" module.prop -d $MODPATH/ >&2
 unzip -oj "$ZIPFILE" post-fs-data.sh -d $MODPATH/ >&2 
 echo -ne '\x50\x4b\x05\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' > $MODPATH/$MEDIAPATH/theme/default/dynamicicons
-settings put global is_default_icon 0
 set_perm_recursive $MODPATH 0 0 0755 0644
 
 rm -rf /data/system/package_cache/*
