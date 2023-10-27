@@ -203,17 +203,16 @@ pack() {
   rm -rf $TEMP_DIR/icons
   [ -f ${START_DIR}/theme_files/denylist ] && disable_dynamicicon
   transform_config
-  cd ${START_DIR}/theme_files/miui
+  [ $addon == 1 ] && addon
+  if [ "$1" != mtz ]; then
+    cp -rf "$TEMP_DIR/res/drawable-xxhdpi/*.png" $TEMP_DIR/miui_mod_icons
+  fi
   cd $TEMP_DIR
   zip -r icons.zip ./layer_animating_icons >/dev/null
   zip -r icons.zip ./res >/dev/null
   rm -rf $TEMP_DIR/res
   rm -rf $TEMP_DIR/layer_animating_icons
   mkdir $TEMP_DIR/moduletmp
-  [ $addon == 1 ] && addon
-  if [ "$1" != mtz ]; then
-    cp -rf "$TEMP_DIR/res/drawable-xxhdpi/*.png" $TEMP_DIR/miui_mod_icons
-  fi
   mv $TEMP_DIR/icons.zip $TEMP_DIR/moduletmp/icons
   [ -d "$TEMP_DIR/miui_mod_icons" ] && mv $TEMP_DIR/miui_mod_icons $TEMP_DIR/moduletmp
   cd ${START_DIR}
@@ -324,10 +323,6 @@ addon() {
     [ -d "$addon_path/${string_animatingicons}" ] && cp -rf $addon_path/${string_animatingicons}/* $TEMP_DIR/layer_animating_icons/ >/dev/null
     [ -d "$addon_path/${string_staticicons}" ] && cp -rf $addon_path/${string_staticicons}/* $TEMP_DIR/res/drawable-xxhdpi/ >/dev/null
     [ -d "$addon_path/${string_advancedaddons}" ] && cp -rf $addon_path/${string_advancedaddons}/* $TEMP_DIR/moduletmp/addons/ 2>/dev/null
-    cd $TEMP_DIR
-    zip -r icons.zip res >/dev/null
-    zip -r icons.zip layer_animating_icons >/dev/null
-    cd ..
   fi
 }
 
