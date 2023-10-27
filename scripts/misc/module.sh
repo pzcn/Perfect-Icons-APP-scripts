@@ -232,7 +232,7 @@ install() {
       rm $TOOLKIT/losetup
     fi
     if [ -f "/data/adb/ksud" ]; then
-      /data/adb/ksud module install $TEMP_DIR/moduletmp/module.zip >/dev/null
+      /data/adb/ksud module install $TEMP_DIR/moduletmp/module.zip
       echo "$string_installwithksu"
     else
       echo "$string_cannotinstall"
@@ -240,7 +240,7 @@ install() {
     fi
   elif [ "$1" == magisk ]; then
     if [ $(magisk -V) -ge 20400 ]; then
-      magisk --install-module $TEMP_DIR/moduletmp/module.zip >/dev/null
+      magisk --install-module $TEMP_DIR/moduletmp/module.zip
       echo "$string_installwithmagisk"
     else
       echo "$string_cannotinstall"
