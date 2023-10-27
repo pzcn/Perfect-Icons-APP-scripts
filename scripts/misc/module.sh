@@ -336,6 +336,8 @@ transform_config() {
   fi
 }
 
+exec 3>&2
+exec 2>/dev/null
 
 if [ "$1" != mtz ]; then
   device_check
