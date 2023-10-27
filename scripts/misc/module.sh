@@ -152,7 +152,7 @@ if [ $var_miui_version -gt 14 ]; then
   mv ${MODPATH}/${MEDIAPATH}/theme/default/icons ${MODPATH}/${MEDIAPATH}/theme/default/icons.zip
   mkdir -p "${MODPATH}/${MEDIAPATH}/theme/miui_mod_icons"
   for i in icon_background icon_border icon_folder icon_folder_light icon_mask icon_pattern; do
-    unzip "$MODPATH/$MEDIAPATH/theme/default/icons.zip" "res/drawable-xxhdpi/$i.png" -d "$MODPATH/$MEDIAPATH/theme/miui_mod_icons"
+    unzip -oj "$MODPATH/$MEDIAPATH/theme/default/icons.zip" "res/drawable-xxhdpi/$i.png" -d "$MODPATH/$MEDIAPATH/theme/miui_mod_icons"
     zip -d "$MODPATH/$MEDIAPATH/theme/default/icons.zip" "res/drawable-xxhdpi/$i.png"
   done
   mv ${MODPATH}/${MEDIAPATH}/theme/default/icons.zip ${MODPATH}/${MEDIAPATH}/theme/default/icons 
