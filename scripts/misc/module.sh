@@ -195,6 +195,7 @@ disable_dynamicicon() {
 
 pack() {
   echo "${string_exporting}$theme_name..."
+  cd ${START_DIR}/theme_files/miui
   zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null  
   cd $TEMP_DIR
   tar -xf $TEMP_DIR/$var_theme.tar.xz -C "$TEMP_DIR/"
