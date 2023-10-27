@@ -148,15 +148,7 @@ echo "- installing..."
 
 mkdir -p ${MODPATH}/${MEDIAPATH}/theme/default/
 unzip -oj "$ZIPFILE" icons -d $MODPATH/$MEDIAPATH/theme/default/ >&2
-if [ $var_miui_version -gt 14 ]; then 
-  mv ${MODPATH}/${MEDIAPATH}/theme/default/icons ${MODPATH}/${MEDIAPATH}/theme/default/icons.zip
-  mkdir -p "${MODPATH}/${MEDIAPATH}/theme/miui_mod_icons"
-  for i in icon_background icon_border icon_folder icon_folder_light icon_mask icon_pattern; do
-    unzip -oj "$MODPATH/$MEDIAPATH/theme/default/icons.zip" "res/drawable-xxhdpi/$i.png" -d "$MODPATH/$MEDIAPATH/theme/miui_mod_icons"
-    zip -d "$MODPATH/$MEDIAPATH/theme/default/icons.zip" "res/drawable-xxhdpi/$i.png"
-  done
-  mv ${MODPATH}/${MEDIAPATH}/theme/default/icons.zip ${MODPATH}/${MEDIAPATH}/theme/default/icons 
-fi
+unzip -o "$ZIPFILE" miui_mod_icons -d $MODPATH/$MEDIAPATH/theme/ >&2
 unzip -oj "$ZIPFILE" addons/* -d $MODPATH/$MEDIAPATH/theme/default/ >&2
 unzip -oj "$ZIPFILE" module.prop -d $MODPATH/ >&2
 unzip -oj "$ZIPFILE" post-fs-data.sh -d $MODPATH/ >&2 
@@ -203,15 +195,22 @@ disable_dynamicicon() {
 
 pack() {
   echo "${string_exporting}$theme_name..."
-  cd ${START_DIR}/theme_files/miui
-  transform_config
-  zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null
   cd $TEMP_DIR
   tar -xf $TEMP_DIR/$var_theme.tar.xz -C "$TEMP_DIR/"
   mkdir -p $TEMP_DIR/res/drawable-xxhdpi
   mv $TEMP_DIR/icons/* $TEMP_DIR/res/drawable-xxhdpi 2>/dev/null
   rm -rf $TEMP_DIR/icons
   [ -f ${START_DIR}/theme_files/denylist ] && disable_dynamicicon
+  transform_config
+  cd ${START_DIR}/theme_files/miui
+  if [ "$1" == mtz ]; then
+    zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' >/dev/null
+  else
+    zip -r $TEMP_DIR/icons.zip * -x './res/drawable-xxhdpi/.git/*' './res/drawable-xxhdpi/*.png' >/dev/null
+    mkdir $TEMP_DIR/miui_mod_icons
+    cp -rf "${START_DIR}/theme_files/miui/res/drawable-xxhdpi/*.png" $TEMP_DIR/miui_mod_icons
+  fi
+  cd $TEMP_DIR
   zip -r icons.zip ./layer_animating_icons >/dev/null
   zip -r icons.zip ./res >/dev/null
   rm -rf $TEMP_DIR/res
@@ -219,6 +218,7 @@ pack() {
   mkdir $TEMP_DIR/moduletmp
   [ $addon == 1 ] && addon
   mv $TEMP_DIR/icons.zip $TEMP_DIR/moduletmp/icons
+  [ -d "$TEMP_DIR/miui_mod_icons" ] && mv $TEMP_DIR/miui_mod_icons $TEMP_DIR/moduletmp
   cd ${START_DIR}
 }
 
