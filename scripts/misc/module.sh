@@ -360,6 +360,8 @@ if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
     echo "${string_gitpull}"
     cd theme_files/miui/res/drawable-xxhdpi
     export LD_LIBRARY_PATH=$TOOLKIT/so: $LD_LIBRARY_PATH
+    git="$TOOLKIT/git"
+    git config --global --add safe.directory "*"
     git pull >/dev/null 2>&1 
     cp -rf $TEMP_DIR/${var_theme}.ini ${START_DIR}/theme_files/${var_theme}.ini
     cd ../../../..
