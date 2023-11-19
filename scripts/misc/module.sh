@@ -358,10 +358,9 @@ if [[ -d theme_files/miui/res/drawable-xxhdpi/.git ]]; then
   git="$TOOLKIT/git"
   cd theme_files/miui/res/drawable-xxhdpi
   local_SHA=`git rev-parse --short HEAD`
-  if [ $local_SHA -ne $git_SHA ]; then
+  if [ $local_SHA != $git_SHA ]; then
     echo "${string_newverdown_1}${theme_name}${string_newverdown_2}"
     echo "${string_gitpull}"
-    git config --global --add safe.directory "*"
     git pull 2>&1 >/dev/null || echo "× 增量更新出现错误，请重试或截图反馈" && cleanall >/dev/null && exit 1
     cp -rf $TEMP_DIR/${var_theme}.ini ${START_DIR}/theme_files/${var_theme}.ini
     cd ../../../..
